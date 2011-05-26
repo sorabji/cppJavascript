@@ -1,0 +1,13 @@
+;; Object hw1
+;; EDE project file.
+(ede-proj-project "hw1"
+  :name "hw1"
+  :file "Project.ede"
+  :targets (list 
+   (ede-proj-target-makefile-program "hw1"
+    :name "hw1"
+    :path ""
+    :source '("project1.cpp")
+    )
+   )
+  )
