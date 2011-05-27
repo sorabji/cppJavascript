@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unicycle</title>
+<meta http-equiv="content-type"
+content="text/html;charset=iso-8859-1" />
+<script type="text/javascript">
+/* <![CDATA[ */
+var turnUnicycle;
+var unicycle = new Array(16);
+var curUnicycle = 0;
+unicycle[0] = "unicycle0.gif"; unicycle[1] = "unicycle1.gif";
+unicycle[2] = "unicycle2.gif"; unicycle[3] = "unicycle3.gif";
+unicycle[4] = "unicycle4.gif"; unicycle[5] = "unicycle5.gif";
+unicycle[6] = "unicycle6.gif"; unicycle[7] = "unicycle7.gif";
+unicycle[8] = "unicycle8.gif"; unicycle[9] = "unicycle9.gif";
+unicycle[10] = "unicycle10.gif"; unicycle[11] = "unicycle11.gif";
+unicycle[12] = "unicycle12.gif"; unicycle[13] = "unicycle13.gif";
+unicycle[14] = "unicycle14.gif"; unicycle[15] = "unicycle15.gif";
+function turn() {
+     if (curUnicycle == 15)
+           curUnicycle = 0;
+     else
+           ++curUnicycle;
+     document.images[0].src = unicycle[curUnicycle];
+}
+function startTurning() {
+     if (turnUnicycle != null)
+           clearInterval(turnUnicycle);
+     turnUnicycle = setInterval("turn()", 100);
+}
+/* ]]> */
+</script>
+</head>
+<body>
+<p><img src="unicycle1.gif" alt="Image of a unicycle." height="75" width="75" /></p>
+<form action="">
+<p><input type="button" value=" Turn "
+onclick="startTurning();" />
+<input type="button" value=" Stop "
+onclick="clearInterval(turnUnicycle);" /></p>
+</form>
+</body>
+</html>

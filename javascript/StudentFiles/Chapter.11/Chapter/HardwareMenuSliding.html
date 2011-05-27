@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Forestville Hardware Supply</title>
+<meta http-equiv="content-type" content="text/html;
+charset=iso-8859-1" />
+<style type="text/css">
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+h1 { color: #039 }
+table { background-color: aqua; border-style: solid; border-width: thin; border-color: black }
+a.noDecor { text-decoration: none; color: black }
+table.noShow {visibility:hidden; position:absolute }
+table.navMenu { left:-130px; position:relative}
+</style>
+<script type="text/javascript">
+/* <![CDATA[ */
+var curPosition=-130;
+var curMenu;
+var slider;
+function showMenu(selectedMenu) {
+     clearInterval(slider);
+     curMenu = document.getElementById(selectedMenu);
+     slider = setInterval("show()", 10);
+}
+function show() {
+     if (curPosition < -12) {
+           curPosition = curPosition + 2;
+           curMenu.style.left = curPosition + "px";
+     }
+}
+function hideMenu(selectedMenu) {
+     clearInterval(slider);
+     curMenu = document.getElementById(selectedMenu);
+     slider = setInterval("hide()", 10);
+}
+function hide() {
+     if (curPosition > -130) {
+           curPosition = curPosition - 2;
+           curMenu.style.left = curPosition + "px";
+     }
+}
+/* ]]> */
+</script>
+</head>
+<body>
+<h1>Forestville Hardware Supply</h1>
+<p>Use the menu to help find what you are looking for.</p>
+<table width="160px" class="navMenu" id="electrical"
+onmouseover="showMenu('electrical')"
+onmouseout="hideMenu('electrical')">
+<tr><td><a href="breakers.html">Breakers</a></td>
+<td rowspan="4" align="right" valign="center">
+<img src="electrical.gif" height="65" width="19"
+alt="Vertical text that reads 'Electrical'" /></td></tr>
+<tr><td><a href="fuses.html">Fuses</a></td></tr>
+<tr><td><a href="tools.html">Tools</a></td></tr>
+<tr><td><a href="wire.html">Wire</a></td></tr>
+</td></tr>
+</table>
+<table width="160px" class="navMenu" id="plumbing"
+onmouseover="showMenu('plumbing')"
+onmouseout="hideMenu('plumbing')">
+<tr><td><a href="hoseclamps.html">Hose Clamps</a></td>
+<td rowspan="4" align="right" valign="center">
+<img src="plumbing.gif" height="65" width="19"
+alt="Vertical text that reads 'Plumbing'" /></td></tr>
+<tr><td><a href="pipe.html">Pipe and Fittings</a></td></tr>
+<tr><td><a href="solders.html">Solders and
+Flux</a></td></tr>
+<tr><td><a href="tools.html">Tools</a></td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
+<head>
+<title>Banner Advertising</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+body { font-family: "Trebuchet MS" }
+</style>
+<script type="text/javascript">
+/* <![CDATA[ */
+var curBanner="soccer1";
+function changeBanner() {
+	if (curBanner == "soccer2") {
+		document.images[0].src = "soccer1.gif";
+		curBanner = "soccer1";
+	}
+	else {
+		document.images[0].src = "soccer2.gif";
+		curBanner = "soccer2";
+	}
+}
+/* ]]> */
+</script>
+</head>
+<body onload="var begin=setInterval('changeBanner()',2000);">
+<p><img src="soccer1.gif" alt="Changing banner image for Central Valley Sporting Goods" /></p>
+</body>
+</html>

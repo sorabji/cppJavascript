@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Auto Next Field</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+<script type="text/javascript">
+/* <![CDATA[ */
+function nextField(startField, destField) {
+	if (startField.value.length=startField.maxLength)
+	destField.focus();
+}
+
+/* ]]> */
+</script>
+</head>
+<body>
+<form action="FormProcessor.html" method="get"
+enctype="application/x-www-form-urlencoded">
+<p><b>Enter your 10-digit telephone number:</b>
+<input type="text" name="area_code" size="4"
+	onkeyup="nextField(this.document.forms[0].exchange.value)"
+	maxlength="3" />
+<input type="text" name="exchange" size="4"
+	onkeyup="nextField(this.document.forms[0].number.value)"
+	maxlength="3" />
+<input type="text" name="number" size="5" maxlength="4" /></p>
+</form>
+</body>
+</html>

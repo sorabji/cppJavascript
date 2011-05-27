@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unicycle</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+<script type="text/javascript">
+/* <![CDATA[ */
+var turnUnicycle;
+var unicycle = new Array(16);
+var curUnicycle = 0;
+for (var imagesLoaded=0; imagesLoaded < 16; ++imagesLoaded) {
+     unicycle[imagesLoaded] = new Image();
+     unicycle[imagesLoaded].src = "unicycle"
+           + imagesLoaded + ".gif";
+}
+function turn() {
+     if (curUnicycle == 15)
+           curUnicycle = 0;
+     else
+           ++curUnicycle;
+     document.images[0].src = unicycle[curUnicycle].src;
+}
+function startTurning() {
+     if (turnUnicycle != null)
+           clearInterval(turnUnicycle);
+     turnUnicycle = setInterval("turn()", 100);
+}
+/* ]]> */
+</script>
+</head>
+
+<body>
+<p><img src="unicycle0.gif" alt="Image of a unicycle." height="75" width="75" /></p>
+<form action="">
+<p><input type="button" value=" Turn "
+onclick="startTurning();" />
+<input type="button" value=" Stop "
+onclick="clearInterval(turnUnicycle);" /></p>
+</form>
+
+</body>
+
+</html>

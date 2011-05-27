@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>To Do List</title>
+<meta http-equiv="content-type" content="text/html;
+charset=iso-8859-1" />
+<link rel="stylesheet" href="js_styles.css" type="text/css" />
+<script type="text/javascript"
+/* <![CDATA[ */
+function addTask()
+     if (Document.Forms[0].newtask.value == "")
+           window.alert("You must enter a value in the New Task field.");
+     else {
+           if (Document.Forms[0].tasks.options[0].value == "tasks")
+                 Document.Forms[0].tasks.options[0] = null;
+           var newTask = new Option();
+           newTask.value = Document.Forms[0].newtask.value;
+           newTask.text = Document.Forms[0].newtask.value;
+           var numTasks = Document.Forms[0].tasks.options.length;
+           Document.Forms[0].tasks.options[numTasks] = newTask;
+           Document.Forms[0].newtask.value = "";
+     }
+}
+function deleteTask() {
+     var selectedTask = 0;
+     var taskSelected = false;
+     while (selectedTask < Document.Forms[0].tasks.length) {
+          	if (Document.Forms[0].tasks
+          	.options[selectedTask].selected == true) {
+          	taskSelected = true;
+           	break;
+           	}
+           ++selectedTask;
+     }
+     if (taskSelected == true)
+           Document.Forms[0].tasks.options[selectedTask] = null;
+     else
+           window.alert("You must select a task in the list.");
+}
+function ascendingSort() {
+     var newTasks = new Array();
+     for (var i =0; i < Document.Forms[0].tasks.length; ++i) {
+           newTasks[i] = Document.Forms[0].tasks.options[i].value;
+     }
+     newTasks.sort();
+     for (var j =0; j < Document.Forms[0].tasks.length; ++j) {
+           Document.Forms[0].tasks.options[j].value = newTasks[j];
+           Document.Forms[0].tasks.options[j].text = newTasks[j];
+     }
+}
+function descendingSort() {
+	var newTasks = new Array();
+	for (var i =0; i < Document.Forms[0].tasks.length; ++i) {
+		newTasks[i] = Document.Forms[0].tasks.options[i].value;
+	}
+	newTasks.sort();
+	newTasks.reverse();
+	for (var j =0; j < Document.Forms[0].tasks.length; ++j) {
+		Document.Forms[0].tasks.options[i].value = newTasks[i];
+		Document.Forms[0].tasks.options[i].text = newTasks[i];
+	}
+}
+/* ]]> */
+</script>
+</head>
+<body>
+<h1>To Do List</h1>
+ <form action="">
+<p>New Task <input type="text" size="68" name="newtask" /></p>
+<p><input type="button" value="Add Task" onclick="addTask()"
+style="width: 150px" />
+<input type="button" value="Delete Selected Task"
+onclick="deleteTask()" style="width: 150px" /><br />
+<input type="button" value="Ascending Sort"
+onclick="ascendingSort()" style="width: 150px" />
+<input type="button" value="Descending Sort"
+onclick="descendingSort()" style="width: 150px" />
+</p>
+<p><select name="tasks" size="10" style="width: 500px">
+<option value="tasks">Tasks</option></select></p>
+</form>
+</body>
+</html>
