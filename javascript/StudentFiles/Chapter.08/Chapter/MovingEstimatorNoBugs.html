@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Moving Estimator</title>
+<link rel="stylesheet" href="js_styles.css" type="text/css" />
+<meta http-equiv="content-type"
+content="text/html; charset=iso-8859-1" />
+<script type="text/javascript">
+/* <![CDATA[ */
+var mileageCost = 0;
+var laborCost = 0;
+var flightsCost = 0;
+var appliancesCost = 0;
+var pianosCost = 0;
+function calcMileageCost(miles) {
+	mileageCost = miles * 1.25;
+	calcTotalEstimate();
+}
+function calcLaborCost(pounds) {
+	laborCost = pounds * .15;
+	calcTotalEstimate();
+}
+function calcFlightsCost(flights) {
+	flightsCost = flights * 50;
+	calcTotalEstimate();
+}
+function calcAppliancesCost(appliances) {
+	appliancesCost = appliances * 25;
+	calcTotalEstimate();
+}
+function calcPianosCost(pianos) {
+	pianosCost = pianos * 35;
+	calcTotalEstimate();
+}
+function calcTotalEstimate() {
+	var total = mileageCost;
+	total += laborCost;
+	total += flightsCost;
+	total += appliancesCost;
+	total += pianosCost;
+	document.forms[0].total.value = "$" + total.toLocaleString();
+}
+/* ]]> */
+</script>
+</head>
+<body>
+<h1>Moving Estimator</h1>
+<form  action="" method="get" enctype="application/x-www-form-urlencoded">
+<table border="0">
+<tr><td>Distance in Miles</td><td><input name="miles" type="text" onblur="calcMileageCost(this.value);" /> ($1.25 per mile)</td></tr>
+<tr><td>Weight in Pounds</td><td><input name="pounds" type="text" onblur="calcLaborCost(this.value);" /> (.15 per pound)</td></tr>
+<tr><td>No. of Flights</td><td><input name="flights" type="text" onblur="calcFlightsCost(this.value);" /> ($50 per flight)</td></tr>
+<tr><td>No. of Appliances</td><td><input name="appliances" type="text" onblur="calcAppliancesCost(this.value);" /> ($25 per appliance)</td></tr>
+<tr><td>No. of Pianos</td><td><input name="pianos" type="text" onblur="calcPianosCost(this.value);" /> ($35 per piano)</td></tr>
+<tr><td><strong>Moving Estimate</strong></td><td><input name="total" type="text" onfocus="this.blur()" /> </td></tr>
+</table>
+</form>
+</body>
+</html>
+

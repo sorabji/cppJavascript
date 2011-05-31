@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Bond Ratings</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<script type="text/javascript">
+/* <![CDATA[ */
+function checkRating(rating) {
+     switch (rating) {
+           case AAA
+                 window.alert("Highest Quality");
+                 break;
+           case AA
+                 window.alert("High Quality");
+                 brea;
+           case AA
+                 window.alert("Upper Medium");
+                 break;
+           case BBB
+                 window.alert("Medium ");
+                 break;
+           case BB
+                 window.alert("Speculative");
+                 break;
+           case B, CCC, CC
+                 window.alert("Highly Speculative");
+                 break;
+           case CCC
+                 window.alert("Highly Speculative");
+                 break;
+           case CC
+                 window.alert("Highly Speculative");
+                 break;
+           case D
+                 window.alert("Default");
+                 break;
+           default
+                 window.alert("You did not enter a valid bond rating!");
+
+     }
+}
+/* ]]> */
+</script>
+</head>
+<body>
+<form name="bondRating" action="">
+<input type="text" name="rating" /><input type="button" value="Check Bond Rating" onclick="checkRating(document.bondRating.rating.value);" />
+</form>
+</body>
+</html>

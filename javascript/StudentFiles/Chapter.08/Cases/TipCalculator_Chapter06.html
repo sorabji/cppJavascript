@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Tip Calculator</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+<script type="text/javascript">
+/* <![CDATA[ */
+function figureTip() {
+     var bill = document.forms.bill;
+     var tipPercent = document.forms.tip_percent;
+     var numPeople = document.forms.num_people;
+     var tipAmount = Math.round(bill * ("." + tipPercent));
+     var total = Math.round(bill * (1 + "." + tipPercent));
+     var totalPerPerson = Math.round(total / numPeople);
+     document.forms.tip_amount = tipAmount.toLocaleString();
+     document.forms.total = total.toLocaleString();
+     document.forms.total_person = totalPerPerson.toLocaleString();
+}
+/* ]]> */
+</script>
+</head>
+<body>
+<h2>Tip Calculator</h2>
+<form action="">
+<table border="0">
+<tr><td>Bill:</td><td><input type="text" name="bill" value="0"
+onchange="figureTip();" /></td></tr>
+<tr><td>Tip %:</td><td><input type="text" name="tip_percent" value="0"
+onchange="figureTip();" /> (enter as a whole number)</td></tr>
+<tr><td># of People:</td><td><input type="text" name="num_people"
+value="1" onchange="figureTip();" /> </td></tr>
+<tr><td>Tip amount:</td><td><input type="text" name="tip_amount" value="0" readonly="readonly" /></td></tr>
+<tr><td>Total:</td><td><input type="text" name="total" value="0" readonly="readonly" /></td></tr>
+<tr><td>Total per Person:</td><td><input type="text"
+name="total_person" value="0" readonly="readonly" /></td></tr>
+</table>
+</form>
+</body>
+</html>

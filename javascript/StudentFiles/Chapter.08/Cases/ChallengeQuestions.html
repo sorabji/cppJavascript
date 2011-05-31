@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Validate Text Boxes</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<script type="text/javascript">
+/* <![CDATA[ */
+function validateTextInput(keyPressEvent) {
+	if (navigator.appName == "Microsoft Internet Explorer")
+		var enteredKey = keyPressEvent.keyCode;
+	else if (navigator.appName == "Netscape")
+		var enteredKey = keyPressEvent.which;
+	var enteredChar = String.fromCharCode(enteredKey);
+	var retValue = true;
+	try {
+		if (!/\D/.test(enteredChar))
+			throw "You can only enter letters into this field.";
+	}
+	catch(inputError) {
+		alert(inputError);
+		retValue = false;
+	}
+	finally {
+		return retValue;
+	}
+}
+function validateNumericInput(keyPressEvent) {
+	if (navigator.appName == "Microsoft Internet Explorer")
+		var enteredKey = keyPressEvent.keyCode;
+	else if (navigator.appName == "Netscape")
+		var enteredKey = keyPressEvent.which;
+	var enteredChar = String.fromCharCode(enteredKey);
+	var retValue = true;
+	try {
+		if (!/\d/.test(enteredChar))
+			throw "You can only enter numbers into this field.";
+	}
+	catch(inputError) {
+		alert(inputError);
+		retValue = false;
+	}
+	finally {
+		return retValue;
+	}
+}
+/* ]]> */
+</script>
+</head>
+<body>
+<form action="FormProcessor.html" method="get"
+enctype="application/x-www-form-urlencoded">
+<p>Mother's maiden name<br />
+<input type="text" name="mother"
+     size="50" onkeypress="return validateTextInput(event)" /></p>
+<p>City where you were born<br />
+<input type="text" name="city"
+     size="50" onkeypress="return validateTextInput(event)" /></p>
+<p>Street where you grew up<br />
+<input type="text" name="street"
+     size="50" onkeypress="return validateTextInput(event)" /></p>
+<p>Name of your favorite pet<br />
+<input type="text" name="pet"
+     size="50" onkeypress="return validateTextInput(event)" /></p>
+<p>Social Security number<br />
+<input type="text" name="ssnumber"
+     size="50" onkeypress="return validateNumericInput(event)" /></p>
+<p>Number of siblings<br />
+<input type="text" name="siblings"
+     size="50" onkeypress="return validateNumericInput(event)" /></p>
+</form>
+</body>
+</html>

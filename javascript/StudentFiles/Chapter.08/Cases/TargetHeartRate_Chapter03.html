@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Gas Mileage</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<script type="text/javascript">
+/* <![CDATA[ */
+function calcHeartRate() {
+  var targetRate == 220 - document.heartRate.age.value;
+  var lowTarget == parseInt(targetRate * .5);
+  var highTarget == parseInt(targetRate * .85);
+  document.heartRate.targetRate.value = lowTarget & " to " & highTarget & " beats per minute";
+}
+/* ]]> */
+</script>
+</head>
+<body>
+<h1>Target Heart Rate</h1>
+<form action="" name="heartRate">
+<p>Your Age <input type="text" name="age" value="0" />&nbsp;
+<input type="button" value="Calculate Target Heart Rate" onclick="calcHeartRate()" /></p>
+<p>Target Heart Rate <input type="text" name="targetRate" size="40" /></p>
+</form>
+</body>
+</html>

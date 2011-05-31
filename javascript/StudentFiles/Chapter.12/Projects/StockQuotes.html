@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Stock Quotes</title>
+<meta http-equiv="content-type" content="text/html;
+charset=iso-8859-1" />
+<style type="text/css">
+p, td	{
+font-family:arial;
+font-size:11px;
+color:black;
+}
+</style>
+<script type="text/javascript">
+/* <![CDATA[ */
+var httpRequest = false;
+var tickerSymbol = "^IXIC";
+function getRequestObject() {
+	try {
+		httpRequest = new XMLHttpRequest();
+	}
+	catch (requestError) {
+		try {
+			httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		catch (requestError) {
+			try {
+				httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			catch (requestError) {
+				window.alert("Your browser does not support AJAX!");
+				return false;
+			}
+		}
+	}
+	return httpRequest;
+}
+function getStockQuote(newTicker) {
+	if (!httpRequest)
+		httpRequest = getRequestObject();
+	if (newTicker)
+		tickerSymbol = newTicker;
+	httpRequest.abort();
+	httpRequest.open("GET","StockCheck.php?" + "checkQuote=" + tickerSymbol, true);
+	httpRequest.send(null);
+	httpRequest.onreadystatechange=fillStockInfo;
+	var updateQuote = setTimeout('getStockQuote()', 10000);
+}
+function fillStockInfo() {
+	if(httpRequest.readyState==4 && httpRequest.status == 200) {
+		var stockValues = httpRequest.responseXML;
+		document.getElementById("ticker").childNodes[0].nodeValue = stockValues.getElementsByTagName("ticker")[0].childNodes[0].nodeValue;
+		document.getElementById("openingPrice").innerHTML = stockValues.getElementsByTagName("open")[0].childNodes[0].nodeValue;
+		document.getElementById("lastTrade").innerHTML = "<strong>" + stockValues.getElementsByTagName("lastTrade")[0].childNodes[0].nodeValue + "</strong>";
+		document.getElementById("lastTradeDT").innerHTML = stockValues.getElementsByTagName("lastTradeDate")[0].childNodes[0].nodeValue + " " + stockValues.getElementsByTagName("lastTradeTime")[0].childNodes[0].nodeValue;
+		document.getElementById("change").innerHTML = stockValues.getElementsByTagName("change")[0].childNodes[0].nodeValue;
+		document.getElementById("range").innerHTML = stockValues.getElementsByTagName("rangeLow")[0].childNodes[0].nodeValue + " - " + stockValues.getElementsByTagName("rangeHigh")[0].childNodes[0].nodeValue;
+		var volume = parseInt(stockValues.getElementsByTagName("volume")[0].childNodes[0].nodeValue);
+		document.getElementById("volume").innerHTML = volume.toLocaleString();
+		document.getElementById("chart").innerHTML = "<img src=" + stockValues.getElementsByTagName("chart")[0].childNodes[0].nodeValue + " alt='Stock line chart from Yahoo.com.' />";
+	}
+}
+/* ]]> */
+</script>
+</head>
+<body onload="getStockQuote()">
+<form action="" method="get" enctype="application/x-www-form-urlencoded">
+<p>Ticker Symbol <input type="text" name="symbol" /> <input type="button" onclick="getStockQuote(document.forms[0].symbol.value)" value="Get Quote" /></p>
+<table border="1" cellpadding="5">
+<colgroup span="2" width="215px" />
+<tr><td>
+<table id="tickerTable" border="0">
+<tr style="background-color:cyan"><td>Ticker Symbol</td><td id="ticker">&nbsp;</td></tr>
+<tr><td>Opening Price</td><td id="openingPrice">&nbsp;</td></tr>
+<tr style="background-color:cyan"><td>Last Trade Price</td><td id="lastTrade"></td></tr>
+<tr><td>Last Trade Date/Time</td><td id="lastTradeDT">&nbsp;</td></tr>
+<tr style="background-color:cyan"><td>Change</td><td id="change">&nbsp;</td></tr>
+<tr><td>Day's Range</td><td id="range">&nbsp;</td></tr>
+<tr style="background-color:cyan"><td>Average Volume</td><td id="volume">&nbsp;</td></tr>
+</table>
+</td>
+<td id="chart"><img src="http://ichart.finance.yahoo.com/t?s=%5EIXIC" alt="Stock line chart from Yahoo.com." /></td>
+</tr></table>
+</form>
+</body>
+</html>

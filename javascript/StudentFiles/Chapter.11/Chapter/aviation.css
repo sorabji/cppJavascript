@@ -1,0 +1,52 @@
+small	{
+font-family:arial;
+font-size:11px;
+color:white;
+}
+
+li {
+text-indent:0px;
+}
+
+b.bb	{
+font-family:arial;
+font-size:13px;
+color:#505050;
+}
+
+b	{
+font-family:arial;
+font-size:11px;
+color:#505050;
+}
+
+td	{
+font-family:arial;
+font-size:11px;
+color:gray;
+}
+
+
+a:link	{
+font-family:arial;
+font-size:11px;
+color:#C10000;
+font-weight:bold;
+text-decoration:none;
+}
+
+a:active	{
+font-family:arial;
+font-size:11px;
+color:#C10000;
+font-weight:bold;
+text-decoration:none;
+}
+
+a:visited	{
+font-family:arial;
+font-size:11px;
+color:#C10000;
+font-weight:bold;
+text-decoration:none;
+}

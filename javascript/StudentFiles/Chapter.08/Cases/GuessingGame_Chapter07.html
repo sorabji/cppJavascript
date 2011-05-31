@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Guessing Game</title>
+<meta http-equiv="content-type"
+content="text/html; charset=iso-8859-1" />
+<script type="text/javascript">
+/* <![CDATA[ */
+var mysteryWord = "suspicious";
+function checkGuess() {
+	if (document.forms[0].letter.value != "") {
+		var progress = document.forms[0].mysteryWord.value;
+		var guess = document.forms[0].letter.value;
+		document.forms[0].letter.value = "";
+		var mysteryWordArray = mysteryWord.split(" ");
+		var progressArray = progress.split("");
+		for (var i=0; i < mysteryWord.length; ++i) {
+			var curLetter = mysteryWordArray[i];
+			if (curLetter == guess)
+				progressArray[i] = guess;
+		}
+		progress = progress.join(" ");
+		if (progress == mysteryWord)
+			document.forms[0].mysteryWord.value = "You guessed correctly! The mystery word is '" + progress + "'.";
+		else
+			document.forms[0].mysteryWord.value = progress;
+	}
+		else
+			window.alert("You must enter a letter!");
+	}
+}
+/* ]]> */
+</script>
+</head>
+<body>
+<h1>Guessing Game</h1><hr />
+<form action="" method="get" enctype="application/x-www-form-urlencoded">
+<p>Mystery word: <input type="text" name="mysteryWord" value="**********" size="100" readonly="readonly" style="border: 0" /></p>
+<p>Enter a letter and click the Submit Letter button.</p>
+<p><input type="text" name="letter" size="2" />
+<input type="button" value="Submit Letter" onclick="checkGuess()" /></p>
+</form><hr />
+</body>
+</html>

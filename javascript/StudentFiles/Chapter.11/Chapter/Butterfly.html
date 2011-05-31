@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Butterfly</title>
+<meta http-equiv="content-type" content="text/html;
+charset=iso-8859-1" />
+<link rel="stylesheet" href="js_styles.css" type="text/css" />
+<script type="text/javascript">
+/* <![CDATA[ */
+var topPosition = 150;
+var leftPosition = 0;
+function flyButterfly() {
+	var butterfly = document.getElementById("butterfly");
+	butterfly.style.left = leftPosition + "px";
+	butterfly.style.top = topPosition + "px";
+	butterfly.style.visibility = "visible";
+	topPosition -= 3;
+	leftPosition += 10;
+	if (topPosition <= 0) {
+		topPosition = 150;
+		leftPosition = 0;
+	}
+}
+/* ]]> */
+</script>
+</head>
+<body onload="setInterval('flyButterfly()', 100);">
+ <p><img src="butterfly.gif" id="butterfly" style="position:
+absolute; left: 0px; top: 0px; visibility:hidden" alt="Image of a butterfly" height="120" width="150" /></p>
+<h1>Butterfly</h1>
+<p>According to Wikipedia:</p>
+<blockquote><p>A butterfly is an insect of the order Lepidoptera, it belongs to either the Hesperioidea (the skippers) or Papilionoidea (all other butterflies) Superfamilies. Some authors have also suggested the inclusion of the superfamily Hedyloidea, the American butterfly moths. They are notable for their unusual life cycle with a larval caterpillar stage, an inactive pupal stage and a spectacular metamorphosis into a familiar and colourful winged adult form. The diverse patterns formed by their brightly coloured wings and their erratic-yet-graceful flight have made butterfly watching a popular hobby.</p></blockquote>
+</body>
+</html>

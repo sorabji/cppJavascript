@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>E-Mail Form</title>
+<link rel="stylesheet" href="js_styles.css" type="text/css" />
+<meta http-equiv="content-type"
+content="text/html; charset=iso-8859-1" />
+</head>
+<body>
+<form action="FormProcessor.html" method="get">
+<table frame="border" rules="cols" >
+<tr>
+<td valign="top">
+<h2>Sender</h2>
+<p>Name<br />
+<input type="text" name="sender_name" size="40" /></p>
+<p>E-Mail Address<br />
+<input type="text" name="sender_email" size="40" /></p>
+<hr /><h2>Recipients</h2>
+<p>Name<br />
+<input type="text" name="recipient_name" size="40" /></p>
+<p>E-Mail Address<br />
+<input type="text" name="recipient_email" size="40" /></p>
+</td>
+<td valign="top">
+<h2>Message Details</h2>
+<p>Subject<br />
+<input type="text" name="subject" size="53" /></p>
+<p>Message<br />
+<textarea name="message" rows="14" cols="40"></textarea></p>
+<p style="text-align: center"><input type="submit" value="Send" /><input type="reset" />
+<input type="hidden" name="recipientsList" /></p>
+</td></tr>
+</table>
+</form>
+</body>
+</html>
