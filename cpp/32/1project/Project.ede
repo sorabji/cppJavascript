@@ -1,0 +1,14 @@
+;; Object project1
+;; EDE project file.
+(ede-proj-project "project1"
+  :name "project1"
+  :file "Project.ede"
+  :targets (list 
+   (ede-proj-target-makefile-program "project1"
+    :name "project1"
+    :path ""
+    :source '("Circle.cpp" "Rectangle.cpp" "RightTriangle.cpp" "Shape.cpp" "Main.cpp")
+    :auxsource '("Shape.h" "Rectangle.h" "RightTriangle.h" "Circle.h")
+    )
+   )
+  )
