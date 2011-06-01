@@ -1,0 +1,1 @@
+RightTriangle.o: RightTriangle.cpp RightTriangle.h Shape.h
