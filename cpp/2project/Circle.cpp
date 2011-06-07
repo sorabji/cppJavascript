@@ -1,9 +1,6 @@
 #include "Circle.h"
 
-#include <cmath>
 using namespace std;
-
-const double PI = 4.0*atan(1.0);
 
 Circle::Circle()
 {
@@ -18,9 +15,14 @@ Circle::~Circle()
 {
   radius = 0;
 }
+
+/**
+ * M_PI is a constant for pi defined in cmath
+ */
 double Circle::calcArea()
 {
-  return (PI*radius*radius);
+  return (M_PI*radius*radius);
+  
 }
 
 

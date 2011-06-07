@@ -1,21 +1,41 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html> <head>
-<title></title>
+<title>forms</title>
 <script type="text/javascript" src="tests.js" ></script>
 <script>
-document.write();
+
 </script>
 </head>
 
 <body>
-<h1></h1>
+<h1>forms</h1>
 
-<a href="something" style="color:green;" onmouseover="changeColor(this);">this</a>
+<p id="courseList" style="color:red"/>
 
+<form id="dataform" name="dataform" action="tests.html" method="post" onsubmit="return processCourses();">
+  Which course are you interested in?</br></br>
+<input type="radio" id="coursesfall" name="coursesfall" value="com285" >Intermediate Java</input></br>
+<input type="radio" id="coursesfall" name="coursesfall" value="com288" >javascript</input></br>
+<input type="radio" id="coursesfall" name="coursesfall" value="com289" >JSP and servlets</input></br>
+<input type="radio" id="coursesfall" name="coursesfall" value="com240" >e-commerce</input></br>
+</br>
+<input type="radio" id="coursesspring" name="coursesspring" value="com285" >Intermediate Java</input></br>
+<input type="radio" id="coursesspring" name="coursesspring" value="com288" >javascript</input></br>
+<input type="radio" id="coursesspring" name="coursesspring" value="com289" >JSP and servlets</input></br>
+<input type="radio" id="coursesspring" name="coursesspring" value="com240" >e-commerce</input></br></br>
 
+Which mods are you enrolling?</br>
+<input type="checkbox" name="modenrollment" id="modenrollment" value="Spring">Spring (Jan-Mar)</input></br>
+<input type="checkbox" name="modenrollment" id="modenrollment" value="SummerI">SummerI (Mar-May)</input></br>
+<input type="checkbox" name="modenrollment" id="modenrollment" value="SummerII">SummerII (May-Jul)</input></br>
+<input type="checkbox" name="modenrollment" id="modenrollment" value="Fall">Fall (Aug-Sep)</input></br>
+<input type="checkbox" name="modenrollment" id="modenrollment" value="Winter">Winter (Oct-Dec)</input></br>
+  
+  <input type="submit" id="submit" name="submit" value="submit" />
+</form>
 <hr>
 <address></address>
 <!-- hhmts start -->
-Last modified: Tue May 31 11:30:46 PDT 2011
+Last modified: Tue Jun  7 11:13:33 PDT 2011
 <!-- hhmts end -->
 </body> </html>
