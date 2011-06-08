@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>Target Heart Rate</title>
+<script type="text/javascript">
+function calcHeartRate(){
+  var maxHeart=220;
+  var age=document.heartRate.age.value;
+
+  var top=parseInt((220-age)*.85);
+  var bottom=parseInt((220-age)*.5)
+
+      var resultString = "for maximum benefit, keep your heartrate in this range:</br>"+bottom+" to "+top+" beats per minute";
+
+  document.getElementById("result").innerHTML=resultString;
+  return false;
+}
+</script>
+</head>
+
+<body>
+<h1>Target Heart Rate</h1>
+<p id="result" style="color:red"/>
+
+<form id="heartRate" name="heartRate" action="TargetHeartRate.html" method="post">
+  Enter your age:
+  <input type="text" id="age" name="age"/></br>
+  <input type="submit" id="submit" name="submit" value="submit" onclick="return calcHeartRate();"/>
+</form>
+
+
+
+<hr>
+<address></address>
+<!-- hhmts start -->
+Last modified: Tue Jun  7 11:54:26 PDT 2011
+<!-- hhmts end -->
+</body> </html>

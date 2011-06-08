@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<script type="text/javascript">
+function calcShipping(){
+  var price = parseInt(document.forms.shippingForm.price.value);
+  var total=0;
+  if(price <=25){
+    total=price+1.5;
+  }
+  else{
+    total=price+(price*.10);
+  }
+  alert("total price is:\n"+total);
+}
+</script>
+<title>Shipping and Handling</title>
+</head>
+
+<body>
+<h1>Shipping and Handling</h1>
+
+<form id="shippingForm" name="shippingForm" action="CalcShipping.html" method="post" onsubmit="return calcShipping();">
+  Enter the purchase price:
+  <input type="text" id="price" name="price"/></br>
+  <input type="submit" id="submit" name="submit" value="submit"/>
+</form>
+
+<hr>
+<address></address>
+<!-- hhmts start -->
+Last modified: Tue Jun  7 10:57:41 PDT 2011
+<!-- hhmts end -->
+</body> </html>

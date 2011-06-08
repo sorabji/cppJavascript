@@ -1,23 +1,38 @@
-
-function multiplyTable(){
-    document.write("<table border=\"1\">");
-    var i=1;
-    var j=1;
-    for (i;i<=10;i++){
-	document.write("<tr>");
-	for (j;j<=10;j++){
-	    document.write("<td>");
-	    document.write(j*i);
-	    document.write("</td>");
+function processCourses(){
+    var courseList="";
+    var coursesfall=document.dataform.coursesfall;
+    var coursesspring=document.dataform.coursesspring;
+    var fallcourse;
+    var springcourse;
+    var modsenrolled="";
+    for (var i=0;i<coursesfall.length;i++){
+	if(coursesfall[i].checked==true){
+	    courseList+=coursesfall[i].value+"</br>";
+	    fallcourse=coursesfall[i].value;
 	}
-    j=1;
+	
     }
-    return 0;
+    for (var i=0;i<coursesspring.length;i++){
+	if(coursesspring[i].checked==true){
+	    courseList+=coursesspring[i].value+"</br>";
+	    springcourse=coursesspring[i].value;
+	}
+	
+    }
+
+    if(fallcourse==springcourse){
+	document.getElementById("courseList").innerHTML="You have selected "+fallcourse+" in both terms";
+	return false;
+    }
+
+    var modenrollment=document.dataform.modenrollment;
+
+    for(var i=0;i<modenrollment.length;i++){
+	if(modenrollment[i].checked){
+	    modsenrolled+=modenrollment[i].value+"</br>";
+	}
+    }
+    alert("modsenrolled " + modsenrolled);
+    document.getElementById("courseList").innerHTML="The courses you have selected are </br>" + courseList + ".</br>You are enrolled in the following mods: </br>" + modsenrolled;
+    return false;
 }
-
-
-function changeColor(tochange){
-    setTimeout("alert(\"yoseph\")",3000);
-}
-
-
