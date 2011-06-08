@@ -30,7 +30,6 @@ int main()
       i++;
 
     }
-  
   shapes->clear();
   
   return 0;

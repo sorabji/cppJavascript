@@ -1,0 +1,13 @@
+;; Object practice
+;; EDE project file.
+(ede-proj-project "practice"
+  :name "practice"
+  :file "Project.ede"
+  :targets (list 
+   (ede-proj-target-makefile-program "practice"
+    :name "practice"
+    :path ""
+    :source '("MyClass.h" "main.cpp")
+    )
+   )
+  )
