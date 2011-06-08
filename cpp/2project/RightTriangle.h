@@ -1,8 +1,8 @@
-#include "Shape.h"
+
 
 #ifndef RIGHTTRIANGLE_H
 #define RIGHTTRIANGLE_H
-
+#include "Shape.h"
 class RightTriangle: public Shape
 {
  private:

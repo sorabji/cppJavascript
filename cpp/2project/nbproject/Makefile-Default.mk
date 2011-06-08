@@ -24,7 +24,7 @@ CND_CONF=Default
 CND_DISTDIR=dist
 
 # Include project Makefile
-include Makefile-1project.mk
+include Makefile-2project.mk
 
 # Object Directory
 OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}

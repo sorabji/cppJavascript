@@ -14,6 +14,7 @@ int main()
   double area = 0;
   int size = 3;
   vector<Shape*> shapes[size];
+
   shapes->push_back(new Circle(7));
   shapes->push_back(new Rectangle(5,10));
   shapes->push_back(new RightTriangle(5,10));
@@ -28,6 +29,10 @@ int main()
       delete (*it);
       it++;
   }
+
+  shapes->clear();
+
+
 
   return 0;
 }
