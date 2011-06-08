@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="62">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <df name="2project" root=".">
+      <in>Circle.cpp</in>
+      <in>Circle.h</in>
+      <in>Main.cpp</in>
+      <in>Rectangle.cpp</in>
+      <in>Rectangle.h</in>
+      <in>RightTriangle.cpp</in>
+      <in>RightTriangle.h</in>
+      <in>Shape.cpp</in>
+      <in>Shape.h</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+      <itemPath>Makefile-2project.mk</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile-2project.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>$(MAKE) -f Makefile</buildCommand>
+          <cleanCommand>$(MAKE) -f Makefile clean</cleanCommand>
+          <executablePath>./project2</executablePath>
+        </makeTool>
+      </makefileType>
+      <item path="Circle.h" ex="true" tool="3">
+      </item>
+      <item path="Rectangle.h" ex="true" tool="3">
+      </item>
+      <item path="RightTriangle.h" ex="true" tool="3">
+      </item>
+      <item path="Shape.h" ex="true" tool="3">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

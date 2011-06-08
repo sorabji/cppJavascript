@@ -1,10 +1,11 @@
-#include "Shape.h"
+
 
 #ifndef CIRCLE_H
 #define CIRCLE_H
 #define _USE_MATH_DEFINES
 #include <cmath>
 
+#include "Shape.h"
 class Circle: public Shape
 {
  private:
