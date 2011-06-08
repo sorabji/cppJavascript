@@ -1,0 +1,10 @@
+due 6/13
+
+write a console program in c++ that prints the command line arguments to the console.
+Should handle an arbitrary number of arguments.
+
+e.g.
+
+$ myProgram arg1 arg2 ... argn
+
+prints arg1..n to the console
