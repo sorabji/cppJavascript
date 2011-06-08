@@ -65,5 +65,10 @@ Main.o: Main.cpp /usr/include/c++/4.4/iostream \
  /usr/include/c++/4.4/bits/locale_facets.tcc \
  /usr/include/c++/4.4/bits/basic_ios.tcc \
  /usr/include/c++/4.4/bits/ostream.tcc /usr/include/c++/4.4/istream \
- /usr/include/c++/4.4/bits/istream.tcc Shape.h Circle.h Rectangle.h \
+ /usr/include/c++/4.4/bits/istream.tcc /usr/include/c++/4.4/vector \
+ /usr/include/c++/4.4/bits/stl_construct.h \
+ /usr/include/c++/4.4/bits/stl_uninitialized.h \
+ /usr/include/c++/4.4/bits/stl_vector.h \
+ /usr/include/c++/4.4/bits/stl_bvector.h \
+ /usr/include/c++/4.4/bits/vector.tcc Shape.h Circle.h Rectangle.h \
  RightTriangle.h

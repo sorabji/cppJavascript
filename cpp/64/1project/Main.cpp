@@ -1,9 +1,11 @@
 #include <iostream>
+#include <vector>
 
 #include "Shape.h"
 #include "Circle.h"
 #include "Rectangle.h"
 #include "RightTriangle.h"
+
 
 using namespace std;
 
@@ -11,19 +13,21 @@ int main()
 {
   double area = 0;
   int size = 3;
-  Shape *shapes[size];
-  shapes[0] = new Circle(7);
-  shapes[1] = new Rectangle(5,10);
-  shapes[2] = new RightTriangle(5,10);
+  vector<Shape*> shapes[size];
+  shapes->push_back(new Circle(7));
+  shapes->push_back(new Rectangle(5,10));
+  shapes->push_back(new RightTriangle(5,10));
 
-  for (int i=0 ; i < size; i++)
-    {
-      area = shapes[i]->calcArea();
-      cout << "The area of shape #" << i+1 << " is: "
-	   << area << endl;
+  vector<Shape*>::iterator it = shapes->begin();
+  vector<Shape*>::iterator end = shapes->end();
 
-      delete shapes[i];
-    }
-  
+  while (it != end)
+  {
+      cout << "The area of the shape is: " << (*it)->calcArea() << endl;
+      
+      delete (*it);
+      it++;
+  }
+
   return 0;
 }
