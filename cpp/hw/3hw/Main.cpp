@@ -8,6 +8,7 @@ int main(int argc, char **argv){
         cout << "arg number " << i+1 << " is: " << *argv << endl;
         argv++;
         argc--;
+        i++;
     }
 
     return 0;
