@@ -1,0 +1,266 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ACLOCAL	Makefile	/^ACLOCAL = ${SHELL} \/home\/artie\/Documents\/cppJavascript\/cpp\/2project\/missing --run aclocal-1.11$/;"	m
+ACLOCAL_M4	Makefile	/^ACLOCAL_M4 = $(top_srcdir)\/aclocal.m4$/;"	m
+AMTAR	Makefile	/^AMTAR = ${SHELL} \/home\/artie\/Documents\/cppJavascript\/cpp\/2project\/missing --run tar$/;"	m
+AM_RECURSIVE_TARGETS	Makefile	/^AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \\$/;"	m
+AUTOCONF	Makefile	/^AUTOCONF = ${SHELL} \/home\/artie\/Documents\/cppJavascript\/cpp\/2project\/missing --run autoconf$/;"	m
+AUTOHEADER	Makefile	/^AUTOHEADER = ${SHELL} \/home\/artie\/Documents\/cppJavascript\/cpp\/2project\/missing --run autoheader$/;"	m
+AUTOMAKE	Makefile	/^AUTOMAKE = ${SHELL} \/home\/artie\/Documents\/cppJavascript\/cpp\/2project\/missing --run automake-1.11$/;"	m
+AWK	Makefile	/^AWK = mawk$/;"	m
+CCLD	Makefile	/^CCLD = $(CC)$/;"	m
+CIRCLE_H	Circle.h	4;"	d
+COMPILE	Makefile	/^COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \\$/;"	m
+CONFIG_CLEAN_FILES	Makefile	/^CONFIG_CLEAN_FILES =$/;"	m
+CONFIG_CLEAN_VPATH_FILES	Makefile	/^CONFIG_CLEAN_VPATH_FILES =$/;"	m
+CONFIG_HEADER	Makefile	/^CONFIG_HEADER = config.h$/;"	m
+CPPFLAGS	Makefile	/^CPPFLAGS = $/;"	m
+CTAGS	Makefile	/^CTAGS = ctags$/;"	m
+CXX	Makefile	/^CXX = g++$/;"	m
+CXXCOMPILE	Makefile	/^CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \\$/;"	m
+CXXDEPMODE	Makefile	/^CXXDEPMODE = depmode=gcc3$/;"	m
+CXXFLAGS	Makefile	/^CXXFLAGS = -g -O2$/;"	m
+CXXLD	Makefile	/^CXXLD = $(CXX)$/;"	m
+CXXLINK	Makefile	/^CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \\$/;"	m
+CYGPATH_W	Makefile	/^CYGPATH_W = echo$/;"	m
+Circle	Circle.cpp	/^Circle::Circle()$/;"	f	class:Circle	signature:()
+Circle	Circle.cpp	/^Circle::Circle(double r)$/;"	f	class:Circle	signature:(double r)
+Circle	Circle.h	/^  Circle();$/;"	p	class:Circle	access:public	signature:()
+Circle	Circle.h	/^  Circle(double r);$/;"	p	class:Circle	access:public	signature:(double r)
+Circle	Circle.h	/^class Circle: public Shape$/;"	c	inherits:Shape
+Circle::Circle	Circle.cpp	/^Circle::Circle()$/;"	f	class:Circle	signature:()
+Circle::Circle	Circle.cpp	/^Circle::Circle(double r)$/;"	f	class:Circle	signature:(double r)
+Circle::Circle	Circle.h	/^  Circle();$/;"	p	class:Circle	access:public	signature:()
+Circle::Circle	Circle.h	/^  Circle(double r);$/;"	p	class:Circle	access:public	signature:(double r)
+Circle::calcArea	Circle.cpp	/^double Circle::calcArea()$/;"	f	class:Circle	signature:()
+Circle::calcArea	Circle.h	/^  double calcArea();$/;"	p	class:Circle	access:public	signature:()
+Circle::radius	Circle.h	/^  double radius; \/\/ the radius of the Circle$/;"	m	class:Circle	access:private
+Circle::~Circle	Circle.cpp	/^Circle::~Circle()$/;"	f	class:Circle	signature:()
+Circle::~Circle	Circle.h	/^  virtual ~Circle();$/;"	p	class:Circle	access:public	signature:()
+DEFAULT_INCLUDES	Makefile	/^DEFAULT_INCLUDES = -I.$/;"	m
+DEFS	Makefile	/^DEFS = -DHAVE_CONFIG_H$/;"	m
+DEPDIR	Makefile	/^DEPDIR = .deps$/;"	m
+DISTFILES	Makefile	/^DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)$/;"	m
+DIST_ARCHIVES	Makefile	/^DIST_ARCHIVES = $(distdir).tar.gz$/;"	m
+DIST_COMMON	Makefile	/^DIST_COMMON = README $(am__configure_deps) $(srcdir)\/Makefile.am \\$/;"	m
+DIST_SOURCES	Makefile	/^DIST_SOURCES = $(project2_SOURCES)$/;"	m
+DIST_SUBDIRS	Makefile	/^DIST_SUBDIRS = $(SUBDIRS)$/;"	m
+ECHO_C	Makefile	/^ECHO_C = $/;"	m
+ECHO_N	Makefile	/^ECHO_N = -n$/;"	m
+ECHO_T	Makefile	/^ECHO_T = $/;"	m
+ETAGS	Makefile	/^ETAGS = etags$/;"	m
+EXEEXT	Makefile	/^EXEEXT = $/;"	m
+EXTRA_DIST	Makefile	/^EXTRA_DIST = Project.ede$/;"	m
+GZIP_ENV	Makefile	/^GZIP_ENV = --best$/;"	m
+INSTALL	Makefile	/^INSTALL = \/usr\/bin\/install -c$/;"	m
+INSTALL_DATA	Makefile	/^INSTALL_DATA = ${INSTALL} -m 644$/;"	m
+INSTALL_HEADER	Makefile	/^INSTALL_HEADER = $(INSTALL_DATA)$/;"	m
+INSTALL_PROGRAM	Makefile	/^INSTALL_PROGRAM = ${INSTALL}$/;"	m
+INSTALL_SCRIPT	Makefile	/^INSTALL_SCRIPT = ${INSTALL}$/;"	m
+INSTALL_STRIP_PROGRAM	Makefile	/^INSTALL_STRIP_PROGRAM = $(install_sh) -c -s$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS = $/;"	m
+LIBOBJS	Makefile	/^LIBOBJS = $/;"	m
+LIBS	Makefile	/^LIBS = $/;"	m
+LINK	Makefile	/^LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@$/;"	m
+LTLIBOBJS	Makefile	/^LTLIBOBJS = $/;"	m
+MAKEINFO	Makefile	/^MAKEINFO = ${SHELL} \/home\/artie\/Documents\/cppJavascript\/cpp\/2project\/missing --run makeinfo$/;"	m
+MKDIR_P	Makefile	/^MKDIR_P = \/bin\/mkdir -p$/;"	m
+NORMAL_INSTALL	Makefile	/^NORMAL_INSTALL = :$/;"	m
+NORMAL_UNINSTALL	Makefile	/^NORMAL_UNINSTALL = :$/;"	m
+OBJEXT	Makefile	/^OBJEXT = o$/;"	m
+PACKAGE	Makefile	/^PACKAGE = project2$/;"	m
+PACKAGE	config.h	5;"	d
+PACKAGE_BUGREPORT	Makefile	/^PACKAGE_BUGREPORT = $/;"	m
+PACKAGE_BUGREPORT	config.h	8;"	d
+PACKAGE_NAME	Makefile	/^PACKAGE_NAME = $/;"	m
+PACKAGE_NAME	config.h	11;"	d
+PACKAGE_STRING	Makefile	/^PACKAGE_STRING = $/;"	m
+PACKAGE_STRING	config.h	14;"	d
+PACKAGE_TARNAME	Makefile	/^PACKAGE_TARNAME = $/;"	m
+PACKAGE_TARNAME	config.h	17;"	d
+PACKAGE_URL	Makefile	/^PACKAGE_URL = $/;"	m
+PACKAGE_URL	config.h	20;"	d
+PACKAGE_VERSION	Makefile	/^PACKAGE_VERSION = $/;"	m
+PACKAGE_VERSION	config.h	23;"	d
+PATH_SEPARATOR	Makefile	/^PATH_SEPARATOR = :$/;"	m
+POST_INSTALL	Makefile	/^POST_INSTALL = :$/;"	m
+POST_UNINSTALL	Makefile	/^POST_UNINSTALL = :$/;"	m
+PRE_INSTALL	Makefile	/^PRE_INSTALL = :$/;"	m
+PRE_UNINSTALL	Makefile	/^PRE_UNINSTALL = :$/;"	m
+PROGRAMS	Makefile	/^PROGRAMS = $(bin_PROGRAMS)$/;"	m
+RECTANGLE_H	Rectangle.h	4;"	d
+RECURSIVE_CLEAN_TARGETS	Makefile	/^RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\\$/;"	m
+RECURSIVE_TARGETS	Makefile	/^RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \\$/;"	m
+RIGHTTRIANGLE_H	RightTriangle.h	4;"	d
+Rectangle	Rectangle.cpp	/^Rectangle::Rectangle()$/;"	f	class:Rectangle	signature:()
+Rectangle	Rectangle.cpp	/^Rectangle::Rectangle(double length, double width)$/;"	f	class:Rectangle	signature:(double length, double width)
+Rectangle	Rectangle.h	/^  Rectangle();$/;"	p	class:Rectangle	access:public	signature:()
+Rectangle	Rectangle.h	/^  Rectangle(double length,double width);$/;"	p	class:Rectangle	access:public	signature:(double length,double width)
+Rectangle	Rectangle.h	/^class Rectangle: public Shape$/;"	c	inherits:Shape
+Rectangle::Rectangle	Rectangle.cpp	/^Rectangle::Rectangle()$/;"	f	class:Rectangle	signature:()
+Rectangle::Rectangle	Rectangle.cpp	/^Rectangle::Rectangle(double length, double width)$/;"	f	class:Rectangle	signature:(double length, double width)
+Rectangle::Rectangle	Rectangle.h	/^  Rectangle();$/;"	p	class:Rectangle	access:public	signature:()
+Rectangle::Rectangle	Rectangle.h	/^  Rectangle(double length,double width);$/;"	p	class:Rectangle	access:public	signature:(double length,double width)
+Rectangle::calcArea	Rectangle.cpp	/^double Rectangle::calcArea()$/;"	f	class:Rectangle	signature:()
+Rectangle::calcArea	Rectangle.h	/^  double calcArea();$/;"	p	class:Rectangle	access:public	signature:()
+Rectangle::length	Rectangle.h	/^  double length,width; \/\/ length and width, respectively, of the Rectangle$/;"	m	class:Rectangle	access:private
+Rectangle::width	Rectangle.h	/^  double length,width; \/\/ length and width, respectively, of the Rectangle$/;"	m	class:Rectangle	access:private
+Rectangle::~Rectangle	Rectangle.cpp	/^Rectangle::~Rectangle()$/;"	f	class:Rectangle	signature:()
+Rectangle::~Rectangle	Rectangle.h	/^  virtual ~Rectangle();$/;"	p	class:Rectangle	access:public	signature:()
+RightTriangle	RightTriangle.cpp	/^RightTriangle::RightTriangle()$/;"	f	class:RightTriangle	signature:()
+RightTriangle	RightTriangle.cpp	/^RightTriangle::RightTriangle(double width,double height)$/;"	f	class:RightTriangle	signature:(double width,double height)
+RightTriangle	RightTriangle.h	/^  RightTriangle();$/;"	p	class:RightTriangle	access:public	signature:()
+RightTriangle	RightTriangle.h	/^  RightTriangle(double width, double height);$/;"	p	class:RightTriangle	access:public	signature:(double width, double height)
+RightTriangle	RightTriangle.h	/^class RightTriangle: public Shape$/;"	c	inherits:Shape
+RightTriangle::RightTriangle	RightTriangle.cpp	/^RightTriangle::RightTriangle()$/;"	f	class:RightTriangle	signature:()
+RightTriangle::RightTriangle	RightTriangle.cpp	/^RightTriangle::RightTriangle(double width,double height)$/;"	f	class:RightTriangle	signature:(double width,double height)
+RightTriangle::RightTriangle	RightTriangle.h	/^  RightTriangle();$/;"	p	class:RightTriangle	access:public	signature:()
+RightTriangle::RightTriangle	RightTriangle.h	/^  RightTriangle(double width, double height);$/;"	p	class:RightTriangle	access:public	signature:(double width, double height)
+RightTriangle::calcArea	RightTriangle.cpp	/^double RightTriangle::calcArea()$/;"	f	class:RightTriangle	signature:()
+RightTriangle::calcArea	RightTriangle.h	/^  double calcArea();$/;"	p	class:RightTriangle	access:public	signature:()
+RightTriangle::height	RightTriangle.h	/^  double width,height; \/\/ the width and height of the triangle$/;"	m	class:RightTriangle	access:private
+RightTriangle::width	RightTriangle.h	/^  double width,height; \/\/ the width and height of the triangle$/;"	m	class:RightTriangle	access:private
+RightTriangle::~RightTriangle	RightTriangle.cpp	/^RightTriangle::~RightTriangle()$/;"	f	class:RightTriangle	signature:()
+RightTriangle::~RightTriangle	RightTriangle.h	/^  virtual ~RightTriangle();$/;"	p	class:RightTriangle	access:public	signature:()
+SET_MAKE	Makefile	/^SET_MAKE = $/;"	m
+SHAPE_H	Shape.h	2;"	d
+SHELL	Makefile	/^SHELL = \/bin\/bash$/;"	m
+SOURCES	Makefile	/^SOURCES = $(project2_SOURCES)$/;"	m
+STRIP	Makefile	/^STRIP = $/;"	m
+SUBDIRS	Makefile	/^SUBDIRS = $/;"	m
+Shape	Shape.cpp	/^Shape::Shape()$/;"	f	class:Shape	signature:()
+Shape	Shape.h	/^  Shape();$/;"	p	class:Shape	access:public	signature:()
+Shape	Shape.h	/^class Shape$/;"	c
+Shape::Shape	Shape.cpp	/^Shape::Shape()$/;"	f	class:Shape	signature:()
+Shape::Shape	Shape.h	/^  Shape();$/;"	p	class:Shape	access:public	signature:()
+Shape::calcArea	Shape.cpp	/^double Shape::calcArea()$/;"	f	class:Shape	signature:()
+Shape::calcArea	Shape.h	/^  virtual double calcArea();$/;"	p	class:Shape	access:public	signature:()
+Shape::~Shape	Shape.cpp	/^Shape::~Shape()$/;"	f	class:Shape	signature:()
+Shape::~Shape	Shape.h	/^  virtual ~Shape();$/;"	p	class:Shape	access:public	signature:()
+VERSION	Makefile	/^VERSION = 1.0$/;"	m
+VERSION	config.h	26;"	d
+_USE_MATH_DEFINES	Circle.h	5;"	d
+abs_builddir	Makefile	/^abs_builddir = \/home\/artie\/Documents\/cppJavascript\/cpp\/2project$/;"	m
+abs_srcdir	Makefile	/^abs_srcdir = \/home\/artie\/Documents\/cppJavascript\/cpp\/2project$/;"	m
+abs_top_builddir	Makefile	/^abs_top_builddir = \/home\/artie\/Documents\/cppJavascript\/cpp\/2project$/;"	m
+abs_top_srcdir	Makefile	/^abs_top_srcdir = \/home\/artie\/Documents\/cppJavascript\/cpp\/2project$/;"	m
+ac_ct_CXX	Makefile	/^ac_ct_CXX = g++$/;"	m
+ac_fn_cxx_try_compile	configure	/^ac_fn_cxx_try_compile ()$/;"	f
+am__CONFIG_DISTCLEAN_FILES	Makefile	/^am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \\$/;"	m
+am__aclocal_m4_deps	Makefile	/^am__aclocal_m4_deps = $(top_srcdir)\/configure.ac$/;"	m
+am__cd	Makefile	/^am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd$/;"	m
+am__configure_deps	Makefile	/^am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \\$/;"	m
+am__depfiles_maybe	Makefile	/^am__depfiles_maybe = depfiles$/;"	m
+am__include	Makefile	/^am__include = include$/;"	m
+am__installdirs	Makefile	/^am__installdirs = "$(DESTDIR)$(bindir)"$/;"	m
+am__leading_dot	Makefile	/^am__leading_dot = .$/;"	m
+am__mv	Makefile	/^am__mv = mv -f$/;"	m
+am__quote	Makefile	/^am__quote = $/;"	m
+am__relativize	Makefile	/^am__relativize = \\$/;"	m
+am__remove_distdir	Makefile	/^am__remove_distdir = \\$/;"	m
+am__tar	Makefile	/^am__tar = ${AMTAR} chof - "$$tardir"$/;"	m
+am__untar	Makefile	/^am__untar = ${AMTAR} xf -$/;"	m
+am_project2_OBJECTS	Makefile	/^am_project2_OBJECTS = Shape.$(OBJEXT) RightTriangle.$(OBJEXT) \\$/;"	m
+as_fn_append	config.status	/^  as_fn_append ()$/;"	f
+as_fn_append	configure	/^  as_fn_append ()$/;"	f
+as_fn_arith	config.status	/^  as_fn_arith ()$/;"	f
+as_fn_arith	configure	/^  as_fn_arith ()$/;"	f
+as_fn_error	config.status	/^as_fn_error ()$/;"	f
+as_fn_error	configure	/^as_fn_error ()$/;"	f
+as_fn_exit	config.status	/^as_fn_exit ()$/;"	f
+as_fn_exit	configure	/^as_fn_exit ()$/;"	f
+as_fn_failure	configure	/^as_fn_failure () { as_fn_return 1; }$/;"	f
+as_fn_mkdir_p	config.status	/^as_fn_mkdir_p ()$/;"	f
+as_fn_mkdir_p	configure	/^as_fn_mkdir_p ()$/;"	f
+as_fn_ret_failure	configure	/^as_fn_ret_failure () { return 1; }$/;"	f
+as_fn_ret_success	configure	/^as_fn_ret_success () { return 0; }$/;"	f
+as_fn_set_status	config.status	/^as_fn_set_status ()$/;"	f
+as_fn_set_status	configure	/^as_fn_set_status ()$/;"	f
+as_fn_success	configure	/^as_fn_success () { as_fn_return 0; }$/;"	f
+as_fn_unset	config.status	/^as_fn_unset ()$/;"	f
+as_fn_unset	configure	/^as_fn_unset ()$/;"	f
+bin_PROGRAMS	Makefile	/^bin_PROGRAMS = project2$(EXEEXT)$/;"	m
+bindir	Makefile	/^bindir = ${exec_prefix}\/bin$/;"	m
+build_alias	Makefile	/^build_alias = $/;"	m
+builddir	Makefile	/^builddir = .$/;"	m
+calcArea	Circle.cpp	/^double Circle::calcArea()$/;"	f	class:Circle	signature:()
+calcArea	Circle.h	/^  double calcArea();$/;"	p	class:Circle	access:public	signature:()
+calcArea	Rectangle.cpp	/^double Rectangle::calcArea()$/;"	f	class:Rectangle	signature:()
+calcArea	Rectangle.h	/^  double calcArea();$/;"	p	class:Rectangle	access:public	signature:()
+calcArea	RightTriangle.cpp	/^double RightTriangle::calcArea()$/;"	f	class:RightTriangle	signature:()
+calcArea	RightTriangle.h	/^  double calcArea();$/;"	p	class:RightTriangle	access:public	signature:()
+calcArea	Shape.cpp	/^double Shape::calcArea()$/;"	f	class:Shape	signature:()
+calcArea	Shape.h	/^  virtual double calcArea();$/;"	p	class:Shape	access:public	signature:()
+datadir	Makefile	/^datadir = ${datarootdir}$/;"	m
+datarootdir	Makefile	/^datarootdir = ${prefix}\/share$/;"	m
+depcomp	Makefile	/^depcomp = $(SHELL) $(top_srcdir)\/depcomp$/;"	m
+distcleancheck_listfiles	Makefile	/^distcleancheck_listfiles = find . -type f -print$/;"	m
+distdir	Makefile	/^distdir = $(PACKAGE)-$(VERSION)$/;"	m
+distuninstallcheck_listfiles	Makefile	/^distuninstallcheck_listfiles = find . -type f -print$/;"	m
+docdir	Makefile	/^docdir = ${datarootdir}\/doc\/${PACKAGE}$/;"	m
+dvidir	Makefile	/^dvidir = ${docdir}$/;"	m
+ede_FILES	Makefile	/^ede_FILES = Project.ede Makefile.am$/;"	m
+exec_prefix	Makefile	/^exec_prefix = ${prefix}$/;"	m
+height	RightTriangle.h	/^  double width,height; \/\/ the width and height of the triangle$/;"	m	class:RightTriangle	access:private
+host_alias	Makefile	/^host_alias = $/;"	m
+htmldir	Makefile	/^htmldir = ${docdir}$/;"	m
+includedir	Makefile	/^includedir = ${prefix}\/include$/;"	m
+infodir	Makefile	/^infodir = ${datarootdir}\/info$/;"	m
+install_sh	Makefile	/^install_sh = ${SHELL} \/home\/artie\/Documents\/cppJavascript\/cpp\/2project\/install-sh$/;"	m
+install_sh_DATA	Makefile	/^install_sh_DATA = $(install_sh) -c -m 644$/;"	m
+install_sh_PROGRAM	Makefile	/^install_sh_PROGRAM = $(install_sh) -c$/;"	m
+install_sh_SCRIPT	Makefile	/^install_sh_SCRIPT = $(install_sh) -c$/;"	m
+length	Rectangle.h	/^  double length,width; \/\/ length and width, respectively, of the Rectangle$/;"	m	class:Rectangle	access:private
+libdir	Makefile	/^libdir = ${exec_prefix}\/lib$/;"	m
+libexecdir	Makefile	/^libexecdir = ${exec_prefix}\/libexec$/;"	m
+localedir	Makefile	/^localedir = ${datarootdir}\/locale$/;"	m
+localstatedir	Makefile	/^localstatedir = ${prefix}\/var$/;"	m
+main	Main.cpp	/^int main()$/;"	f	signature:()
+mandir	Makefile	/^mandir = ${datarootdir}\/man$/;"	m
+mkdir_p	Makefile	/^mkdir_p = \/bin\/mkdir -p$/;"	m
+mkinstalldirs	Makefile	/^mkinstalldirs = $(install_sh) -d$/;"	m
+oldincludedir	Makefile	/^oldincludedir = \/usr\/include$/;"	m
+pdfdir	Makefile	/^pdfdir = ${docdir}$/;"	m
+pkgdatadir	Makefile	/^pkgdatadir = $(datadir)\/project2$/;"	m
+pkgincludedir	Makefile	/^pkgincludedir = $(includedir)\/project2$/;"	m
+pkglibdir	Makefile	/^pkglibdir = $(libdir)\/project2$/;"	m
+pkglibexecdir	Makefile	/^pkglibexecdir = $(libexecdir)\/project2$/;"	m
+prefix	Makefile	/^prefix = \/usr\/local$/;"	m
+program_transform_name	Makefile	/^program_transform_name = s,x,x,$/;"	m
+project2_DEPENDENCIES	Makefile	/^project2_DEPENDENCIES =$/;"	m
+project2_LDADD	Makefile	/^project2_LDADD = $/;"	m
+project2_OBJECTS	Makefile	/^project2_OBJECTS = $(am_project2_OBJECTS)$/;"	m
+project2_SOURCES	Makefile	/^project2_SOURCES = Shape.h Shape.cpp RightTriangle.cpp Rectangle.cpp Main.cpp Circle.cpp$/;"	m
+psdir	Makefile	/^psdir = ${docdir}$/;"	m
+radius	Circle.h	/^  double radius; \/\/ the radius of the Circle$/;"	m	class:Circle	access:private
+sbindir	Makefile	/^sbindir = ${exec_prefix}\/sbin$/;"	m
+sharedstatedir	Makefile	/^sharedstatedir = ${prefix}\/com$/;"	m
+srcdir	Makefile	/^srcdir = .$/;"	m
+subdir	Makefile	/^subdir = .$/;"	m
+sysconfdir	Makefile	/^sysconfdir = ${prefix}\/etc$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | bzip2 -9 -c >$(distdir).tar.bz2$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | compress -c >$(distdir).tar.Z$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | lzma -9 -c >$(distdir).tar.lzma$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | xz -c >$(distdir).tar.xz$/;"	m
+target_alias	Makefile	/^target_alias = $/;"	m
+top	Makefile	/^top = "$(CURDIR)"\/$/;"	m
+top_build_prefix	Makefile	/^top_build_prefix = $/;"	m
+top_builddir	Makefile	/^top_builddir = .$/;"	m
+top_distdir	Makefile	/^top_distdir = $(distdir)$/;"	m
+top_srcdir	Makefile	/^top_srcdir = .$/;"	m
+transform	Makefile	/^transform = $(program_transform_name)$/;"	m
+width	Rectangle.h	/^  double length,width; \/\/ length and width, respectively, of the Rectangle$/;"	m	class:Rectangle	access:private
+width	RightTriangle.h	/^  double width,height; \/\/ the width and height of the triangle$/;"	m	class:RightTriangle	access:private
+~Circle	Circle.cpp	/^Circle::~Circle()$/;"	f	class:Circle	signature:()
+~Circle	Circle.h	/^  virtual ~Circle();$/;"	p	class:Circle	access:public	signature:()
+~Rectangle	Rectangle.cpp	/^Rectangle::~Rectangle()$/;"	f	class:Rectangle	signature:()
+~Rectangle	Rectangle.h	/^  virtual ~Rectangle();$/;"	p	class:Rectangle	access:public	signature:()
+~RightTriangle	RightTriangle.cpp	/^RightTriangle::~RightTriangle()$/;"	f	class:RightTriangle	signature:()
+~RightTriangle	RightTriangle.h	/^  virtual ~RightTriangle();$/;"	p	class:RightTriangle	access:public	signature:()
+~Shape	Shape.cpp	/^Shape::~Shape()$/;"	f	class:Shape	signature:()
+~Shape	Shape.h	/^  virtual ~Shape();$/;"	p	class:Shape	access:public	signature:()

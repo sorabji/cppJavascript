@@ -1,0 +1,2 @@
+Program('main',[Glob('*.h'),Glob('*.cpp')])
+
