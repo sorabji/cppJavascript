@@ -1,0 +1,1 @@
+Program("run",[Glob("*.h"),Glob("*.cpp")])
