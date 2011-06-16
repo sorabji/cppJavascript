@@ -3,34 +3,58 @@
 #include <iostream>
 using namespace std;
 
-class Node{
+/**
+ * Node class: represents one Node in a linked list
+ * @data members:
+ *      data: data of the node
+ *      *next: pointer to the next node, or NULL if last node in the list
+ */
+template<class T> class Node{
     public:
-        int data;
-        Node *next;
-
-        Node(int d){
-            data = d;
-            next = NULL;
-        }
+        T data;
+        Node<T> *next;
 };
 
-class LinkedList{
+/**
+ * LinkedList class: a linked list
+ * @data members:
+ *      *head: pointer to the first node, or NULL in an empty list
+ */
+template<class T> class LinkedList{
+    private:
+
+        void printData(Node<T>* n){
+            cout << n->data << endl;
+        }
+
     public:
-        Node *head;
+        Node<T> *head;
 
-
+        /**
+         * default constructor
+         */
         LinkedList(){
             head = NULL;
         }
 
-        void addAtBeginning(Node *newNode){
+        /**
+         * adds a node to the beginning of the list
+         * @param: 
+         *      Node<T> *newNode: the node to be added
+         */
+        void addAtBeginning(Node<T> *newNode){
             newNode->next = head;
             head = newNode;
         }
 
-        void addAtEnd(Node *newNode){
+        /**
+         * adds a node to the end of the list
+         * @param:
+         *      Node<T> *newNode: the node to be added
+         */
+        void addAtEnd(Node<T> *newNode){
             if (head!=NULL){
-                Node *lastNode = findLastNode();
+                Node<T> *lastNode = findLastNode();
                 newNode->next = lastNode->next;
                 lastNode->next = newNode;
             }
@@ -40,8 +64,11 @@ class LinkedList{
             }
         }
 
-        Node *findLastNode(){
-            Node *n = head, *lastNode;
+        /**
+         * finds and returns the last node in the list
+         */
+        Node<T> *findLastNode(){
+            Node<T> *n = head, *lastNode;
             while(n){
                 lastNode = n;
                 n = n->next;
@@ -49,15 +76,15 @@ class LinkedList{
             return lastNode;
         }
 
-        void print(Node* np){
+        /**
+         * prints the contents of the linkedList
+         */
+        void print(Node<T>* np){
             if (!np) return;
             printData(np);
             print(np->next);
 
         }
 
-        void printData(Node* n){
-            cout << n->data << endl;
-        }
 };
 #endif
