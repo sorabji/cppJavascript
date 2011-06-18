@@ -13,6 +13,11 @@ template<class T> class Node{
     public:
         T data;
         Node<T> *next;
+
+        ~Node(){
+            data = NULL;
+            next = NULL;
+        }
 };
 
 /**
@@ -35,6 +40,16 @@ template<class T> class LinkedList{
          */
         LinkedList(){
             head = NULL;
+        }
+
+        ~LinkedList(){
+            Node<T> *temp = head,*current = head;
+
+            while(current!=NULL){
+                current = current->next;
+                delete temp;
+                temp = current;
+            }
         }
 
         /**

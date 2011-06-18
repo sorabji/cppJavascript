@@ -1,6 +1,6 @@
 #include "School.h"
 
-void printVector(vector<Student*> v,std::string name){
+void printResults(vector<Student*> v,std::string name){
 
     std::cout << "searching for students named '" << name << "'..." << std::endl;
     std::cout << "results:" << std::endl;
@@ -17,24 +17,31 @@ void printVector(vector<Student*> v,std::string name){
 int main(){
 
     School *school = new School();
+
+    // the long way to add a student
     Student *student = new Student(1);
     student->setName("Larry");
     school->add(student);
+
+    // faster, more awesome way
     school->add(new Student(2,"Bill"));
     school->add(new Student(3,"Joey"));
     school->add(new Student(4,"Bill"));
     school->add(new Student(5,"Bill"));
     school->add(new Student(6,"Bill"));
+
+    // show that everything worked as expected
     school->printRoster();
 
+    // test our search function w/ multiple, single, and no results
     std::vector<Student*> vS1 = school->getStudent("Bill");
-    printVector(vS1,"Bill");
+    printResults(vS1,"Bill");
 
     std::vector<Student*> vS2 = school->getStudent("notFound");
-    printVector(vS2,"notFound");
+    printResults(vS2,"notFound");
 
     std::vector<Student*> vS3 = school->getStudent("Larry");
-    printVector(vS3,"Larry");
+    printResults(vS3,"Larry");
 
     delete school;
 
