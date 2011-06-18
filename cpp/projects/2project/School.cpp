@@ -11,7 +11,12 @@ School::School(){
  * default destructor
  */
 School::~School(){
-    //todo cleanup collection
+    Node<Student*> *n = roster.head;
+    while(n){
+        delete n->data;
+        n = n->next;
+    }
+    //delete roster;
 }
 
 /**

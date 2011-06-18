@@ -1,2 +1,5 @@
-Program('run',[Glob('*.h'),Glob('*.cpp')])
+env = Environment()
+d = env.ParseFlags("-ggdb")
+env.MergeFlags(d)
+env.Program('run',[Glob('*.h'),Glob('*.cpp')])
 
