@@ -21,7 +21,7 @@ int main(){
   vector<Shape*>::iterator end = shapes->end();
 
   while (it != end){
-  
+
       cout << "The area of the shape is: " << (*it)->calcArea() << endl;
 
       delete (*it);
