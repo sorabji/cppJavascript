@@ -15,8 +15,9 @@ template<class T> class Node{
         Node<T> *next;
 
         ~Node(){
-            data = NULL;
-            next = NULL;
+            std::cout << "\tin node's destructor" << std::endl;
+            delete data;
+            std::cout << "\tdeleted a node" << std::endl;
         }
 };
 
@@ -44,12 +45,14 @@ template<class T> class LinkedList{
 
         ~LinkedList(){
             Node<T> *temp = head,*current = head;
-
+            std::cout << "in linkedList's destructor" << std::endl;
+            
             while(current!=NULL){
                 current = current->next;
                 delete temp;
                 temp = current;
             }
+            std::cout << "deleted linkedList" << std::endl;
         }
 
         /**

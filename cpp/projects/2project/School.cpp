@@ -3,21 +3,16 @@
 /**
  * default constuctor
  */
-School::School(){
-    roster = LinkedList<Student*>();
-}
+School::School(){}
+
 
 /**
  * default destructor
  */
 School::~School(){
-    Node<Student*> *temp = roster.head,*current = roster.head;
+    std::cout << "in school's destructor" << std::endl;
 
-    while(current!=NULL){
-        current = current->next;
-        delete temp;
-        temp = current;
-    }
+    std::cout << "deleted school" << std::endl;
 }
 
 /**

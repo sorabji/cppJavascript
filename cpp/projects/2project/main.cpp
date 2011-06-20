@@ -12,10 +12,10 @@ void printResults(vector<Student*> v,std::string name){
 
     if(v.size()!=0){
 
-        std::cout << v.size() << " student(s) named '" << name << "' was(were) found!\n" << std::endl;
+        std::cout << "\t" << v.size() << " student(s) named '" << name << "' was(were) found!\n" << std::endl;
     }
     else{
-        std::cout << "There were no students named " << name << " found!\n" << std::endl;
+        std::cout << "\tThere were no students named '" << name << "' found!\n" << std::endl;
     }
 }
 
@@ -39,6 +39,29 @@ int main(){
     school->printRoster();
 
     std::cout << std::endl;
+
+    /**
+     * to test the overloaded stream operators
+     */
+    //std::string name;
+    //int id;
+    //std::cout << "enter a student's first name and id number: " << std::flush;
+    //std::cin >> name >> id;
+    //Student *s2 = new Student(id,name);
+    //std::cout << *s2 << std::endl;
+
+    /**
+     * to test overloaded equality and assignment operators
+     */
+    //std::cout << "two new students to test equality and assignment operators\n" << std::endl;
+    //Student *s3 = new Student(57,"Bobby");
+    //Student *s4 = new Student(84,"Claude");
+    //std::cout << *s3 << "\n" << *s4 << std::endl;
+    //std::cout << "the students are" << ((*(s3)==*(s4))? " " : " not ") << "equal.\n";
+    //std::cout << "assigning student s4 to s3" << std::endl;
+    //*s3 = *s4;
+    //std::cout << "the students are" << ((*(s3)==*(s4))? " " : " not ") << "equal.\n";
+    //std::cout << std::endl;
 
     // test our search function w/ multiple, single, and no results
     std::vector<Student*> vS1 = school->getStudent("Bill");
