@@ -11,11 +11,6 @@ School::School(){
  * default destructor
  */
 School::~School(){
-    //Node<Student*> *n = roster.head;
-    //while(n){
-        //delete n->data;
-        //n = n->next;
-    //}
     Node<Student*> *temp = roster.head,*current = roster.head;
 
     while(current!=NULL){

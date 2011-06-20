@@ -22,7 +22,7 @@ class School{
         * default destructor
         */
         virtual ~School();
-    
+
         /**
         * adds a student
         * @param student is a pointer to a Student

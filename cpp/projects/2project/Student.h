@@ -22,10 +22,10 @@ class Student{
         Student(int i,std::string s):idNumber(i),name(s){}
 
 
-        virtual ~Student(){
-            idNumber = NULL;
-            name.erase(0,name.length());
-        }
+        //virtual ~Student(){
+            //idNumber = NULL;
+            //name.erase(0,name.length());
+        //}
 
         int getIdNumber(){
             return idNumber;
