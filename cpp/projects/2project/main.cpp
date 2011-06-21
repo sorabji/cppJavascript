@@ -72,12 +72,13 @@ int main(){
     std::vector<Student*> vS1 = school->getStudent("Bill");
     printResults(vS1,"Bill");
 
-    std::vector<Student*> vS2 = school->getStudent("notFound");
-    printResults(vS2,"notFound");
-
     std::vector<Student*> vS3 = school->getStudent("Larry");
     printResults(vS3,"Larry");
 
+    std::vector<Student*> vS2 = school->getStudent("notFound");
+    printResults(vS2,"notFound");
+
+    //delete everything!
     delete school;
 
     return 0;
