@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Registration Form</title>
+<meta http-equiv="content-type" content="text/html;
+charset=iso-8859-1" />
+<link rel="stylesheet" href="js_styles.css" type="text/css" />
+<script type="text/javascript" src="Registration.js"></script>
+</head>
+<body>
+
+	
+		<h1><a>Registration Form</a></h1>
+		<form id="RegistrationForm" method="post" action="FormProcessor.html">
+			<p></p>
+
+
+			<h2>Personal Information</h2>
+			<p></p>
+
+      Name:<p></p>
+			<label>First</label>
+			<input id="firstName" name= "firstName" maxlength="255" size="8" value="enter your first name"/>
+			<label>Last</label>
+			<input id="lastName" name= "lastName" maxlength="255" size="14" value="enter your last name"/>
+      <p></p>
+
+      Email:<p></p>
+			<input id="email" name="email" type="text" maxlength="255" value=""/> 
+      <p></p>
+
+      Phone:<p></p>
+      (###)
+			<input id="areaCode" name="areaCode" size="3" maxlength="3" value="" type="text"> -
+      ###
+			<input id="phone1" name="phone1" size="3" maxlength="3" value="" type="text"> -
+      ####
+	 		<input id="phone2" name="phone2" size="4" maxlength="4" value="" type="text">
+
+
+			<h2>Security Infomation</h2>
+			<p></p>
+      Password:
+			<input id="password" name="password" type="text" maxlength="255" value=""/> 
+      <p></p>
+
+      Confirm password:
+			<input id="confirmPass" name="confirmPass" type="text" maxlength="255" value=""/> 
+      <p></p>
+
+      Security question:
+		<select id="securityQuestion" name="securityQuestion"> 
+			<option value="" selected="selected"></option>
+      <option value="maiden" >What is your mother's maiden name?</option>
+      <option value="pet" >What is the name of your pet?</option>
+      <option value="color" >What is your favorite color?</option>
+		</select>
+
+
+			<h2>Preferences</h2>
+			<p></p>
+Do you want to receive special offers?
+      <p></p>
+      <input id="specialOffers" name="specialOffers" type="radio" value="yes" />yes<br/>
+      <input id="specialOffers" name="specialOffers" type="radio" value="no" />no<br/>
+      <p></p>
+      Check any that apply:<p></p>
+      <input id="interests" name="interests" type="checkbox" value="entertainment" />Entertainment<br/>
+      <input id="interests" name="interests" type="checkbox" value="business" />Business<br/>
+      <input id="interests" name="interests" type="checkbox" value="shopping" />Shopping<br/>
+      <p></p>
+
+			
+			    
+				<input id="submit" type="submit" name="submit" value="Submit" />
+        <input id="reset" type="reset" name="reset" value="Reset" />
+		</form>	
+</body>
+</html>
+
