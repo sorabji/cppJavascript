@@ -35,9 +35,9 @@ class School{
         void printRoster();
 
         /**
-        * searches the roster for a student name, returns a vector of all matches, or a NULL vector if not found
+        * searches the roster for a student name, returns a vector of all matches, or an empty vector if not found
         * @param String name: string representation of the name to be searched for
-        * @return Vector<Student*>: vector of pointers to all matches...NULL vector if name not found
+        * @return Vector<Student*>: vector of pointers to all matches...empty vector if name not found
         */
         vector<Student*> getStudent(std::string name);
 };
