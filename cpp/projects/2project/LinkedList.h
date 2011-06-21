@@ -15,9 +15,9 @@ template<class T> class Node{
         Node<T> *next;
 
         ~Node(){
-            std::cout << "\tin node's destructor" << std::endl;
+            std::cout << "\t\tin node's destructor" << std::endl;
             delete data;
-            std::cout << "\tdeleted a node" << std::endl;
+            std::cout << "\t\tdeleted a node" << std::endl;
         }
 };
 
@@ -43,16 +43,46 @@ template<class T> class LinkedList{
             head = NULL;
         }
 
+        /**
+         * standard destructor
+         */
+        //~LinkedList(){
+            //Node<T> *temp = head,*current = head;
+            //std::cout << "in linkedList's destructor" << std::endl;
+//
+            //while(current!=NULL){
+                //current = current->next;
+                //delete temp;
+                //temp = current;
+            //}
+            //std::cout << "deleted linkedList" << std::endl;
+        //}
+
+        /**
+         * more awesome destructor, recursion ftw
+         */
         ~LinkedList(){
-            Node<T> *temp = head,*current = head;
+            int i = 1;
             std::cout << "in linkedList's destructor" << std::endl;
-            
-            while(current!=NULL){
-                current = current->next;
-                delete temp;
-                temp = current;
-            }
+            deleteNode(head,i);
             std::cout << "deleted linkedList" << std::endl;
+        }
+
+        /**
+         * function to delete a node...called recursively until a NULL pointer is found
+         * int i is just there to see the pretty recursion in detail
+         */
+        void deleteNode(Node<T> *cur, int i){
+            std::cout << "\tcall number: " << i << " to deleteNode()" << std::endl;
+            if (!cur){
+                std::cout << "\t\tNULL pointer found...popping off the stack" << std::endl;
+                return;
+            }
+            i++;
+            deleteNode(cur->next,i);
+            i--;
+            std::cout << "\tcall number: " << i << " came back" << std::endl;
+            delete cur;
         }
 
         /**

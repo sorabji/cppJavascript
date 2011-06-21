@@ -12,7 +12,12 @@ void printResults(vector<Student*> v,std::string name){
 
     if(v.size()!=0){
 
-        std::cout << "\t" << v.size() << " student(s) named '" << name << "' was(were) found!\n" << std::endl;
+        if (v.size()>1){
+            std::cout << "\t" << v.size() << " students named '" << name << "' were found!\n" << std::endl;
+        }
+        else{
+            std::cout << "\t" << v.size() << " student named '" << name << "' was found!\n" << std::endl;
+        }
     }
     else{
         std::cout << "\tThere were no students named '" << name << "' found!\n" << std::endl;
@@ -67,12 +72,13 @@ int main(){
     std::vector<Student*> vS1 = school->getStudent("Bill");
     printResults(vS1,"Bill");
 
-    std::vector<Student*> vS2 = school->getStudent("notFound");
-    printResults(vS2,"notFound");
-
     std::vector<Student*> vS3 = school->getStudent("Larry");
     printResults(vS3,"Larry");
 
+    std::vector<Student*> vS2 = school->getStudent("notFound");
+    printResults(vS2,"notFound");
+
+    //delete everything!
     delete school;
 
     return 0;
