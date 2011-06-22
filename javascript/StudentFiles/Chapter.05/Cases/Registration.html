@@ -12,7 +12,7 @@ charset=iso-8859-1" />
 
 	
 		<h1><a>Registration Form</a></h1>
-		<form id="RegistrationForm" method="post" action="FormProcessor.html">
+		<form id="RegistrationForm" method="post" action="FormProcessor.html" >
 			<p></p>
 
 
@@ -21,9 +21,9 @@ charset=iso-8859-1" />
 
       Name:<p></p>
 			<label>First</label>
-			<input id="firstName" name= "firstName" maxlength="255" size="8" value="enter your first name"/>
+			<input id="firstName" name= "firstName" maxlength="255" size="20" value="enter your first name" onfocus="clearMe(this);"/>
 			<label>Last</label>
-			<input id="lastName" name= "lastName" maxlength="255" size="14" value="enter your last name"/>
+			<input id="lastName" name= "lastName" maxlength="255" size="20" value="enter your last name" onfocus="clearMe(this);"/>
       <p></p>
 
       Email:<p></p>
@@ -32,21 +32,21 @@ charset=iso-8859-1" />
 
       Phone:<p></p>
       (###)
-			<input id="areaCode" name="areaCode" size="3" maxlength="3" value="" type="text"> -
+			<input id="areaCode" name="areaCode" size="3" maxlength="3" value="" type="text" onkeypress="return isNumberKey(event);" /> -
       ###
-			<input id="phone1" name="phone1" size="3" maxlength="3" value="" type="text"> -
+			<input id="phone1" name="phone1" size="3" maxlength="3" value="" type="text" /onkeypress="return isNumberKey(event);"> -
       ####
-	 		<input id="phone2" name="phone2" size="4" maxlength="4" value="" type="text">
+	 		<input id="phone2" name="phone2" size="4" maxlength="4" value="" type="text" onkeypress="return isNumberKey(event);"/>
 
 
 			<h2>Security Infomation</h2>
 			<p></p>
       Password:
-			<input id="password" name="password" type="text" maxlength="255" value=""/> 
+			<input id="password" name="password" type="password" maxlength="255" value=""/> 
       <p></p>
 
       Confirm password:
-			<input id="confirmPass" name="confirmPass" type="text" maxlength="255" value=""/> 
+			<input id="confirmPass" name="confirmPass" type="password" maxlength="255" value=""/> 
       <p></p>
 
       Security question:
@@ -65,7 +65,7 @@ Do you want to receive special offers?
       <input id="specialOffers" name="specialOffers" type="radio" value="yes" />yes<br/>
       <input id="specialOffers" name="specialOffers" type="radio" value="no" />no<br/>
       <p></p>
-      Check any that apply:<p></p>
+      Check any that apply (must check at least one):<p></p>
       <input id="interests" name="interests" type="checkbox" value="entertainment" />Entertainment<br/>
       <input id="interests" name="interests" type="checkbox" value="business" />Business<br/>
       <input id="interests" name="interests" type="checkbox" value="shopping" />Shopping<br/>
@@ -73,7 +73,7 @@ Do you want to receive special offers?
 
 			
 			    
-				<input id="submit" type="submit" name="submit" value="Submit" />
+				<input id="submit" type="submit" name="submit" value="Submit" onclick="return validateForm();"/>
         <input id="reset" type="reset" name="reset" value="Reset" />
 		</form>	
 </body>
