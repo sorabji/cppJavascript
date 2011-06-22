@@ -48,12 +48,19 @@ int main(){
     /**
      * to test the overloaded stream operators
      */
-    //std::string name;
-    //int id;
-    //std::cout << "enter a student's first name and id number: " << std::flush;
-    //std::cin >> name >> id;
-    //Student *s2 = new Student(id,name);
-    //std::cout << *s2 << std::endl;
+    std::string name;
+    int id;
+    while (true){
+        std::cout << "enter 'quit' when you're done entering new students" << std::endl;
+        std::cout << "enter the new student's first name: " << std::flush;
+        std::cin >> name;
+        std::cout << "enter the new student's id number: " << std::flush;
+        std::cin >> id;
+        if (name.compare("quit")==0) break;
+
+        Student *s2 = new Student(id,name);
+        std::cout << *s2 << std::endl;
+    }
 
     /**
      * to test overloaded equality and assignment operators

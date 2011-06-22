@@ -3,36 +3,31 @@
 #include <string>
 using namespace std;
 
-template <typename T>
-class Node{
+class Anything{
+    friend ostream& operator<<(ostream& os, const Anything any);
+    friend istream& operator>>(istream& is, Anything& any);
+
     private:
-        T data;
-    
-    public:
-        friend ostream& operator<<(ostream& os, const Node node){
-            os << node.data;
-            return os;
-        }
+        int id;
 
-        void setData(const T data){
-            this->data = data;
-        }
+    public:
 };
 
-class Command{
-    public:
-        static string getCommand(){
-            string command;
-            cout << "Enter command: " << flush;
-            cin >> command;
-            return command;
-        }
-};
+ostream& operator<<(ostream& os, const Anything any){
+    os << "Id: " << any.id << endl;
+    return os;
+}
+
+istream& operator>>(istream& is, Anything& any){
+    cout << "Enter ID: " << flush;
+    is >> any.id;
+    cout << endl;
+    return is;
+}
 
 int main(){
-    while (1){
-        string command = Command::getCommand()
-            //unfinished!!
-    }
+    Anything any = Anything();
+    cin >> any;
+    cout << any;
 }
 
