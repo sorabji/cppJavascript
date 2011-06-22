@@ -12,6 +12,12 @@ function isNumberKey(evt){
     return true;
 } 
 
+function nextField(startField,destField){
+    if(startField.value.length == startField.maxLength){
+        destField.focus();
+    }
+}
+
 function validateForm(){
     var pass1 = document.getElementById("password").value;
     var pass2 = document.getElementById("confirmPass").value;
@@ -24,7 +30,6 @@ function validateForm(){
     var securityQuestion = document.getElementById("securityQuestion").value;
     var radioButtons = document.forms["RegistrationForm"].specialOffers;
     var checkBoxes = document.forms["RegistrationForm"].interests;
-//interests (radio boxes)
 
     if(!matchPasswords(pass1,pass2)) return false;
 
@@ -60,7 +65,6 @@ function matchPasswords(password1,password2){
 
     if (password1 && password2){
         if (password1.search(password2)==0){
-            alert("passwords match!");
             return true;
         }
     }
@@ -85,11 +89,11 @@ function checkForSelectedRadio(radios){
    return -1;
 }
 
-function getSelectedCheckboxes(checkArray) {
+function getSelectedCheckboxes(checkArray){
    var returnArray = new Array();
    var j = 0;
 
-   for (var i=0; i<checkArray.length; i++) {
+   for (var i=0; i<checkArray.length; i++){
       if (checkArray[i].checked) {
          returnArray.length = j;
          returnArray[j] = i;

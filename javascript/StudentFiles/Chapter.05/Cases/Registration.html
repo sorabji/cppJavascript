@@ -12,7 +12,9 @@ charset=iso-8859-1" />
 
 	
 		<h1><a>Registration Form</a></h1>
-		<form id="RegistrationForm" method="post" action="FormProcessor.html" >
+    <!-- i know get is awful...but i didn't feel like rewriting the FormProcessor file to work w/ post
+      maybe next project... -->
+		<form id="RegistrationForm" method="get" action="FormProcessor.html" >
 			<p></p>
 
 
@@ -32,11 +34,11 @@ charset=iso-8859-1" />
 
       Phone:<p></p>
       (###)
-			<input id="areaCode" name="areaCode" size="3" maxlength="3" value="" type="text" onkeypress="return isNumberKey(event);" /> -
+			<input id="areaCode" name="areaCode" size="3" maxlength="3" value="" type="text" onkeypress="return isNumberKey(event);" onkeyup="nextField(this,document.forms['RegistrationForm'].phone1);" /> -
       ###
-			<input id="phone1" name="phone1" size="3" maxlength="3" value="" type="text" /onkeypress="return isNumberKey(event);"> -
+			<input id="phone1" name="phone1" size="3" maxlength="3" value="" type="text" /onkeypress="return isNumberKey(event);" onkeyup="nextField(this,document.forms['RegistrationForm'].phone2);" /> -
       ####
-	 		<input id="phone2" name="phone2" size="4" maxlength="4" value="" type="text" onkeypress="return isNumberKey(event);"/>
+	 		<input id="phone2" name="phone2" size="4" maxlength="4" value="" type="text" onkeypress="return isNumberKey(event);" onkeyup="nextField(this,document.forms['RegistrationForm'].password);" />
 
 
 			<h2>Security Infomation</h2>
