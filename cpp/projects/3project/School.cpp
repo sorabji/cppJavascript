@@ -10,9 +10,9 @@ School::School(){}
  * default destructor
  */
 School::~School(){
-    std::cout << "in school's destructor" << std::endl;
+    //std::cout << "in school's destructor" << std::endl;
 
-    std::cout << "deleted school" << std::endl;
+    //std::cout << "deleted school" << std::endl;
 }
 
 /**
