@@ -29,6 +29,7 @@ int main(){
     School *school = new School();
 
     // the long way to add a student
+    /*
     Student *student = new Student(1);
     student->setName("Larry");
     school->add(student);
@@ -44,6 +45,20 @@ int main(){
     school->printRoster();
 
     std::cout << std::endl;
+    */
+
+
+    // test our search function w/ multiple, single, and no results
+    /*
+    std::vector<Student*> vS1 = school->getStudent("Bill");
+    printResults(vS1,"Bill");
+
+    std::vector<Student*> vS3 = school->getStudent("Larry");
+    printResults(vS3,"Larry");
+
+    std::vector<Student*> vS2 = school->getStudent("notFound");
+    printResults(vS2,"notFound");
+    */
 
     /**
      * to test the overloaded stream operators
@@ -54,18 +69,20 @@ int main(){
         std::cout << "enter 'quit' when you're done entering new students" << std::endl;
         std::cout << "enter the new student's first name: " << std::flush;
         std::cin >> name;
+        if (name.compare("quit")==0) break;
         std::cout << "enter the new student's id number: " << std::flush;
         std::cin >> id;
-        if (name.compare("quit")==0) break;
 
         Student *s2 = new Student(id,name);
         std::cout << *s2 << std::endl;
+        delete s2;
     }
+
 
     /**
      * to test overloaded equality and assignment operators
      */
-    std::cout << "two new students to test equality and assignment operators\n" << std::endl;
+    std::cout << "\ntwo new students to test equality and assignment operators\n" << std::endl;
     Student *s3 = new Student(57,"Bobby");
     Student *s4 = new Student(84,"Claude");
     std::cout << *s3 << "\n" << *s4 << std::endl;
@@ -74,17 +91,8 @@ int main(){
     *s3 = *s4;
     std::cout << "the students are" << ((*(s3)==*(s4))? " " : " not ") << "equal.\n";
     std::cout << std::endl;
-
-    // test our search function w/ multiple, single, and no results
-    std::vector<Student*> vS1 = school->getStudent("Bill");
-    printResults(vS1,"Bill");
-
-    std::vector<Student*> vS3 = school->getStudent("Larry");
-    printResults(vS3,"Larry");
-
-    std::vector<Student*> vS2 = school->getStudent("notFound");
-    printResults(vS2,"notFound");
-
+    delete s3;
+    delete s4;
     //delete everything!
     delete school;
 

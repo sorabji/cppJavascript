@@ -29,7 +29,7 @@ class Student{
          * destructor
          */
         virtual ~Student(){
-            std::cout << "\t\t\tdeleted Student: " << name << std::endl;
+            //std::cout << "\t\t\tdeleted Student: " << name << std::endl;
         }
 
         /**
