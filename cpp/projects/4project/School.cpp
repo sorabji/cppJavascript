@@ -10,9 +10,9 @@ School::School(){}
  * default destructor
  */
 School::~School(){
-    std::cout << "in school's destructor" << std::endl;
+    //std::cout << "in school's destructor" << std::endl;
 
-    std::cout << "deleted school" << std::endl;
+    //std::cout << "deleted school" << std::endl;
 }
 
 /**
@@ -24,6 +24,7 @@ void School::add(Student* student){
     node->data = student;
     roster.addAtEnd(node);
 }
+
 
 /**
  * prints the contents of the roster to stdout in a friendly format

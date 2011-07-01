@@ -1,4 +1,5 @@
 #include "School.h"
+#include <vector>
 
 /**
  * takes a vector of students and a name, checks if there's anything in the vector
@@ -24,66 +25,55 @@ void printResults(vector<Student*> v,std::string name){
     }
 }
 
+
 int main(){
 
     School *school = new School();
-
-    // the long way to add a student
-    Student *student = new Student(1);
-    student->setName("Larry");
-    school->add(student);
-
-    // faster, more awesome way
-    school->add(new Student(3,"Joey"));
-    school->add(new Student(2,"Bill"));
-    school->add(new Student(4,"Bill"));
-    school->add(new Student(5,"Bill"));
-    school->add(new Student(6,"Bill"));
-
-    // show that everything worked as expected
-    school->printRoster();
 
     std::cout << std::endl;
 
     /**
      * to test the overloaded stream operators
      */
-    std::string name;
-    int id;
-    while (true){
-        std::cout << "enter 'quit' when you're done entering new students" << std::endl;
-        std::cout << "enter the new student's first name: " << std::flush;
-        std::cin >> name;
-        std::cout << "enter the new student's id number: " << std::flush;
-        std::cin >> id;
-        if (name.compare("quit")==0) break;
+    std::string sentinel = "";
 
-        Student *s2 = new Student(id,name);
-        std::cout << *s2 << std::endl;
+    int i = 0;
+    std::vector<Student*> sV[3];
+    while (sentinel.compare("quit")!=0){
+        sV->push_back(new Student());
+        std::cin >> (*sV->at(i));
+        std::cout << "enter 'quit' to stop entering new students\n" 
+                  << "(enter anything else to continue): " << std::flush;
+        std::cin >> sentinel;
+        if( (*sV->at(i) ).getName().compare("")!=0){
+            school->add( (sV->at(i) ) );
+        }
+        sV->pop_back();
+        std::cout << std::endl;
     }
+    sV->clear();
 
-    /**
-     * to test overloaded equality and assignment operators
-     */
-    std::cout << "two new students to test equality and assignment operators\n" << std::endl;
-    Student *s3 = new Student(57,"Bobby");
-    Student *s4 = new Student(84,"Claude");
-    std::cout << *s3 << "\n" << *s4 << std::endl;
-    std::cout << "the students are" << ((*(s3)==*(s4))? " " : " not ") << "equal.\n";
-    std::cout << "assigning student s4 to s3" << std::endl;
-    *s3 = *s4;
-    std::cout << "the students are" << ((*(s3)==*(s4))? " " : " not ") << "equal.\n";
     std::cout << std::endl;
 
-    // test our search function w/ multiple, single, and no results
-    std::vector<Student*> vS1 = school->getStudent("Bill");
-    printResults(vS1,"Bill");
+    // show that the students were added correctly
+    school->printRoster();
 
-    std::vector<Student*> vS3 = school->getStudent("Larry");
-    printResults(vS3,"Larry");
+    /**
+     * to test searching for students from the command line
+     */
+    std::cout << std::endl;
+    std::string name = "";
+    while(true){
 
-    std::vector<Student*> vS2 = school->getStudent("notFound");
-    printResults(vS2,"notFound");
+        std::cout << "enter 'quit' when you're done searching for students" << std::endl;
+        std::cout << "enter the name of the student you want to search for: " << std::flush;
+        std::cin >> name;
+
+        if(name.compare("quit")==0) break;
+
+        std::vector<Student*> vS2 = school->getStudent(name);
+        printResults(vS2,name);
+    }
 
     //delete everything!
     delete school;

@@ -15,9 +15,9 @@ template<class T> class Node{
         Node<T> *next;
 
         ~Node(){
-            std::cout << "\t\tin node's destructor" << std::endl;
+            //std::cout << "\t\tin node's destructor" << std::endl;
             delete data;
-            std::cout << "\t\tdeleted a node" << std::endl;
+            //std::cout << "\t\tdeleted a node" << std::endl;
         }
 };
 
@@ -63,9 +63,9 @@ template<class T> class LinkedList{
          */
         ~LinkedList(){
             int i = 1;
-            std::cout << "in linkedList's destructor" << std::endl;
+            //std::cout << "in linkedList's destructor" << std::endl;
             deleteNode(head,i);
-            std::cout << "deleted linkedList" << std::endl;
+            //std::cout << "deleted linkedList" << std::endl;
         }
 
         /**
@@ -73,15 +73,15 @@ template<class T> class LinkedList{
          * int i is just there to see the pretty recursion in detail
          */
         void deleteNode(Node<T> *cur, int i){
-            std::cout << "\tcall number: " << i << " to deleteNode()" << std::endl;
+            //std::cout << "\tcall number: " << i << " to deleteNode()" << std::endl;
             if (!cur){
-                std::cout << "\t\tNULL pointer found...popping off the stack" << std::endl;
+                //std::cout << "\t\tNULL pointer found...popping off the stack" << std::endl;
                 return;
             }
             i++;
             deleteNode(cur->next,i);
             i--;
-            std::cout << "\tcall number: " << i << " came back" << std::endl;
+            //std::cout << "\tcall number: " << i << " came back" << std::endl;
             delete cur;
         }
 
