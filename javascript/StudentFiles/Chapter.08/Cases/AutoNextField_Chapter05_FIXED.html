@@ -7,7 +7,7 @@
 <script type="text/javascript">
 /* <![CDATA[ */
 function nextField(startField, destField) {
-	if (startField.value.length=startField.maxLength)
+	if (startField.value.length == startField.maxLength)
 	destField.focus();
 }
 
@@ -19,10 +19,10 @@ function nextField(startField, destField) {
 enctype="application/x-www-form-urlencoded">
 <p><b>Enter your 10-digit telephone number:</b>
 <input type="text" name="area_code" size="4"
-	onkeyup="nextField(this.document.forms[0].exchange.value)"
+	onkeyup="nextField(this, document.forms[0].exchange)"
 	maxlength="3" />
 <input type="text" name="exchange" size="4"
-	onkeyup="nextField(this.document.forms[0].number.value)"
+	onkeyup="nextField(this, document.forms[0].number)"
 	maxlength="3" />
 <input type="text" name="number" size="5" maxlength="4" /></p>
 </form>

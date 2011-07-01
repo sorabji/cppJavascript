@@ -11,34 +11,43 @@ content="text/html; charset=iso-8859-1" />
 var mileageCost = 0;
 var laborCost = 0;
 var flightsCost = 0;
-ar appliancesCost = 0;
+var appliancesCost = 0;
 var pianosCost = 0;
+/* custom error handling 
+window.onerror=errorHandlingFunction;
+
+function errorHandlingFunction(errMessage, errURL,errLineNumber){
+  alert("line " +errLineNumber+": "+errMessage+"\n"+errURL);
+  return false;
+}
+*/
 function calcMileageCost(miles) {
+
 	mileageCost = miles * 1.25;
 	calcTotalEstimate();
 }
-function calcLaborCost(pounds)
+function calcLaborCost(pounds){
 	laborCost = pounds * .15;
 	calcTotalEstimate();
 }
 function calcFlightsCost(flights) {
-	flights = 50;
-	flightsCost  flights * 50;
+	//flights = 50;
+	flightsCost = flights * 50;
 	calcTotalEstimate();
 }
 function calcAppliancesCost(appliances) {
-	appliancesCost - appliances * 25;
+	appliancesCost = appliances * 25;
 	calcTotalEstimate();
 }
 function calcPianosCost(pianos) {
-	pianosCost = pianos * 3.5;
-	calcTotalEstimate(;
+	pianosCost = pianos * 35;
+	calcTotalEstimate();
 }
 function calcTotalEstimate() {
 	var total = mileageCost;
 	total += laborCost;
-	total = flightsCost;
-	total = appliancesCost;
+	total += flightsCost;
+	total += appliancesCost;
 	total += pianosCost;
 	document.forms[0].total.value = "$" + total.toLocaleString();
 }
