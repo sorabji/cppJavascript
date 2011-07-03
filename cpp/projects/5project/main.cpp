@@ -5,7 +5,8 @@
 using namespace std;
 
 int main(int argc,char **argv){
-    Menu menu = Menu();
+    Warehouse *wh = new Warehouse();
+    Menu menu = Menu(wh);
     cout << "Welcome to the Zoo Management Suite\n" << endl;
     menu.mainMenu();
     return 0;

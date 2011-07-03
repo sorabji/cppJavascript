@@ -3,18 +3,20 @@
 
 #include <stdlib.h>
 #include <iostream>
-#include <limits>
+
+#include "Warehouse.h"
 
 class Menu{
     private:
         int sel;
         bool flag;
+        Warehouse *wh;
     public:
 
         /**
-         * reads a value from cin into an integer, returns a boolean based on success/failure
+         * menu constructor...requires a pointer to a Warehouse object
          */
-        bool validateInt(int *i);
+        Menu(Warehouse *wh);
 
         /**
          * the main menu of the program
