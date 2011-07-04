@@ -33,7 +33,7 @@ void Warehouse::printInvToFile(std::string fileName){
     MapType::const_iterator end = inv.end();
 
     std::ofstream outfile;
-    outfile.open(fileName.c_str(),std::ios::app);
+    outfile.open(fileName.c_str(),std::ios::out);
 
     if(outfile){
 
