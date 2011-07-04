@@ -8,8 +8,9 @@
 #include "FoodItem.h"
 
 #define WAREHOUSE_FILE "warehouse.data"
+#define WAREHOUSE_BAK "warehouse.data.bak"
 
-int usage(){
+void usage(){
     std::cout 
         << "usage:\n"
         << "\t-r to read from the file\n"
@@ -41,6 +42,9 @@ int main(int argc,char **argv){
 
     if(readFlag){
         std::ifstream infile;
+        std::ofstream outfile;
+
+        outfile.open(WAREHOUSE_BAK,std::ios::out|std::ios::trunc);
         infile.open(WAREHOUSE_FILE,ios::in);
 
         if(infile){
@@ -52,6 +56,9 @@ int main(int argc,char **argv){
             while(true){
                 std::getline(infile,line);
                 if( infile.eof() ){ break; }
+
+                outfile << line << "\n";
+
                 std::istringstream iss(line);
                 iss >> type;
                 iss >> units;
@@ -66,6 +73,8 @@ int main(int argc,char **argv){
                 wh->addToInv(fi);
 
             }
+            infile.close();
+            outfile.close();
         }
     }
 
