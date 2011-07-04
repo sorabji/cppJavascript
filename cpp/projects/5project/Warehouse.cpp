@@ -9,12 +9,12 @@ bool Warehouse::searchInv(std::string term){
     }
 }
 
-void Warehouse::addToInv(std::string type, std::string units, double quantity){
-    flag = searchInv(type);
+void Warehouse::addToInv(FoodItem fi){
+    flag = searchInv(fi.getType());
     if (flag){
-        inv[type]->setQuantity(quantity);
+        inv[fi.getType()]->setQuantity(fi.getQuantity());
     } else {
-        inv.insert(MapType::value_type(type,new FoodItem(type,units,quantity) ) );
+        inv.insert(MapType::value_type(fi.getType(),new FoodItem(fi.getType(),fi.getUnits(),fi.getQuantity()) ) );
     }
 }
 
@@ -24,6 +24,29 @@ void Warehouse::printInv(){
     std::cout << "Current Contents of the Food Inventory\n" << std::endl;
     std::cout << "[Type]\t\t[Units]\t\t[Quantity]\n\n" << std::flush;
     for (iter = inv.begin(); iter != end ; iter++){
-        std::cout << iter->second << std::endl;
+        std::cout << *(iter->second) << std::endl;
     }
+}
+
+void Warehouse::printInvToFile(std::string fileName){
+
+    MapType::const_iterator end = inv.end();
+
+    std::ofstream outfile;
+    outfile.open(fileName.c_str(),std::ios::app);
+
+    if(outfile){
+
+
+        for (iter = inv.begin(); iter != end ; iter++){
+            outfile 
+                << (iter->second)->getType()
+                << " "
+                << (iter->second)->getUnits()
+                << " "
+                << (iter->second)->getQuantity() << std::endl;
+        }
+    }
+
+    outfile.close();
 }

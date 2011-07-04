@@ -1,5 +1,5 @@
 #include "FoodItem.h"
-#includ "Helper.h"
+#include "Helper.h"
 
 FoodItem::FoodItem(){
     type = "";
@@ -20,7 +20,7 @@ FoodItem::~FoodItem(){
 }
 
 std::ostream& operator<<(std::ostream &os,const FoodItem& fi){
-    std::cout << fi.type << "\t" << fi.units << "\t" << fi.quantity << std::endl;
+    std::cout << fi.type << "\t\t" << fi.units << "\t\t" << fi.quantity << std::endl;
     return os;
 }
 

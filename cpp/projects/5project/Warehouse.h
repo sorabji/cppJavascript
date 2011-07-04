@@ -4,7 +4,7 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <utility>
+#include <fstream>
 
 #include "FoodItem.h"
 
@@ -25,9 +25,11 @@ class Warehouse{
         /**
          * add food item
          */
-        void addToInv(std::string type, std::string units, double quantity);
+        void addToInv(FoodItem fi);
 
         void printInv();
+
+        void printInvToFile(std::string fileName);
 
 };
 #endif
