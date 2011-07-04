@@ -1,9 +1,5 @@
 #include "Menu.h"
-#include "Helper.h"
-#include "FoodItem.h"
 
-#define WAREHOUSE_FILE "warehouse.data"
-#define EXIT_PHRASE "Thank you for managing your zoo with us!\n"
 
 Menu::Menu(Warehouse *wh){
     this->wh = wh;

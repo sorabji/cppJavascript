@@ -5,6 +5,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "Helper.h"
+
 class FoodItem{
     private:
         std::string type;

@@ -8,6 +8,9 @@
 
 #include "FoodItem.h"
 
+#define WAREHOUSE_FILE "warehouse.data"
+#define WAREHOUSE_BAK "warehouse.data.bak"
+
 typedef std::map<std::string,FoodItem*> MapType;
 
 class Warehouse{

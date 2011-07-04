@@ -4,7 +4,13 @@
 #include <stdlib.h>
 #include <iostream>
 
+#include "Helper.h"
+#include "FoodItem.h"
 #include "Warehouse.h"
+
+#define WAREHOUSE_FILE "warehouse.data"
+#define WAREHOUSE_BAK "warehouse.data.bak"
+#define EXIT_PHRASE "Thank you for managing your zoo with us!\n"
 
 class Menu{
     private:

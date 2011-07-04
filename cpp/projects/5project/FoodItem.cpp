@@ -1,5 +1,4 @@
 #include "FoodItem.h"
-#include "Helper.h"
 
 FoodItem::FoodItem(){
     type = "";
