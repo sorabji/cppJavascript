@@ -12,7 +12,7 @@ bool Warehouse::searchInv(std::string term){
 void Warehouse::addToInv(FoodItem fi){
     flag = searchInv(fi.getType());
     if (flag){
-        inv[fi.getType()]->setQuantity(fi.getQuantity());
+        inv[fi.getType()]->setQuantity( (inv[fi.getType()]->getQuantity() ) +fi.getQuantity() );
     } else {
         inv.insert(MapType::value_type(fi.getType(),new FoodItem(fi.getType(),fi.getUnits(),fi.getQuantity()) ) );
     }
