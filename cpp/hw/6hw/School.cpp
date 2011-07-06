@@ -25,21 +25,20 @@ void School::add(Student* student){
     roster.addAtEnd(node);
 }
 
+
 /**
  * prints the contents of the roster to stdout in a friendly format
  */
 void School::printRoster(){
     Node<Student*> *n = roster.head;
     while(n){
-        std::cout << n->data->getName()<< " has an idNumber of:\t" << n->data->getIdNumber() << std::endl;
+        //std::cout << n->data->getName()<< " has an idNumber of:\t" << n->data->getIdNumber() << std::endl;
+        std::cout << *(n->data) << std::endl;
         if(!n->next) break;
         n = n->next;
     }
 }
 
-/**
- * prints the contents of the roster to a file in ugly format
- */
 void School::printRosterToFile(std::string fileName){
     Node<Student*> *n = roster.head;
     std::ofstream outfile;
@@ -50,6 +49,7 @@ void School::printRosterToFile(std::string fileName){
         n = n->next;
     }
 }
+
 /**
  * searches the roster for a student name, returns a vector of all matches, or an empty vector if not found
  * @param String name: string representation of the name to be searched for

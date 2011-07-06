@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 #include <ostream>
-#include <string.h>
+#include <limits>
 using namespace std;
 
 class Student{
@@ -15,6 +15,10 @@ class Student{
 
     public:
 
+        /**
+         * constructs a blank student;
+         */
+        Student():idNumber(0),name(""){}
         /**
          * constructs a student w/ the given idNumber
          */
@@ -65,7 +69,18 @@ class Student{
          * overloads the >> operator to provide sane results when used on Student objects
          */
         friend istream& operator>>(istream& is, Student& student){
-            is >> student.idNumber >> student.name;
+            std::cout << "enter the new student's id number: " << std::flush;
+            if (! (std::cin >> student.idNumber) ){
+                //wow, screw everything about cin
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                std::cout << "invalid input! aborting...\n" << std::endl;
+                return is;
+            }
+            std::cout << "enter the new student's first name: " << std::flush;
+            std::cin >> student.name;
+            //std::cout << "successfully added a new student!\n" << std::endl;
+
             return is;
         }
 

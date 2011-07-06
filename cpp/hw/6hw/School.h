@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <fstream>
+
 #include "Student.h"
 #include "LinkedList.h"
 
@@ -13,7 +14,7 @@ class School{
          */
         LinkedList<Student*> roster;
     public:
-        
+
         /**
         * default constuctor
         */
@@ -36,8 +37,8 @@ class School{
         void printRoster();
 
         /**
-         * prints the contents of the roster to a file
-         */
+        * prints the contents of the roster to a file
+        */
         void printRosterToFile(std::string fileName);
 
         /**

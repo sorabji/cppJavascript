@@ -1,6 +1,11 @@
-#include "School.h"
-#include <stdlib.h>
 #include <sstream>
+#include <stdlib.h>
+#include <vector>
+#include <cstring>
+
+#include "School.h"
+
+#define STUDENT_FILE "student.data"
 
 /**
  * takes a vector of students and a name, checks if there's anything in the vector
@@ -26,10 +31,19 @@ void printResults(vector<Student*> v,std::string name){
     }
 }
 
+void usage(){
+    std::cout << "usage:\n\t-r to read from the file\n\t-c to create the file" << std::endl;
+    exit(0);
+}
+
 int main(int argc, char **argv){
 
     int readFlag=0;
     int createFlag=0;
+
+    // get the command line args right!
+    if(2 != argc ) { usage(); }
+
     while(argc){
         if(!strcmp("-r",*argv)) readFlag=1;
         if(!strcmp("-c",*argv)) createFlag=1;
@@ -37,39 +51,13 @@ int main(int argc, char **argv){
         argv++;
     }
 
-    if (readFlag==0 && createFlag ==0){
-        std::cout << "usage:\n\t-r to read from the file\n\t-c to create the file" << std::endl;
-        exit(0);
-    }
-
     School *school = new School();
-
-    if(createFlag){
-        // the long way to add a student
-        Student *student = new Student(1);
-        student->setName("Larry");
-        school->add(student);
-
-        // faster, more awesome way
-        school->add(new Student(3,"Joey"));
-        school->add(new Student(2,"Bill"));
-        school->add(new Student(4,"Bobby"));
-        school->add(new Student(5,"Claude"));
-        school->add(new Student(6,"Franz"));
-
-        // show that everything worked as expected
-        school->printRoster();
-
-
-        // write to a file
-        school->printRosterToFile("student.data");
-    }
-
 
     if(readFlag){
         std::ifstream infile;
-        infile.open("student.data", ios::in);
+        infile.open(STUDENT_FILE, std::ios::in);
         int idNum;
+        bool flag;
         std::string name;
         std::string line;
 
@@ -85,55 +73,59 @@ int main(int argc, char **argv){
             }
             school->add(new Student(idNum,name));
         }
+
+        infile.close();
+
+        std::cout << "after reading the file in, the roster consists of:\n" << std::endl;
         school->printRoster();
     }
 
-
-
-    /**
-     * to test the overloaded stream operators
-    std::string name;
-    int id;
-    while (true){
-        std::cout << "enter 'quit' when you're done entering new students" << std::endl;
-        std::cout << "enter the new student's first name: " << std::flush;
-        std::cin >> name;
-        std::cout << "enter the new student's id number: " << std::flush;
-        std::cin >> id;
-        if (name.compare("quit")==0) break;
-
-        Student *s2 = new Student(id,name);
-        std::cout << *s2 << std::endl;
+    if(createFlag){
+        //clear the file
+        std::ofstream killIt;
+        killIt.open(STUDENT_FILE,std::ios::out | std::ios::trunc);
+        killIt.close();
     }
-     */
+
+    std::cout << std::endl;
 
     /**
-     * to test overloaded equality and assignment operators
-    std::cout << "two new students to test equality and assignment operators\n" << std::endl;
-    Student *s3 = new Student(57,"Bobby");
-    Student *s4 = new Student(84,"Claude");
-    std::cout << *s3 << "\n" << *s4 << std::endl;
-    std::cout << "the students are" << ((*(s3)==*(s4))? " " : " not ") << "equal.\n";
-    std::cout << "assigning student s4 to s3" << std::endl;
-    *s3 = *s4;
-    std::cout << "the students are" << ((*(s3)==*(s4))? " " : " not ") << "equal.\n";
+     * create some students from the cli
+     */
+    std::string sentinel = "";
+
+    int i = 0;
+    std::vector<Student*> sV[3];
+    while (sentinel.compare("quit")!=0){
+        sV->push_back(new Student());
+        std::cin >> (*sV->at(i));
+
+        if( (*sV->at(i) ).getName().compare("")!=0){
+            school->add( (sV->at(i) ) );
+            std::cout << "student added!\n" << std::endl;
+        }
+
+        std::cout << "enter 'quit' to stop entering new students\n" 
+                  << "(enter anything else to continue): " << std::flush;
+        std::cin >> sentinel;
+        sV->pop_back();
+        std::cout << std::endl;
+    }
+    sV->clear();
+
     std::cout << std::endl;
-     */
 
-    // test our search function w/ multiple, single, and no results
-    /*
-    std::vector<Student*> vS1 = school->getStudent("Bill");
-    printResults(vS1,"Bill");
+    // show that the students were added correctly
+    school->printRoster();
 
-    std::vector<Student*> vS3 = school->getStudent("Larry");
-    printResults(vS3,"Larry");
-
-    std::vector<Student*> vS2 = school->getStudent("notFound");
-    printResults(vS2,"notFound");
-     */
+    // write it out to a file for persistence
+    std::cout << "writing to file..." << std::endl;
+    school->printRosterToFile(STUDENT_FILE);
 
     //delete everything!
+    std::cout << "releasing memory..." << std::endl;
     delete school;
 
+    std::cout << "exiting..." << std::endl;
     return 0;
 }
