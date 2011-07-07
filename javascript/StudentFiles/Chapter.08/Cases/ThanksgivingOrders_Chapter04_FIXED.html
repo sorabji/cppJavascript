@@ -10,12 +10,14 @@
 var curMessage="message1";
 var changeMessage;
 function adMessage() {
-      if (curMessage == "message2")
+  if (curMessage == "message2"){
             document.advertising.message.value = "Place your Thanksgiving orders today!";
             curMessage = "message1";
-      else
+  }
+  else{
             document.advertising.message.value = "All orders must be received by November 20th!";
             curMessage = "message2";
+  }
 }
 /* ]]> */
 </script>

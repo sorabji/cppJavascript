@@ -7,10 +7,10 @@
 <script type="text/javascript">
 /* <![CDATA[ */
 function calcHeartRate() {
-  var targetRate == 220 - document.heartRate.age.value;
-  var lowTarget == parseInt(targetRate * .5);
-  var highTarget == parseInt(targetRate * .85);
-  document.heartRate.targetRate.value = lowTarget & " to " & highTarget & " beats per minute";
+  var targetRate = 220 - document.heartRate.age.value;
+  var lowTarget = targetRate * .5;
+  var highTarget = targetRate * .85;
+  document.heartRate.targetRate.value = ""+lowTarget + " to " + highTarget + " beats per minute";
 }
 /* ]]> */
 </script>
