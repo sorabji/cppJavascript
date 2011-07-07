@@ -7,15 +7,15 @@
 <script type="text/javascript">
 /* <![CDATA[ */
 function figureTip() {
-     var bill = document.forms.bill.value;
-     var tipPercent = document.forms.tip_percent.value;
-     var numPeople = document.forms.num_people.value;
+     var bill = document.forms[0].bill.value;
+     var tipPercent = document.forms[0].tip_percent.value;
+     var numPeople = document.forms[0].num_people.value;
      var tipAmount = Math.round(bill * (tipPercent/100));
      var total = Math.round(bill * (1 + (tipPercent/100) ));
      var totalPerPerson = Math.round(total / numPeople);
-     document.forms.tip_amount = tipAmount.toLocaleString();
-     document.forms.total = total.toLocaleString();
-     document.forms.total_person = totalPerPerson.toLocaleString();
+     document.forms[0].tip_amount.value = tipAmount.toLocaleString();
+     document.forms[0].total.value = total.toLocaleString();
+     document.forms[0].total_person.value = totalPerPerson.toLocaleString();
 }
 /* ]]> */
 </script>

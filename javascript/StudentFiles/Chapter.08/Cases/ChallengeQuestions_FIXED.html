@@ -14,7 +14,6 @@ function validateTextInput(keyPressEvent) {
 	var enteredChar = String.fromCharCode(enteredKey);
 	var retValue = true;
 	try {
-    // did they really want to allow !@#$%^&*() and so on in TEXT fields?
 		if (!/[a-zA-Z]/.test(enteredChar))
 			throw "You can only enter letters into this field.";
 	}
