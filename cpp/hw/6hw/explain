@@ -1,0 +1,5 @@
+read from left to right...
+first run w/ -c option, clears file, create two students interactively.
+run w/o any options, get usage message.
+run w/ -r option, reads file in, earlier created students are still there...add one more student interactively.
+finally, cat the student.data file to show it's all there...and then cat this file to explain.

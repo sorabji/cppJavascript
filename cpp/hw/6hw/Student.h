@@ -1,10 +1,10 @@
 #ifndef STUDENT_H
 #define STUDENT_H
+
 #include <string>
 #include <iostream>
 #include <ostream>
 #include <limits>
-using namespace std;
 
 class Student{
 
@@ -59,7 +59,7 @@ class Student{
         /**
          * overloads the << operator to provide sane results when used on Student objects
          */
-        friend ostream& operator<<(ostream& os, const Student &student){
+        friend std::ostream& operator<<(std::ostream& os, const Student &student){
             os << "student's name: " << student.name << std::endl;
             os << "student's id number: " << student.idNumber << std::endl;
             return os;
@@ -68,7 +68,7 @@ class Student{
         /**
          * overloads the >> operator to provide sane results when used on Student objects
          */
-        friend istream& operator>>(istream& is, Student& student){
+        friend std::istream& operator>>(std::istream& is, Student& student){
             std::cout << "enter the new student's id number: " << std::flush;
             if (! (std::cin >> student.idNumber) ){
                 //wow, screw everything about cin

@@ -56,28 +56,32 @@ int main(int argc, char **argv){
     if(readFlag){
         std::ifstream infile;
         infile.open(STUDENT_FILE, std::ios::in);
-        int idNum;
-        bool flag;
-        std::string name;
-        std::string line;
+        if(infile){
+            int idNum;
+            bool flag;
+            std::string name;
+            std::string line;
 
-        while(true){
-            std::getline(infile,line);
-            if( infile.eof() ){ break;}
-            std::istringstream iss(line);
-            iss >> name;
-            iss >> idNum;
-            if(iss.bad()){
+            while(true){
+                std::getline(infile,line);
+                if( infile.eof() ){ break;}
+                std::istringstream iss(line);
+                iss >> name;
+                iss >> idNum;
+                if(iss.bad()){
                 std::cout << "error parsing records file." << std::endl;
-                exit(1);
+                    exit(1);
+                }
+                school->add(new Student(idNum,name));
             }
-            school->add(new Student(idNum,name));
-        }
 
         infile.close();
 
         std::cout << "after reading the file in, the roster consists of:\n" << std::endl;
         school->printRoster();
+        } else{
+            std::cout << "error, student data file cannot be located" << std::endl;
+        }
     }
 
     if(createFlag){

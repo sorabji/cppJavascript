@@ -39,6 +39,9 @@ void School::printRoster(){
     }
 }
 
+/**
+ * prints the roster to a file
+ */
 void School::printRosterToFile(std::string fileName){
     Node<Student*> *n = roster.head;
     std::ofstream outfile;
