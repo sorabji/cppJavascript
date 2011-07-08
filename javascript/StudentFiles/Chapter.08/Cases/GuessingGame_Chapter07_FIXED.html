@@ -12,21 +12,22 @@ function checkGuess() {
 	if (document.forms[0].letter.value != "") {
 		var progress = document.forms[0].mysteryWord.value;
 		var guess = document.forms[0].letter.value;
+
 		document.forms[0].letter.value = "";
-		var mysteryWordArray = mysteryWord.split(" ");
+		var mysteryWordArray = mysteryWord.split("");
 		var progressArray = progress.split("");
 		for (var i=0; i < mysteryWord.length; ++i) {
 			var curLetter = mysteryWordArray[i];
 			if (curLetter == guess)
 				progressArray[i] = guess;
 		}
-		progress = progress.join(" ");
+		progress = progressArray.join("");
 		if (progress == mysteryWord)
 			document.forms[0].mysteryWord.value = "You guessed correctly! The mystery word is '" + progress + "'.";
 		else
 			document.forms[0].mysteryWord.value = progress;
 	}
-		else
+  else {
 			window.alert("You must enter a letter!");
 	}
 }

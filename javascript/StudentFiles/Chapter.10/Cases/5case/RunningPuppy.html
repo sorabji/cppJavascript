@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang = "en" dir="ltr">
+<head>
+<title>Running Puppy</title>
+<script type="text/javascript">
+  // 97x60
+  var runPuppy;
+  var flag = 0;
+  var myArray = new Array(6);
+
+for (var imagesLoaded = 0; imagesLoaded < 7 ; imagesLoaded++){
+  myArray[imagesLoaded] = new Image();
+  myArray[imagesLoaded].src = "puppy" + imagesLoaded + ".gif";
+
+  if (imagesLoaded == 6)
+    runPuppy = setInterval("run()",100);
+}
+function run(){
+
+  if (flag == 5){
+    flag = 0;
+  } else {
+    flag++;
+  }
+  document.getElementById("image").src = myArray[flag].src;
+
+}
+</script>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<body>
+<h1>Running Puppy</h1>
+<img height="60" width="97" src="puppy0.gif" id="image" alt="puppy"/><br />
+
+</body>
+</html>

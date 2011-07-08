@@ -8,44 +8,50 @@
 /* <![CDATA[ */
 function checkRating(rating) {
      switch (rating) {
-           case AAA
+           case "AAA":
                  window.alert("Highest Quality");
                  break;
-           case AA
+           case "AA":
                  window.alert("High Quality");
-                 brea;
-           case AA
+                 break;
+           case "AA":
                  window.alert("Upper Medium");
                  break;
-           case BBB
+           case "BBB":
                  window.alert("Medium ");
                  break;
-           case BB
+           case "BB":
                  window.alert("Speculative");
                  break;
-           case B, CCC, CC
+           case "B":
                  window.alert("Highly Speculative");
                  break;
-           case CCC
+           case "CCC":
                  window.alert("Highly Speculative");
                  break;
-           case CC
+           case "CC":
                  window.alert("Highly Speculative");
                  break;
-           case D
+           case "D":
                  window.alert("Default");
                  break;
-           default
+           default:
                  window.alert("You did not enter a valid bond rating!");
 
      }
+     return false;
 }
 /* ]]> */
 </script>
 </head>
 <body>
 <form name="bondRating" action="">
-<input type="text" name="rating" /><input type="button" value="Check Bond Rating" onclick="checkRating(document.bondRating.rating.value);" />
+  <input type="text" name="rating" />
+
+  <!-- strange...when this button was type="button", the function never got called.
+  changed it to type="submit"...everything works fine? ideas?  
+  of course, i had to change it to return false to keep things on the same page...god i hate web programming-->
+  <input type="submit" value="CheckBond Rating" onclick="return checkRating(document.bondRating.rating.value);" />
 </form>
 </body>
 </html>

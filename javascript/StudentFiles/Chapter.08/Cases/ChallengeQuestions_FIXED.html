@@ -14,7 +14,7 @@ function validateTextInput(keyPressEvent) {
 	var enteredChar = String.fromCharCode(enteredKey);
 	var retValue = true;
 	try {
-		if (!/\D/.test(enteredChar))
+		if (!/[a-zA-Z]/.test(enteredChar))
 			throw "You can only enter letters into this field.";
 	}
 	catch(inputError) {
