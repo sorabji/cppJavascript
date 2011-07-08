@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang = "en" dir="ltr">
+<head>
+<title>Pine Knoll Properties</title>
+<script type="text/javascript">
+  // large: 350x230
+  // small: 105x69
+  var flag = "small";
+
+function rotateImage(){
+
+  // want to ask you about strange behavior of image.src...gives me full path rather than relative?
+
+  var link = document.getElementById("link");
+  var image = document.getElementById("image");
+
+  var largeImage = new Image();
+  largeImage.src = "cottage_large.jpg";
+  largeImage.height = "230";
+  largeImage.width = "350";
+
+  var smallImage = new Image();
+  smallImage.src = "cottage_small.jpg";
+  smallImage.height = "69";
+  smallImage.width = "105";
+
+
+  if(flag=="small"){
+    image.src = largeImage.src;
+    image.width = largeImage.width;
+    image.height = largeImage.height;
+    link.innerHTML = "View smaller image";
+    flag = "large";
+  } else {
+    image.src = smallImage.src;
+    image.width = smallImage.width;
+    image.height = smallImage.height;
+    link.innerHTML = "View larger image";
+    flag = "small";
+  }
+
+
+}
+</script>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<body>
+<h1>Pine Knoll Properties</h1>
+<img height="69" width="105" src="cottage_small.jpg" id="image" alt="image of a cottage"/><br />
+<a href="#" id="link" onclick="rotateImage();">View larger image</a>
+
+</body>
+</html>
