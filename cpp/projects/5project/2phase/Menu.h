@@ -13,8 +13,8 @@
 #define WAREHOUSE_FILE "warehouse.data"
 #define WAREHOUSE_BAK "warehouse.data.bak"
 
-#define ANIMAL_FILE "animal.data"
-#define ANIMAL_BAK "animal.data.bak"
+#define ZOO_FILE "zoo.data"
+#define ZOO_BAK "zoo.data.bak"
 
 #define EXIT_PHRASE "Thank you for managing your zoo with us!\n"
 
@@ -44,6 +44,6 @@ class Menu{
         /**
          * specific menu for handling the animals
          */
-        void animalMenu();
+        void herdMenu();
 };
 #endif

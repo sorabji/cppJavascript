@@ -24,6 +24,7 @@ void Menu::mainMenu(){
                     foodInventoryMenu();
                     break;
                 case 2:
+                    herdMenu();
                     break;
                 case 3:
                     std::cout << EXIT_PHRASE << std::endl;
@@ -79,6 +80,56 @@ void Menu::foodInventoryMenu(){
                     exit(0);
                     break;
                 case 5:
+                    std::cout << EXIT_PHRASE << std::endl;
+                    exit(0);
+                    break;
+                default:
+                    std::cout << "please enter a valid number\n" << std::endl;
+            }
+        }
+    }
+}
+
+void Menu::herdMenu(){
+    while (true){
+        std::cout
+            << "welcome to the herd\n"
+            << "what would you like to do in the herd management section?\n"
+            << "\t1: View Herd\n"
+            << "\t2: Add an animal to the Herd\n"
+            << "\t3: Feed an animal\n"
+            << "\t4: Return to main menu\n"
+            << "\t5: Save Changes and Exit\n"
+            << "\t6: Exit (don't save changes)\n\n"
+            << "$  " << std::flush;
+
+        flag = validateInput<int>(&sel);
+
+        if (flag){
+            switch (sel){
+                case 1:
+                    z->printHerd();
+                    break;
+                case 2:{
+                    Animal a = Animal();
+                    std::cin >> a;
+                    z->addToHerd(a);
+                    std::cout << "animal added!\n\n" << std::flush;
+                    break;
+                       }
+                case 3:
+                    // feed animal
+                    break;
+                case 4:
+                    return;
+                    break;
+                case 5:
+                    std::cout << EXIT_PHRASE << std::endl;
+                    wh->printInvToFile(WAREHOUSE_FILE);
+                    z->printHerdToFile(ZOO_FILE);
+                    exit(0);
+                    break;
+                case 6:
                     std::cout << EXIT_PHRASE << std::endl;
                     exit(0);
                     break;

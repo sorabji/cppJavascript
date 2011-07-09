@@ -22,7 +22,6 @@ void usage(){
 
 }
 
-using namespace std;
 
 int main(int argc,char **argv){
 
@@ -48,7 +47,7 @@ int main(int argc,char **argv){
         std::ofstream outfile;
 
         outfile.open(WAREHOUSE_BAK,std::ios::out|std::ios::trunc);
-        infile.open(WAREHOUSE_FILE,ios::in);
+        infile.open(WAREHOUSE_FILE,std::ios::in);
 
         if(infile){
             std::string type;
@@ -88,7 +87,7 @@ int main(int argc,char **argv){
 
     }
 
-    cout << "Welcome to the Zoo Management Suite\n" << endl;
+    std::cout << "Welcome to the Zoo Management Suite\n" << std::endl;
 
     Menu menu = Menu(wh,z);
     menu.mainMenu();
