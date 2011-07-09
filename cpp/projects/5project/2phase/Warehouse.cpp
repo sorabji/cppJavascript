@@ -14,12 +14,12 @@ void Warehouse::addToInv(FoodItem fi){
     if (flag){
         inv[fi.getType()]->setQuantity( (inv[fi.getType()]->getQuantity() ) +fi.getQuantity() );
     } else {
-        inv.insert(MapType::value_type(fi.getType(),new FoodItem(fi.getType(),fi.getUnits(),fi.getQuantity()) ) );
+        inv.insert(WarehouseType::value_type(fi.getType(),new FoodItem(fi.getType(),fi.getUnits(),fi.getQuantity()) ) );
     }
 }
 
 void Warehouse::printInv(){
-    MapType::const_iterator end = inv.end();
+    WarehouseType::const_iterator end = inv.end();
 
     std::cout << "Current Contents of the Food Inventory\n" << std::endl;
     std::cout << "[Type]\t\t[Units]\t\t[Quantity]\n\n" << std::flush;
@@ -30,7 +30,7 @@ void Warehouse::printInv(){
 
 void Warehouse::printInvToFile(std::string fileName){
 
-    MapType::const_iterator end = inv.end();
+    WarehouseType::const_iterator end = inv.end();
 
     std::ofstream outfile;
     outfile.open(fileName.c_str(),std::ios::out);

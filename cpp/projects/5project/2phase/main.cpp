@@ -6,6 +6,8 @@
 #include "Menu.h"
 #include "Warehouse.h"
 #include "FoodItem.h"
+#include "Animal.h"
+#include "Zoo.h"
 
 #define WAREHOUSE_FILE "warehouse.data"
 #define WAREHOUSE_BAK "warehouse.data.bak"
@@ -25,6 +27,7 @@ using namespace std;
 int main(int argc,char **argv){
 
     Warehouse *wh = new Warehouse();
+    Zoo *z = new Zoo();
 
     int readFlag=0;
     int createFlag=0;
@@ -87,7 +90,7 @@ int main(int argc,char **argv){
 
     cout << "Welcome to the Zoo Management Suite\n" << endl;
 
-    Menu menu = Menu(wh);
+    Menu menu = Menu(wh,z);
     menu.mainMenu();
 
     return 0;

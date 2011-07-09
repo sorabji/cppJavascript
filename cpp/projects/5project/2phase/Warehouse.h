@@ -8,15 +8,12 @@
 
 #include "FoodItem.h"
 
-#define WAREHOUSE_FILE "warehouse.data"
-#define WAREHOUSE_BAK "warehouse.data.bak"
-
-typedef std::map<std::string,FoodItem*> MapType;
+typedef std::map<std::string,FoodItem*> WarehouseType;
 
 class Warehouse{
     private:
-        MapType inv;
-        MapType::iterator iter;
+        WarehouseType inv;
+        WarehouseType::iterator iter;
         bool flag;
     public:
 

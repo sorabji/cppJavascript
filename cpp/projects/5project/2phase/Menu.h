@@ -7,9 +7,15 @@
 #include "Helper.h"
 #include "FoodItem.h"
 #include "Warehouse.h"
+#include "Animal.h"
+#include "Zoo.h"
 
 #define WAREHOUSE_FILE "warehouse.data"
 #define WAREHOUSE_BAK "warehouse.data.bak"
+
+#define ANIMAL_FILE "animal.data"
+#define ANIMAL_BAK "animal.data.bak"
+
 #define EXIT_PHRASE "Thank you for managing your zoo with us!\n"
 
 class Menu{
@@ -17,12 +23,13 @@ class Menu{
         int sel;
         bool flag;
         Warehouse *wh;
+        Zoo *z;
     public:
 
         /**
          * menu constructor...requires a pointer to a Warehouse object
          */
-        Menu(Warehouse *wh);
+        Menu(Warehouse *wh, Zoo *z);
 
         /**
          * the main menu of the program
@@ -33,5 +40,10 @@ class Menu{
          * specific menu for handling the food items
          */
         void foodInventoryMenu();
+
+        /**
+         * specific menu for handling the animals
+         */
+        void animalMenu();
 };
 #endif

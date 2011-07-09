@@ -10,10 +10,12 @@
 
 class Animal{
     private:
+
         std::string name;
         std::string food;
         double intake;
         time_t lastFedTime;
+
     public:
 
         /**
@@ -64,7 +66,7 @@ class Animal{
         /**
          * set lastFedTime
          */
-        void setLastFedTime(time_t lastFedTime);
+        void updateLastFedTime();
 
 };
 #endif

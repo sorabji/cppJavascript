@@ -1,8 +1,9 @@
 #include "Menu.h"
 
 
-Menu::Menu(Warehouse *wh){
+Menu::Menu(Warehouse *wh,Zoo *z){
     this->wh = wh;
+    this->z = z;
 }
 
 void Menu::mainMenu(){
@@ -10,8 +11,9 @@ void Menu::mainMenu(){
         std::cout 
             << "enter the corresponding number for your selection\n"
             << "\t1: Manage Food Inventory\n"
-            << "\t2: Save Changes and Exit\n"
-            << "\t3: Exit (don't save)\n\n"
+            << "\t2: Manage Herd\n"
+            << "\t3: Save Changes and Exit\n"
+            << "\t4: Exit (don't save)\n\n"
             << "$  " << std::flush;
 
         flag = validateInput<int>(&sel);
@@ -22,11 +24,13 @@ void Menu::mainMenu(){
                     foodInventoryMenu();
                     break;
                 case 2:
+                    break;
+                case 3:
                     std::cout << EXIT_PHRASE << std::endl;
                     wh->printInvToFile(WAREHOUSE_FILE);
                     exit(0);
                     break;
-                case 3:
+                case 4:
                     std::cout << EXIT_PHRASE << std::endl;
                     exit(0);
                     break;
