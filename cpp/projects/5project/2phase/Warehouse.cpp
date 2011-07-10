@@ -18,6 +18,15 @@ void Warehouse::addToInv(FoodItem fi){
     }
 }
 
+FoodItem* Warehouse::getFoodItem(std::string type){
+    iter = inv.find(type);
+    if ( iter != inv.end() ){
+        return iter->second;
+    } else {
+        return NULL;
+    }
+}
+
 void Warehouse::printInv(){
     WarehouseType::const_iterator end = inv.end();
 

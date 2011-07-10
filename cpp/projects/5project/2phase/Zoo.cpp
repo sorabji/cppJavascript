@@ -22,9 +22,18 @@ void Zoo::printHerd(){
     HerdType::const_iterator end = herd.end();
 
     std::cout << "Current Contents of the herd\n" << std::endl;
-    std::cout << "[Name]\t\t[Food]\t\t[Intake]\t\t[Last Fed]\n\n" << std::flush;
+    std::cout << "[Name]\t\t[Food]\t\t[Intake]\t[Last Fed]\n\n" << std::flush;
     for (iter = herd.begin(); iter != end ; iter++){
         std::cout << *(iter->second) << std::endl;
+    }
+}
+
+Animal* Zoo::getAnimal(std::string name){
+    iter = herd.find(name);
+    if (iter != herd.end() ){
+        return iter->second;
+    } else {
+        return NULL;
     }
 }
 

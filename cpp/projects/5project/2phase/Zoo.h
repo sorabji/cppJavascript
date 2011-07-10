@@ -15,6 +15,7 @@ class Zoo{
         HerdType herd;
         HerdType::iterator iter;
         bool flag;
+        std::string choice;
     public:
 
         /**
@@ -26,6 +27,11 @@ class Zoo{
          * add Animal
          */
         void addToHerd(Animal a);
+
+        /**
+         * get an animal
+         */
+        Animal* getAnimal(std::string name);
 
         void printHerd();
 

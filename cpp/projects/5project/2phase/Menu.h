@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <string>
 
 #include "Helper.h"
 #include "FoodItem.h"
@@ -20,6 +21,7 @@
 
 class Menu{
     private:
+        std::string choice;
         int sel;
         bool flag;
         Warehouse *wh;
@@ -45,5 +47,10 @@ class Menu{
          * specific menu for handling the animals
          */
         void herdMenu();
+
+        /**
+         * function to feed an animal
+         */
+        void feedAnimal();
 };
 #endif

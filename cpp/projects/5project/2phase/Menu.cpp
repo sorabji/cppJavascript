@@ -29,6 +29,7 @@ void Menu::mainMenu(){
                 case 3:
                     std::cout << EXIT_PHRASE << std::endl;
                     wh->printInvToFile(WAREHOUSE_FILE);
+                    z->printHerdToFile(ZOO_FILE);
                     exit(0);
                     break;
                 case 4:
@@ -77,6 +78,7 @@ void Menu::foodInventoryMenu(){
                 case 4:
                     std::cout << EXIT_PHRASE << std::endl;
                     wh->printInvToFile(WAREHOUSE_FILE);
+                    z->printHerdToFile(ZOO_FILE);
                     exit(0);
                     break;
                 case 5:
@@ -86,6 +88,9 @@ void Menu::foodInventoryMenu(){
                 default:
                     std::cout << "please enter a valid number\n" << std::endl;
             }
+        }else{
+            std::cout <<"please enter the number next to your selection\n" << std::endl;
+            continue;
         }
     }
 }
@@ -118,7 +123,7 @@ void Menu::herdMenu(){
                     break;
                        }
                 case 3:
-                    // feed animal
+                    feedAnimal();
                     break;
                 case 4:
                     return;
@@ -136,6 +141,54 @@ void Menu::herdMenu(){
                 default:
                     std::cout << "please enter a valid number\n" << std::endl;
             }
+        }else{
+            std::cout <<"please enter the number next to your selection\n" << std::endl;
+            continue;
         }
+    }
+}
+
+void Menu::feedAnimal(){
+    std::cout << "enter the name of the animal you wish to feed\n\n" << "$  " << std::flush;
+    std::cin >> choice;
+    flag = z->searchHerd(choice);
+    if(flag){
+        Animal* ap = z->getAnimal(choice);
+        if (NULL == ap){
+            std::cout << "strange error, animal exists but cannot be found...hrm\n\n";
+            return;
+        }
+
+        flag = wh->searchInv(ap->getFood() );
+        if(flag){
+            FoodItem* fip = wh->getFoodItem(ap->getFood() );
+            if (NULL == fip){
+                std::cout << "strange error, food item exists but resists being located.\n\n";
+                return;
+            }
+
+            if ( (fip->getQuantity() - ap->getIntake()) < 0 ){
+                std::cout 
+                    << "not enough food to feed the '"
+                    << ap->getName()
+                    << "'\ngo to the inventory menu and add more '"
+                    << ap->getFood() << "'\n\n";
+                return;
+            } else {
+                fip->setQuantity( (fip->getQuantity() - ap->getIntake() ) );
+                ap->updateLastFedTime();
+                std::cout
+                    << ap->getName()
+                    << " has been fed.\n\n";
+                return;
+            }
+        } else {
+            std::cout 
+                << "no suitable food exists in the inventory!\n"
+                << "perhaps you ought to head on over to the inventory menu and add some '" 
+                << ap->getFood() << "'\n\n";
+        }
+    } else {
+        std::cout << "no animal by that name exists...sorry\n\n" << std::flush;
     }
 }

@@ -27,6 +27,11 @@ class Warehouse{
          */
         void addToInv(FoodItem fi);
 
+        /**
+         * get food item
+         */
+        FoodItem* getFoodItem(std::string type);
+
         void printInv();
 
         void printInvToFile(std::string fileName);

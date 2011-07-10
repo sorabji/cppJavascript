@@ -12,6 +12,7 @@ Animal::Animal(std::string name,std::string food,double intake, time_t lastFedTi
     this->food = food;
     this->intake = intake;
     this->lastFedTime = lastFedTime;
+    this->prettyTime = ctime(&(this->lastFedTime));
 }
 
 Animal::~Animal(){
@@ -19,10 +20,11 @@ Animal::~Animal(){
     food = "";
     intake = 0;
     lastFedTime = 0;
+    prettyTime = "";
 }
 
 std::ostream& operator<<(std::ostream &os,const Animal& a){
-    std::cout << a.name << "\t\t" << a.food << "\t\t" << a.intake << "\t\t" << a.lastFedTime << std::endl;
+    std::cout << a.name << "\t\t" << a.food << "\t\t" << a.intake << "\t\t" << a.prettyTime << std::endl;
     return os;
 }
 
@@ -62,4 +64,5 @@ time_t Animal::getLastFedTime(){
 
 void Animal::updateLastFedTime(){
     time(&(this->lastFedTime));
+    this->prettyTime = ctime(&(this->lastFedTime)) ;
 }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <cstring>
 #include <sstream>
+#include <time.h>
 
 #include "Menu.h"
 #include "Warehouse.h"
@@ -78,12 +79,52 @@ int main(int argc,char **argv){
             infile.close();
             outfile.close();
         }
+
+        outfile.open(ZOO_BAK,std::ios::out|std::ios::trunc);
+        infile.open(ZOO_FILE,std::ios::in);
+
+        if(infile){
+            std::string line;
+            std::string name;
+            std::string food;
+            double intake;
+            time_t lastFedTime;
+
+            while(true){
+                std::getline(infile,line);
+                if( infile.eof() ){ break; }
+
+                outfile << line << "\n";
+
+                std::istringstream iss(line);
+                iss >> name;
+                iss >> food;
+                iss >> intake;
+                iss >> lastFedTime;
+
+                if(iss.bad()){
+                    std::cout << "error parsing file." << std::endl;
+                    exit(1);
+                }
+
+                Animal a = Animal(name,food,intake,lastFedTime);
+                z->addToHerd(a);
+
+            }
+            infile.close();
+            outfile.close();
+        }
+
     }
 
     if(createFlag){
         std::ofstream killIt;
         killIt.open(WAREHOUSE_FILE,std::ios::out | std::ios::trunc);
         killIt.close();
+
+        killIt.open(ZOO_FILE,std::ios::out | std::ios::trunc);
+        killIt.close();
+
 
     }
 

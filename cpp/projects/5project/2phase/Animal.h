@@ -13,6 +13,7 @@ class Animal{
 
         std::string name;
         std::string food;
+        std::string prettyTime;
         double intake;
         time_t lastFedTime;
 
