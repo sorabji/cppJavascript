@@ -5,6 +5,7 @@ Animal::Animal(){
     food = "";
     intake = 0;
     lastFedTime = 0;
+    prettyTime = "null";
 }
 
 Animal::Animal(std::string name,std::string food,double intake, time_t lastFedTime){
@@ -12,7 +13,8 @@ Animal::Animal(std::string name,std::string food,double intake, time_t lastFedTi
     this->food = food;
     this->intake = intake;
     this->lastFedTime = lastFedTime;
-    this->prettyTime = ctime(&(this->lastFedTime));
+    if(0 == lastFedTime) this->prettyTime = "null";
+    else this->prettyTime = ctime(&(this->lastFedTime));
 }
 
 Animal::~Animal(){
@@ -34,7 +36,7 @@ std::istream& operator>>(std::istream &is, Animal &a){
     std::cout << "\n\nenter the type of food it eats\n\n" << "$  " << std::flush;
     std::cin >> a.food;
     while (true){
-        std::cout << "\n\nenter the quantity of food it eats\n(number of 'units' it's food is measured in)\n\n" << "$  " << std::flush;
+        std::cout << "\n\nenter the quantity of food it eats\n(number of 'units' its food is measured in)\n\n" << "$  " << std::flush;
         bool flag = validateInput<double>(&a.intake);
 
         if (flag){
@@ -60,6 +62,10 @@ double Animal::getIntake(){
 
 time_t Animal::getLastFedTime(){
     return lastFedTime;
+}
+
+std::string Animal::getPrettyTime(){
+    return prettyTime;
 }
 
 void Animal::updateLastFedTime(){

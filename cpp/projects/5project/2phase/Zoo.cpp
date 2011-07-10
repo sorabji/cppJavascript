@@ -14,7 +14,9 @@ void Zoo::addToHerd(Animal a){
     if (flag){
         std::cout << "\nAn Animal by that name already exists!\n\n" << std::flush;
     } else {
-        herd.insert(HerdType::value_type(a.getName(),new Animal(a.getName(),a.getFood(),a.getIntake(),a.getLastFedTime() ) ) );
+        herd.insert(HerdType::value_type(
+                    a.getName(),
+                    new Animal(a.getName(),a.getFood(),a.getIntake(),a.getLastFedTime())));
     }
 }
 

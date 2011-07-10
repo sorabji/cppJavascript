@@ -60,6 +60,11 @@ class Animal{
         double getIntake();
 
         /**
+         * get pretty time
+         */
+        std::string getPrettyTime();
+
+        /**
          * get lastFedTime
          */
         time_t getLastFedTime();

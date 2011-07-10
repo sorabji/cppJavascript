@@ -117,7 +117,9 @@ void Menu::herdMenu(){
                     break;
                 case 2:{
                     Animal a = Animal();
+                    std::cout << "fuck:  " << a.getPrettyTime() << "\n";
                     std::cin >> a;
+                    std::cout << "fuck:  " << a.getPrettyTime() << "\n";
                     z->addToHerd(a);
                     std::cout << "animal added!\n\n" << std::flush;
                     break;
