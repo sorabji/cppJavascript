@@ -37,10 +37,10 @@ void Menu::mainMenu(){
                     exit(0);
                     break;
                 default:
-                    std::cout << "please enter a valid number\n" << std::endl;
+                    std::cout << "please enter a valid number\n\n" << std::flush;
             }
         }else{
-            std::cout <<"please enter the number next to your selection\n" << std::endl;
+            std::cout <<"please enter the number next to your selection\n\n" << std::flush;
             continue;
         }
     }
@@ -86,10 +86,10 @@ void Menu::foodInventoryMenu(){
                     exit(0);
                     break;
                 default:
-                    std::cout << "please enter a valid number\n" << std::endl;
+                    std::cout << "please enter a valid number\n\n" << std::flush;
             }
         }else{
-            std::cout <<"please enter the number next to your selection\n" << std::endl;
+            std::cout <<"please enter the number next to your selection\n\n" << std::flush;
             continue;
         }
     }
@@ -188,7 +188,8 @@ void Menu::feedAnimal(){
             }
         } else {
             std::cout 
-                << "no suitable food exists in the inventory!\n"
+                << "no suitable food exists in the inventory for '"
+                << ap->getName() << "'\n"
                 << "perhaps you ought to head on over to the inventory menu and add some '" 
                 << ap->getFood() << "'\n\n";
         }
@@ -230,7 +231,8 @@ void Menu::feedAllAnimals(){
             }
         } else {
             std::cout
-                << "no suitable food exists in the inventory!\n"
+                << "no suitable food exists in the inventory for '"
+                << ap->getName() << "'\n"
                 << "perhaps you ought to head on over to the inventory menu and add some '"
                 << ap->getFood() << "'\n\n";
         }

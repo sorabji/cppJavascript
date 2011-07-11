@@ -53,7 +53,7 @@ void Warehouse::printInvToFile(std::string fileName){
                 << " "
                 << (iter->second)->getUnits()
                 << " "
-                << (iter->second)->getQuantity() << std::endl;
+                << (iter->second)->getQuantity() << "\n" << std::flush;
         }
     }
 

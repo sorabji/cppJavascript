@@ -26,15 +26,36 @@ Animal::~Animal(){
 }
 
 std::ostream& operator<<(std::ostream &os,const Animal& a){
-    std::cout << a.name << "\t\t" << a.food << "\t\t" << a.intake << "\t\t" << a.prettyTime << std::endl;
+    std::cout 
+        << std::setw(20)
+        << std::left
+        << a.name
+        << std::setw(20)
+        << std::left
+        << a.food
+        << std::setw(20)
+        << std::left
+        << a.intake
+        << std::setw(20)
+        << std::left
+        << a.prettyTime
+        << "\n" << std::flush;
     return os;
 }
 
 std::istream& operator>>(std::istream &is, Animal &a){
     std::cout << "enter the name of the animal\n\n" << "$  " << std::flush;
-    std::cin >> a.name;
+    std::cin.clear();
+    std::getline(std::cin,a.name);
+    std::getline(std::cin,a.name);
+
+    //std::cin >> a.name;
+
     std::cout << "\n\nenter the type of food it eats\n\n" << "$  " << std::flush;
-    std::cin >> a.food;
+    std::cin.clear();
+    std::getline(std::cin,a.food);
+
+    //std::cin >> a.food;
     while (true){
         std::cout << "\n\nenter the quantity of food it eats\n(number of 'units' its food is measured in)\n\n" << "$  " << std::flush;
         bool flag = validateInput<double>(&a.intake);

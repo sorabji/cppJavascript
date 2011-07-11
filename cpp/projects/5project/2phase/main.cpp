@@ -8,11 +8,9 @@
 #include "Menu.h"
 #include "Warehouse.h"
 #include "FoodItem.h"
-#include "Animal.h"
 #include "Zoo.h"
+#include "Animal.h"
 
-#define WAREHOUSE_FILE "warehouse.data"
-#define WAREHOUSE_BAK "warehouse.data.bak"
 #define MAX_BUFSIZE 255
 
 void usage(){
@@ -22,7 +20,6 @@ void usage(){
         << "\t-c to clear the file and start from scratch\n";
 
     exit(1);
-
 }
 
 
@@ -90,34 +87,38 @@ int main(int argc,char **argv){
             std::string line;
             std::string name;
             std::string food;
-            /*std::string tmp;
-            std::string tmp1;*/
             double intake;
             time_t lastFedTime;
+
+            std::string tmp;
 
             while(true){
                 std::getline(infile,line);
                 if( infile.eof() ){ break; }
 
+                std::cout << line << "\n";
                 outfile << line << "\n";
 
                 std::istringstream iss(line);
 
-                /*std::getline(iss,name,'|');
+                std::getline(iss,name,'|');
                 std::getline(iss,food,'|');
-                std::getline(iss,tmp,'|');
-                std::getline(iss,tmp1,'|');
 
+
+                std::getline(iss,tmp,'|');
+                //put in double
                 std::istringstream blah(tmp);
                 blah >> intake;
 
-                std::istringstream blah1(tmp1);
-                blah1 >> lastFedTime;*/
+                std::getline(iss,tmp,'|');
+                //put in time_t
+                std::istringstream blah2(tmp);
+                blah2 >> lastFedTime;
 
-                iss >> name;
+                /*iss >> name;
                 iss >> food;
                 iss >> intake;
-                iss >> lastFedTime;
+                iss >> lastFedTime;*/
 
                 if(iss.bad()){
                     std::cout << "error parsing file." << std::endl;
@@ -145,7 +146,7 @@ int main(int argc,char **argv){
 
     }
 
-    std::cout << "Welcome to the Zoo Management Suite\n" << std::endl;
+    std::cout << "Welcome to the Zoo Management Suite\n\n" << std::flush;
 
     Menu menu = Menu(wh,z);
     menu.mainMenu();

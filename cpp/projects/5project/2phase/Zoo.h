@@ -2,6 +2,7 @@
 #define ZOO_H
 
 #include <iostream>
+#include <iomanip>
 #include <map>
 #include <string>
 #include <fstream>

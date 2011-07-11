@@ -33,10 +33,23 @@ std::vector<std::string> Zoo::getKeys(){
 void Zoo::printHerd(){
     HerdType::const_iterator end = herd.end();
 
-    std::cout << "Current Contents of the herd\n" << std::endl;
-    std::cout << "[Name]\t\t[Food]\t\t[Intake]\t[Last Fed]\n\n" << std::flush;
+    std::cout << "Current Contents of the herd\n\n" << std::flush;
+    std::cout
+        << std::setw(20)
+        << std::left
+        << "[Name]"
+        << std::setw(20)
+        << std::left
+        << "[Food]"
+        << std::setw(20)
+        << std::left
+        << "[Intake]"
+        << std::setw(20)
+        << std::left
+        << "[Last Fed]"
+        << "\n\n";
     for (iter = herd.begin(); iter != end ; iter++){
-        std::cout << *(iter->second) << std::endl;
+        std::cout << *(iter->second) << "\n" << std::flush;
     }
 }
 
@@ -61,12 +74,20 @@ void Zoo::printHerdToFile(std::string fileName){
         for (iter = herd.begin(); iter != end ; iter++){
             outfile 
                 << (iter->second)->getName()
+                << "|"
+                << (iter->second)->getFood()
+                << "|"
+                << (iter->second)->getIntake() 
+                << "|" 
+                << (iter->second)->getLastFedTime() << "\n" << std::flush;
+                /*<< (iter->second)->getName()
                 << " "
                 << (iter->second)->getFood()
                 << " "
                 << (iter->second)->getIntake() 
                 << " " 
-                << (iter->second)->getLastFedTime() << std::endl;
+                << (iter->second)->getLastFedTime() << std::endl;*/
+
         }
     } else{
         std::cout << "'" << fileName << "' cannot be opened for writing" << std::endl;
