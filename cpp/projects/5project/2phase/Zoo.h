@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <fstream>
+#include <vector>
 
 #include "Animal.h"
 
@@ -32,6 +33,11 @@ class Zoo{
          * get an animal
          */
         Animal* getAnimal(std::string name);
+
+        /**
+         * get all 'keys' in the zoo
+         */
+        std::vector<std::string> getKeys();
 
         void printHerd();
 

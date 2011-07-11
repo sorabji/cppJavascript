@@ -3,6 +3,7 @@
 #include <cstring>
 #include <sstream>
 #include <time.h>
+#include <string.h>
 
 #include "Menu.h"
 #include "Warehouse.h"
@@ -12,6 +13,7 @@
 
 #define WAREHOUSE_FILE "warehouse.data"
 #define WAREHOUSE_BAK "warehouse.data.bak"
+#define MAX_BUFSIZE 255
 
 void usage(){
     std::cout 
@@ -44,6 +46,7 @@ int main(int argc,char **argv){
     }
 
     if(readFlag){
+        char *buf = new char[MAX_BUFSIZE];
         std::ifstream infile;
         std::ofstream outfile;
 
@@ -87,6 +90,8 @@ int main(int argc,char **argv){
             std::string line;
             std::string name;
             std::string food;
+            /*std::string tmp;
+            std::string tmp1;*/
             double intake;
             time_t lastFedTime;
 
@@ -97,6 +102,18 @@ int main(int argc,char **argv){
                 outfile << line << "\n";
 
                 std::istringstream iss(line);
+
+                /*std::getline(iss,name,'|');
+                std::getline(iss,food,'|');
+                std::getline(iss,tmp,'|');
+                std::getline(iss,tmp1,'|');
+
+                std::istringstream blah(tmp);
+                blah >> intake;
+
+                std::istringstream blah1(tmp1);
+                blah1 >> lastFedTime;*/
+
                 iss >> name;
                 iss >> food;
                 iss >> intake;

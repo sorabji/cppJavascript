@@ -20,6 +20,16 @@ void Zoo::addToHerd(Animal a){
     }
 }
 
+std::vector<std::string> Zoo::getKeys(){
+    std::vector<std::string> v;
+    HerdType::const_iterator end = herd.end();
+
+    for (iter = herd.begin() ; iter != end ; ++iter){
+        v.push_back(iter->first);
+    }
+    return v;
+}
+
 void Zoo::printHerd(){
     HerdType::const_iterator end = herd.end();
 
@@ -58,6 +68,8 @@ void Zoo::printHerdToFile(std::string fileName){
                 << " " 
                 << (iter->second)->getLastFedTime() << std::endl;
         }
+    } else{
+        std::cout << "'" << fileName << "' cannot be opened for writing" << std::endl;
     }
 
     outfile.close();

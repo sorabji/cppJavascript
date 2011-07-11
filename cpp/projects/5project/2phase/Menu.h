@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "Helper.h"
 #include "FoodItem.h"
@@ -52,5 +53,10 @@ class Menu{
          * function to feed an animal
          */
         void feedAnimal();
+
+        /**
+         * feed all animals in the zoo
+         */
+        void feedAllAnimals();
 };
 #endif

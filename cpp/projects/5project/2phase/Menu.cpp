@@ -102,10 +102,11 @@ void Menu::herdMenu(){
             << "what would you like to do in the herd management section?\n"
             << "\t1: View Herd\n"
             << "\t2: Add an animal to the Herd\n"
-            << "\t3: Feed an animal\n"
-            << "\t4: Return to main menu\n"
-            << "\t5: Save Changes and Exit\n"
-            << "\t6: Exit (don't save changes)\n\n"
+            << "\t3: Feed ALL animals\n"
+            << "\t4: Feed an animal\n"
+            << "\t5: Return to main menu\n"
+            << "\t6: Save Changes and Exit\n"
+            << "\t7: Exit (don't save changes)\n\n"
             << "$  " << std::flush;
 
         flag = validateInput<int>(&sel);
@@ -117,26 +118,27 @@ void Menu::herdMenu(){
                     break;
                 case 2:{
                     Animal a = Animal();
-                    std::cout << "fuck:  " << a.getPrettyTime() << "\n";
                     std::cin >> a;
-                    std::cout << "fuck:  " << a.getPrettyTime() << "\n";
                     z->addToHerd(a);
                     std::cout << "animal added!\n\n" << std::flush;
                     break;
                        }
                 case 3:
-                    feedAnimal();
+                    feedAllAnimals();
                     break;
                 case 4:
-                    return;
+                    feedAnimal();
                     break;
                 case 5:
+                    return;
+                    break;
+                case 6:
                     std::cout << EXIT_PHRASE << std::endl;
                     wh->printInvToFile(WAREHOUSE_FILE);
                     z->printHerdToFile(ZOO_FILE);
                     exit(0);
                     break;
-                case 6:
+                case 7:
                     std::cout << EXIT_PHRASE << std::endl;
                     exit(0);
                     break;
@@ -194,3 +196,45 @@ void Menu::feedAnimal(){
         std::cout << "no animal by that name exists...sorry\n\n" << std::flush;
     }
 }
+
+void Menu::feedAllAnimals(){
+    std::vector<std::string> v = z->getKeys();
+    for (std::vector<std::string>::iterator it = v.begin() ; it != v.end() ; ++it){
+        Animal* ap = z->getAnimal(*it);
+        if (NULL == ap){
+            std::cout << "odd...cannot retrieve '" << *it << "' at this time.\n\n";
+            return;
+        }
+
+        flag = wh->searchInv( ap->getFood() );
+        if(flag){
+            FoodItem* fip = wh->getFoodItem( ap->getFood() );
+            if (NULL == fip){
+                std::cout << "strange error, food item '" << ap->getFood() << "' exists but is too shy to come around.\n\n";
+                return;
+            }
+
+            if( (fip->getQuantity() - ap->getIntake() ) < 0 ){
+                std::cout
+                    << "not enough food to feed the '"
+                    << ap->getName()
+                    << "'\ngo to the inventory menu and add more '"
+                    << ap->getFood() << "'\n\n";
+                return;
+            } else {
+                fip->setQuantity( (fip->getQuantity() - ap->getIntake() ) );
+                ap->updateLastFedTime();
+                std::cout 
+                    << "'" << ap->getName()
+                    << "' has been fed.\n";
+            }
+        } else {
+            std::cout
+                << "no suitable food exists in the inventory!\n"
+                << "perhaps you ought to head on over to the inventory menu and add some '"
+                << ap->getFood() << "'\n\n";
+        }
+    }
+    std::cout << "\n";
+}
+
