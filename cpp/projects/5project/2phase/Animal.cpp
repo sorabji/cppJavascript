@@ -36,17 +36,15 @@ std::ostream& operator<<(std::ostream &os,const Animal& a){
         << std::setw(20)
         << std::left
         << a.intake
-        << std::setw(20)
+        << std::setw(40)
         << std::left
         << a.prettyTime
-        << "\n" << std::flush;
+        << std::endl;
     return os;
 }
 
 std::istream& operator>>(std::istream &is, Animal &a){
     std::cout << "enter the name of the animal\n\n" << "$  " << std::flush;
-    std::cin.clear();
-    std::getline(std::cin,a.name);
     std::getline(std::cin,a.name);
 
     //std::cin >> a.name;
@@ -92,4 +90,9 @@ std::string Animal::getPrettyTime(){
 void Animal::updateLastFedTime(){
     time(&(this->lastFedTime));
     this->prettyTime = ctime(&(this->lastFedTime)) ;
+
+    if (!prettyTime.empty() && prettyTime[prettyTime.length()-1] == '\n') {
+        prettyTime.erase(prettyTime.length()-1);
+    }
+
 }

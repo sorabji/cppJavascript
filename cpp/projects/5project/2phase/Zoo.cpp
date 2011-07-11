@@ -44,12 +44,12 @@ void Zoo::printHerd(){
         << std::setw(20)
         << std::left
         << "[Intake]"
-        << std::setw(20)
+        << std::setw(40)
         << std::left
         << "[Last Fed]"
-        << "\n\n";
+        << "\n\n" << std::flush;
     for (iter = herd.begin(); iter != end ; iter++){
-        std::cout << *(iter->second) << "\n" << std::flush;
+        std::cout << *(iter->second) << std::endl;
     }
 }
 

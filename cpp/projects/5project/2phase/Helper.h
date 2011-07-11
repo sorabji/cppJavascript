@@ -10,6 +10,7 @@ template<class T> bool validateInput(T *t){
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         return false;
     }
+    std::cin.ignore();
     return true;
 }
 
