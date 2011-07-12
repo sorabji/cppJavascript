@@ -4,14 +4,12 @@
 #include <iostream>
 #include <limits>
 
-template<class T> bool validateInput(T &t){
+template<class T> void validateInput(T &t){
     if (! (std::cin >> t) ){
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-        return false;
+        throw false;
     }
     std::cin.ignore();
-    return true;
 }
-
 #endif

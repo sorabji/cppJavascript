@@ -16,9 +16,8 @@ void Menu::mainMenu(){
             << "\t4: Exit (don't save)\n\n"
             << "$  " << std::flush;
 
-        flag = validateInput<int>(sel);
-
-        if (flag){
+        try {
+            validateInput<int>(sel);
             switch (sel){
                 case 1:
                     foodInventoryMenu();
@@ -39,7 +38,7 @@ void Menu::mainMenu(){
                 default:
                     std::cout << "please enter a valid number\n\n" << std::flush;
             }
-        }else{
+        } catch (...){
             std::cout <<"please enter the number next to your selection\n\n" << std::flush;
             continue;
         }
@@ -58,9 +57,8 @@ void Menu::foodInventoryMenu(){
             << "\t5: Exit (don't save changes)\n\n"
             << "$  " << std::flush;
 
-        flag = validateInput<int>(sel);
-
-        if (flag){
+        try {
+            validateInput<int>(sel);
             switch (sel){
                 case 1:
                     wh->printInv();
@@ -88,7 +86,7 @@ void Menu::foodInventoryMenu(){
                 default:
                     std::cout << "please enter a valid number\n\n" << std::flush;
             }
-        }else{
+        } catch (...){
             std::cout <<"please enter the number next to your selection\n\n" << std::flush;
             continue;
         }
@@ -109,9 +107,8 @@ void Menu::herdMenu(){
             << "\t7: Exit (don't save changes)\n\n"
             << "$  " << std::flush;
 
-        flag = validateInput<int>(sel);
-
-        if (flag){
+        try {
+            validateInput<int>(sel);
             switch (sel){
                 case 1:
                     z->printHerd();
@@ -127,7 +124,7 @@ void Menu::herdMenu(){
                     feedAllAnimals();
                     break;
                 case 4:
-                    feedAnimal();
+                    getAnimalNameFromUser();
                     break;
                 case 5:
                     return;
@@ -145,32 +142,35 @@ void Menu::herdMenu(){
                 default:
                     std::cout << "please enter a valid number\n" << std::endl;
             }
-        }else{
+        } catch (...){
             std::cout <<"please enter the number next to your selection\n" << std::endl;
             continue;
         }
     }
 }
 
-void Menu::feedAnimal(){
+void Menu::getAnimalNameFromUser(){
     std::cout << "enter the name of the animal you wish to feed\n\n" << "$  " << std::flush;
-    std::cin >> choice;
-    flag = z->searchHerd(choice);
-    if(flag){
-        Animal* ap = z->getAnimal(choice);
+    std::getline(std::cin,choice);
+    feedAnimal(choice);
+}
+
+void Menu::feedAnimal(std::string animalName){
+    try {
+        z->searchHerd(animalName);
+        Animal* ap = z->getAnimal(animalName);
         if (NULL == ap){
             std::cout << "strange error, animal exists but cannot be found...hrm\n\n";
             return;
         }
 
-        flag = wh->searchInv(ap->getFood() );
-        if(flag){
+        try {
+        wh->searchInv(ap->getFood() );
             FoodItem* fip = wh->getFoodItem(ap->getFood() );
             if (NULL == fip){
                 std::cout << "strange error, food item exists but resists being located.\n\n";
                 return;
             }
-
             if ( (fip->getQuantity() - ap->getIntake()) < 0 ){
                 std::cout 
                     << "not enough food to feed the '"
@@ -182,61 +182,43 @@ void Menu::feedAnimal(){
                 fip->setQuantity( (fip->getQuantity() - ap->getIntake() ) );
                 ap->updateLastFedTime();
                 std::cout
+                    << "'"
                     << ap->getName()
-                    << " has been fed.\n\n";
+                    << "' has been fed.\n\n";
                 return;
             }
-        } else {
+        } catch (int e){
             std::cout 
                 << "no suitable food exists in the inventory for '"
                 << ap->getName() << "'\n"
                 << "perhaps you ought to head on over to the inventory menu and add some '" 
                 << ap->getFood() << "'\n\n";
         }
-    } else {
-        std::cout << "no animal by that name exists...sorry\n\n" << std::flush;
+    } catch (...) {
+        std::cout << "no animal named '" << choice << "' exists...weird\n\n" << std::flush;
     }
 }
 
 void Menu::feedAllAnimals(){
     std::vector<std::string> v = z->getKeys();
     for (std::vector<std::string>::iterator it = v.begin() ; it != v.end() ; ++it){
-        Animal* ap = z->getAnimal(*it);
-        if (NULL == ap){
-            std::cout << "odd...cannot retrieve '" << *it << "' at this time.\n\n";
-            return;
-        }
-
-        flag = wh->searchInv( ap->getFood() );
-        if(flag){
-            FoodItem* fip = wh->getFoodItem( ap->getFood() );
-            if (NULL == fip){
-                std::cout << "strange error, food item '" << ap->getFood() << "' exists but is too shy to come around.\n\n";
-                return;
-            }
-
-            if( (fip->getQuantity() - ap->getIntake() ) < 0 ){
-                std::cout
-                    << "not enough food to feed the '"
-                    << ap->getName()
-                    << "'\ngo to the inventory menu and add more '"
-                    << ap->getFood() << "'\n\n";
-                return;
-            } else {
-                fip->setQuantity( (fip->getQuantity() - ap->getIntake() ) );
-                ap->updateLastFedTime();
-                std::cout 
-                    << "'" << ap->getName()
-                    << "' has been fed.\n\n";
-            }
-        } else {
-            std::cout
-                << "no suitable food exists in the inventory for '"
-                << ap->getName() << "'\n"
-                << "perhaps you ought to head on over to the inventory menu and add some '"
-                << ap->getFood() << "'\n\n";
-        }
+        feedAnimal(*it);
     }
     std::cout << "\n";
+}
+
+void Menu::checkAllAnimalFoodStatus(){
+    // seconds in a day = 86400
+    time_t curTime;
+    Animal *ap;
+
+    std::vector<std::string> v = z->getKeys();
+    for (std::vector<std::string>::iterator it = v.begin() ; it != v.end() ; ++it){
+        ap = z->getAnimal(*it);
+        time(&curTime);
+        if ( (curTime - ap->getLastFedTime()) > 86400 ){
+            feedAnimal(*it);
+        }
+    }
 }
 

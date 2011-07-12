@@ -1,22 +1,20 @@
 #include "Zoo.h"
 
-bool Zoo::searchHerd(std::string term){
+void Zoo::searchHerd(std::string term){
     iter = herd.find(term);
-    if ( iter != herd.end() ){
-        return true;
-    } else {
-        return false;
+    if ( iter == herd.end() ){
+        throw false;
     }
 }
 
 void Zoo::addToHerd(Animal a){
-    flag = searchHerd(a.getName());
-    if (flag){
+    try {
+        searchHerd(a.getName());
         std::cout << "\nAn Animal by that name already exists!\n\n" << std::flush;
-    } else {
+    } catch (...) {
         herd.insert(HerdType::value_type(
-                    a.getName(),
-                    new Animal(a.getName(),a.getFood(),a.getType(),a.getIntake(),a.getLastFedTime())));
+            a.getName(),
+            new Animal(a.getName(),a.getFood(),a.getType(),a.getIntake(),a.getLastFedTime())));
     }
 }
 
