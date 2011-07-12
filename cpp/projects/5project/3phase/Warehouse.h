@@ -21,7 +21,7 @@ class Warehouse{
         /**
          * search for FoodItem
          */
-        bool searchInv(std::string term);
+        void searchInv(std::string term);
 
         /**
          * add food item

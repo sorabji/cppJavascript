@@ -22,11 +22,13 @@
 
 class Menu{
     private:
-        std::string choice;
-        int sel;
-        bool flag;
+
         Warehouse *wh;
         Zoo *z;
+
+        std::string choice;
+        int sel;
+
     public:
 
         /**
@@ -52,11 +54,21 @@ class Menu{
         /**
          * function to feed an animal
          */
-        void feedAnimal();
+        void feedAnimal(std::string animalName);
 
         /**
          * feed all animals in the zoo
          */
         void feedAllAnimals();
+
+        /**
+         * get animal name from user
+         */
+        void getAnimalNameFromUser();
+
+        /**
+         * checks status of all animals feeding...if an animal needs feeding, it tries to feed it
+         */
+        void checkAllAnimalFoodStatus();
 };
 #endif

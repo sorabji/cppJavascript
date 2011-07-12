@@ -23,7 +23,7 @@ class Zoo{
         /**
          * search for Animal
          */
-        bool searchHerd(std::string term);
+        void searchHerd(std::string term);
 
         /**
          * add Animal
