@@ -43,11 +43,10 @@ std::istream& operator>>(std::istream &is, FoodItem &fi){
 
     while (true){
         std::cout << "\n\nenter the quantity\n\n" << "$  " << std::flush;
-        bool flag = validateInput<double>(fi.quantity);
-
-        if (flag){
+        try {
+            validateInput<double>(fi.quantity);
             return is;
-        } else {
+        } catch (...){
             std::cout << "please enter a valid number for the quantity\n\n" << std::flush;
             continue;
         }

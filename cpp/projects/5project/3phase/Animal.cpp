@@ -78,11 +78,10 @@ std::istream& operator>>(std::istream &is, Animal &a){
     std::cout << "\n" << std::endl;
     while (true){
         std::cout << "enter the quantity of food it eats\n(number of 'units' its food is measured in)\n\n" << "$  " << std::flush;
-        bool flag = validateInput<double>(a.intake);
-
-        if (flag){
+        try {
+            validateInput<double>(a.intake);
             return is;
-        } else {
+        } catch (...){
             std::cout << "please enter a valid number for the intake quantity\n" << std::endl;
             continue;
         }

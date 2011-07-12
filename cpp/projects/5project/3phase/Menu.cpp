@@ -16,9 +16,8 @@ void Menu::mainMenu(){
             << "\t4: Exit (don't save)\n\n"
             << "$  " << std::flush;
 
-        flag = validateInput<int>(sel);
-
-        if (flag){
+        try {
+            validateInput<int>(sel);
             switch (sel){
                 case 1:
                     foodInventoryMenu();
@@ -39,7 +38,7 @@ void Menu::mainMenu(){
                 default:
                     std::cout << "please enter a valid number\n\n" << std::flush;
             }
-        }else{
+        } catch (...){
             std::cout <<"please enter the number next to your selection\n\n" << std::flush;
             continue;
         }
@@ -58,9 +57,8 @@ void Menu::foodInventoryMenu(){
             << "\t5: Exit (don't save changes)\n\n"
             << "$  " << std::flush;
 
-        flag = validateInput<int>(sel);
-
-        if (flag){
+        try {
+            validateInput<int>(sel);
             switch (sel){
                 case 1:
                     wh->printInv();
@@ -88,7 +86,7 @@ void Menu::foodInventoryMenu(){
                 default:
                     std::cout << "please enter a valid number\n\n" << std::flush;
             }
-        }else{
+        } catch (...){
             std::cout <<"please enter the number next to your selection\n\n" << std::flush;
             continue;
         }
@@ -109,9 +107,8 @@ void Menu::herdMenu(){
             << "\t7: Exit (don't save changes)\n\n"
             << "$  " << std::flush;
 
-        flag = validateInput<int>(sel);
-
-        if (flag){
+        try {
+            validateInput<int>(sel);
             switch (sel){
                 case 1:
                     z->printHerd();
@@ -145,7 +142,7 @@ void Menu::herdMenu(){
                 default:
                     std::cout << "please enter a valid number\n" << std::endl;
             }
-        }else{
+        } catch (...){
             std::cout <<"please enter the number next to your selection\n" << std::endl;
             continue;
         }
