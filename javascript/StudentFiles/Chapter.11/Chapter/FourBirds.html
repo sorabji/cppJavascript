@@ -8,17 +8,79 @@
 charset=iso-8859-1" />
 </head>
 <body>
-<p><img src="goose1.jpg" style="position: absolute; left: 40px;
+
+<p><img id="goose1" src="goose1.jpg" style="position: absolute; left: 40px;
 top: 200px" alt="Image of a bird" height="180"
 width="182" /></p>
-<p><img src="goose2.jpg" style="position: absolute; left: 80px;
+<p><img id="goose2" src="goose2.jpg" style="position: absolute; left: 80px;
 top: 50px" alt="Image of a bird" height="120"
 width="118" /></p>
-<p><img src="goose3.jpg" style="position: absolute; left: 200px;
+<p><img id="goose3" src="goose3.jpg" style="position: absolute; left: 200px;
 top: 100px" alt="Image of a bird" height="150"
 width="155" /></p>
-<p><img src="goose4.jpg" style="position: absolute; left: 300px;
+<p><img id="goose4" src="goose4.jpg" style="position: absolute; left: 300px;
 top: 20px" alt="Image of a bird" height="88"
 width="91" /></p>
+
+<script type="text/javascript">
+  var gooseArray = new Array(4);
+  gooseArray[0] = document.getElementById("goose1");
+  gooseArray[1] = document.getElementById("goose2");
+  gooseArray[2] = document.getElementById("goose3");
+  gooseArray[3] = document.getElementById("goose4");
+  var flyingInterval = setInterval('gooseFlyRight()',100);
+  var currentLeft = 40;
+
+function gooseFlyRight(){
+  var leftPosition = currentLeft+40;
+  currentLeft = leftPosition;
+  if(leftPosition<=800){
+    document.getElementById("goose1").style.left=leftPosition+currentLeft+"px";
+    document.getElementById("goose2").style.left=leftPosition+currentLeft+40+"px";
+    document.getElementById("goose3").style.left=leftPosition+currentLeft+160+"px";
+    document.getElementById("goose4").style.left=leftPosition+currentLeft+260+"px";
+  } else {
+    clearInterval(flyingInterval);
+    turnRight();
+    flyingInterval = setInterval('gooseFlyLeft()',100);
+  }
+}
+
+function gooseFlyLeft(){
+  var leftPosition = currentLeft-40;
+  currentLeft = leftPosition;
+  if(leftPosition>40){
+    document.getElementById("goose1").style.left=leftPosition+currentLeft+"px";
+    document.getElementById("goose2").style.left=leftPosition+currentLeft+40+"px";
+    document.getElementById("goose3").style.left=leftPosition+currentLeft+160+"px";
+    document.getElementById("goose4").style.left=leftPosition+currentLeft+260+"px";
+  } else {
+    clearInterval(flyingInterval);
+    turnLeft();
+    flyingInterval = setInterval('gooseFlyRight()',100);
+  }
+}
+function turnLeft(){
+  document.getElementById("goose1").style.MozTransform='scaleX(-1)';
+  document.getElementById("goose1").style.MozTransformOrigin='0% 0%';
+  document.getElementById("goose2").style.MozTransform='scaleX(-1)';
+  document.getElementById("goose2").style.MozTransformOrigin='0% 0%';
+  document.getElementById("goose3").style.MozTransform='scaleX(-1)';
+  document.getElementById("goose3").style.MozTransformOrigin='0% 0%';
+  document.getElementById("goose4").style.MozTransform='scaleX(-1)';
+  document.getElementById("goose4").style.MozTransformOrigin='0% 0%';
+}
+function turnRight(){
+  document.getElementById("goose1").style.MozTransform='scaleX(-1)';
+  document.getElementById("goose1").style.MozTransformOrigin='20% 40%';
+  document.getElementById("goose2").style.MozTransform='scaleX(-1)';
+  document.getElementById("goose2").style.MozTransformOrigin='20% 40%';
+  document.getElementById("goose3").style.MozTransform='scaleX(-1)';
+  document.getElementById("goose3").style.MozTransformOrigin='20% 40%';
+  document.getElementById("goose4").style.MozTransform='scaleX(-1)';
+  document.getElementById("goose4").style.MozTransformOrigin='20% 40%';
+}
+</script>
+
 </body>
 </html>
