@@ -9,6 +9,9 @@
 
 #include "Helper.h"
 
+#define CARNIVORE_FEEDING_TIME 30
+#define HERBIVORE_FEEDING_TIME 30
+
 class Animal{
     private:
 

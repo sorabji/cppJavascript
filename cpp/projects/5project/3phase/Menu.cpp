@@ -8,6 +8,7 @@ Menu::Menu(Warehouse *wh,Zoo *z){
 
 void Menu::mainMenu(){
     while (true){
+        checkAllAnimalFoodStatus();
         std::cout 
             << "enter the corresponding number for your selection\n"
             << "\t1: Manage Food Inventory\n"
@@ -47,6 +48,7 @@ void Menu::mainMenu(){
 
 void Menu::foodInventoryMenu(){
     while (true){
+        checkAllAnimalFoodStatus();
         std::cout
             << "welcome to the food inventory\n"
             << "what would you like to do in the food inventory section?\n"
@@ -95,6 +97,7 @@ void Menu::foodInventoryMenu(){
 
 void Menu::herdMenu(){
     while (true){
+        checkAllAnimalFoodStatus();
         std::cout
             << "welcome to the herd\n"
             << "what would you like to do in the herd management section?\n"
@@ -211,12 +214,24 @@ void Menu::checkAllAnimalFoodStatus(){
     // seconds in a day = 86400
     time_t curTime;
     Animal *ap;
+    double diff;
 
     std::vector<std::string> v = z->getKeys();
     for (std::vector<std::string>::iterator it = v.begin() ; it != v.end() ; ++it){
         ap = z->getAnimal(*it);
         time(&curTime);
-        if ( (curTime - ap->getLastFedTime()) > 86400 ){
+        diff = difftime(curTime,ap->getLastFedTime());
+        if (ap->getLastFedTime() == 0){
+            std::cout << "'" << ap->getName() << "' has not been fed yet" << std::endl;
+	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
+            feedAnimal(*it);
+        } else if (ap->getType().compare("herbivore") == 0 && diff > HERBIVORE_FEEDING_TIME){
+            std::cout << "'" << ap->getName() << "' was last fed on " << ap->getPrettyTime() << std::endl;
+	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
+            feedAnimal(*it);
+        } else if (ap->getType().compare("carnivore") == 0 && diff > CARNIVORE_FEEDING_TIME){
+            std::cout << "'" << ap->getName() << "' was last fed on " << ap->getPrettyTime() << std::endl;
+	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
             feedAnimal(*it);
         }
     }
