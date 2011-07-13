@@ -13,9 +13,7 @@ FoodItem::FoodItem(std::string type,std::string units,double quantity){
 }
 
 FoodItem::~FoodItem(){
-    type = "";
-    units = "";
-    quantity = 0;
+    std::cout << "in FoodItem's destructor" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream &os,const FoodItem& fi){

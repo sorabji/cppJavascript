@@ -1,93 +1,91 @@
 #include "Zoo.h"
 
-void Zoo::searchHerd(std::string term){
-    iter = herd.find(term);
-    if ( iter == herd.end() ){
-        throw false;
-    }
+
+Zoo::Zoo(Warehouse *wh,Population *population){
+    this->wh = wh;
+    this->population = population;
 }
 
-void Zoo::addToHerd(Animal a){
-    try {
-        searchHerd(a.getName());
-        std::cout << "\nAn Animal by that name already exists!\n\n" << std::flush;
-    } catch (...) {
-        herd.insert(HerdType::value_type(
-            a.getName(),
-            new Animal(a.getName(),a.getFood(),a.getType(),a.getIntake(),a.getLastFedTime())));
-    }
+Zoo::~Zoo(){
+    wh->clear();
+    population->clear();
 }
 
-std::vector<std::string> Zoo::getKeys(){
-    std::vector<std::string> v;
-    HerdType::const_iterator end = herd.end();
-
-    for (iter = herd.begin() ; iter != end ; ++iter){
-        v.push_back(iter->first);
-    }
-    return v;
-}
-
-void Zoo::printHerd(){
-    HerdType::const_iterator end = herd.end();
-
-    std::cout << "Current Contents of the herd\n\n" << std::flush;
-    std::cout
-        << std::setw(20)
-        << std::left
-        << "[Name]"
-        << std::setw(20)
-        << std::left
-        << "[Food]"
-        << std::setw(20)
-        << std::left
-        << "[Type]"
-        << std::setw(20)
-        << std::left
-        << "[Intake]"
-        << std::setw(40)
-        << std::left
-        << "[Last Fed]"
-        << "\n\n" << std::flush;
-    for (iter = herd.begin(); iter != end ; iter++){
-        std::cout << *(iter->second) << std::endl;
-    }
-}
-
-Animal* Zoo::getAnimal(std::string name){
-    iter = herd.find(name);
-    if (iter != herd.end() ){
-        return iter->second;
-    } else {
-        return NULL;
-    }
-}
-
-void Zoo::printHerdToFile(std::string fileName){
-
-    HerdType::const_iterator end = herd.end();
-
-    std::ofstream outfile;
-    outfile.open(fileName.c_str(),std::ios::out);
-
-    if(outfile){
-
-        for (iter = herd.begin(); iter != end ; iter++){
-            outfile 
-                << (iter->second)->getName()
-                << "|"
-                << (iter->second)->getFood()
-                << "|"
-                << (iter->second)->getType()
-                << "|"
-                << (iter->second)->getIntake() 
-                << "|" 
-                << (iter->second)->getLastFedTime() << "\n" << std::flush;
-
+void Zoo::feedAnimal(std::string animalName){
+        population->searchPopulation(animalName);
+        Animal* ap = population->getAnimal(animalName);
+        if (NULL == ap){
+            std::cout << "strange error, animal exists but cannot be found...hrm\n\n";
+            return;
         }
-    } else{
-        std::cout << "'" << fileName << "' cannot be opened for writing" << std::endl;
-    }
 
-    outfile.close();
+        try {
+            wh->searchInv(ap->getFood() );
+            FoodItem* fip = wh->getFoodItem(ap->getFood() );
+            if (NULL == fip){
+                std::cout << "strange error, food item exists but resists being located.\n\n";
+                return;
+            }
+            if ( (fip->getQuantity() - ap->getIntake()) < 0 ){
+                std::cout 
+                    << "not enough food to feed the '"
+                    << ap->getName()
+                    << "'\ngo to the inventory menu and add more '"
+                    << ap->getFood() << "'\n\n";
+                return;
+            } else {
+                fip->setQuantity( (fip->getQuantity() - ap->getIntake() ) );
+                ap->updateLastFedTime();
+                std::cout
+                    << "'"
+                    << ap->getName()
+                    << "' has been fed.\n\n";
+                return;
+            }
+        } catch (int e){
+            std::cout 
+                << "no suitable food exists in the inventory for '"
+                << ap->getName() << "'\n"
+                << "perhaps you ought to head on over to the inventory menu and add some '" 
+                << ap->getFood() << "'\n\n";
+        }
+    } catch (...) {
+        std::cout << "no animal named '" << choice << "' exists...weird\n\n" << std::flush;
+    }
 }
+
+void Zoo::feedAllAnimals(){
+    std::vector<std::string> v = population->getKeys();
+    for (std::vector<std::string>::iterator it = v.begin() ; it != v.end() ; ++it){
+        feedAnimal(*it);
+    }
+    std::cout << "\n";
+}
+
+void Zoo::checkAllAnimalFoodStatus(){
+    // seconds in a day = 86400
+    time_t curTime;
+    Animal *ap;
+    double diff;
+
+    std::vector<std::string> v = population->getKeys();
+    for (std::vector<std::string>::iterator it = v.begin() ; it != v.end() ; ++it){
+        ap = population->getAnimal(*it);
+        time(&curTime);
+        diff = difftime(curTime,ap->getLastFedTime());
+        if (ap->getLastFedTime() == 0){
+            std::cout << "'" << ap->getName() << "' has not been fed yet" << std::endl;
+	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
+            feedAnimal(*it);
+        } else if (ap->getType().compare("herbivore") == 0 && diff > HERBIVORE_FEEDING_TIME){
+            std::cout << "'" << ap->getName() << "' was last fed on " << ap->getPrettyTime() << std::endl;
+	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
+            feedAnimal(*it);
+        } else if (ap->getType().compare("carnivore") == 0 && diff > CARNIVORE_FEEDING_TIME){
+            std::cout << "'" << ap->getName() << "' was last fed on " << ap->getPrettyTime() << std::endl;
+	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
+            feedAnimal(*it);
+        }
+    }
+}
+

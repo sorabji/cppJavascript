@@ -1,8 +1,7 @@
 #include "Menu.h"
 
 
-Menu::Menu(Warehouse *wh,Zoo *z){
-    this->wh = wh;
+Menu::Menu(Zoo* z){
     this->z = z;
 }
 
@@ -12,7 +11,7 @@ void Menu::mainMenu(){
         std::cout 
             << "enter the corresponding number for your selection\n"
             << "\t1: Manage Food Inventory\n"
-            << "\t2: Manage Herd\n"
+            << "\t2: Manage Population\n"
             << "\t3: Save Changes and Exit\n"
             << "\t4: Exit (don't save)\n\n"
             << "$  " << std::flush;
@@ -24,12 +23,12 @@ void Menu::mainMenu(){
                     foodInventoryMenu();
                     break;
                 case 2:
-                    herdMenu();
+                    populationMenu();
                     break;
                 case 3:
                     std::cout << EXIT_PHRASE << std::endl;
                     wh->printInvToFile(WAREHOUSE_FILE);
-                    z->printHerdToFile(ZOO_FILE);
+                    z->printPopulationToFile(ZOO_FILE);
                     exit(0);
                     break;
                 case 4:
@@ -78,7 +77,7 @@ void Menu::foodInventoryMenu(){
                 case 4:
                     std::cout << EXIT_PHRASE << std::endl;
                     wh->printInvToFile(WAREHOUSE_FILE);
-                    z->printHerdToFile(ZOO_FILE);
+                    z->printPopulationToFile(ZOO_FILE);
                     exit(0);
                     break;
                 case 5:
@@ -95,14 +94,14 @@ void Menu::foodInventoryMenu(){
     }
 }
 
-void Menu::herdMenu(){
+void Menu::populationMenu(){
     while (true){
         checkAllAnimalFoodStatus();
         std::cout
-            << "welcome to the herd\n"
-            << "what would you like to do in the herd management section?\n"
-            << "\t1: View Herd\n"
-            << "\t2: Add an animal to the Herd\n"
+            << "welcome to the Population\n"
+            << "what would you like to do in the Population management section?\n"
+            << "\t1: View population\n"
+            << "\t2: Add an animal to the Population\n"
             << "\t3: Feed ALL animals\n"
             << "\t4: Feed an animal\n"
             << "\t5: Return to main menu\n"
@@ -114,12 +113,12 @@ void Menu::herdMenu(){
             validateInput<int>(sel);
             switch (sel){
                 case 1:
-                    z->printHerd();
+                    z->printPopulation();
                     break;
                 case 2:{
                     Animal a = Animal();
                     std::cin >> a;
-                    z->addToHerd(a);
+                    z->addToPopulation(a);
                     std::cout << "animal added!\n\n" << std::flush;
                     break;
                        }
@@ -135,7 +134,7 @@ void Menu::herdMenu(){
                 case 6:
                     std::cout << EXIT_PHRASE << std::endl;
                     wh->printInvToFile(WAREHOUSE_FILE);
-                    z->printHerdToFile(ZOO_FILE);
+                    z->printPopulationToFile(ZOO_FILE);
                     exit(0);
                     break;
                 case 7:
@@ -155,85 +154,15 @@ void Menu::herdMenu(){
 void Menu::getAnimalNameFromUser(){
     std::cout << "enter the name of the animal you wish to feed\n\n" << "$  " << std::flush;
     std::getline(std::cin,choice);
-    feedAnimal(choice);
+    feedAnimal();
 }
 
-void Menu::feedAnimal(std::string animalName){
-    try {
-        z->searchHerd(animalName);
-        Animal* ap = z->getAnimal(animalName);
-        if (NULL == ap){
-            std::cout << "strange error, animal exists but cannot be found...hrm\n\n";
-            return;
-        }
-
-        try {
-        wh->searchInv(ap->getFood() );
-            FoodItem* fip = wh->getFoodItem(ap->getFood() );
-            if (NULL == fip){
-                std::cout << "strange error, food item exists but resists being located.\n\n";
-                return;
-            }
-            if ( (fip->getQuantity() - ap->getIntake()) < 0 ){
-                std::cout 
-                    << "not enough food to feed the '"
-                    << ap->getName()
-                    << "'\ngo to the inventory menu and add more '"
-                    << ap->getFood() << "'\n\n";
-                return;
-            } else {
-                fip->setQuantity( (fip->getQuantity() - ap->getIntake() ) );
-                ap->updateLastFedTime();
-                std::cout
-                    << "'"
-                    << ap->getName()
-                    << "' has been fed.\n\n";
-                return;
-            }
-        } catch (int e){
-            std::cout 
-                << "no suitable food exists in the inventory for '"
-                << ap->getName() << "'\n"
-                << "perhaps you ought to head on over to the inventory menu and add some '" 
-                << ap->getFood() << "'\n\n";
-        }
-    } catch (...) {
-        std::cout << "no animal named '" << choice << "' exists...weird\n\n" << std::flush;
-    }
+void Menu::feedAnimal(){
 }
 
 void Menu::feedAllAnimals(){
-    std::vector<std::string> v = z->getKeys();
-    for (std::vector<std::string>::iterator it = v.begin() ; it != v.end() ; ++it){
-        feedAnimal(*it);
-    }
-    std::cout << "\n";
 }
 
 void Menu::checkAllAnimalFoodStatus(){
-    // seconds in a day = 86400
-    time_t curTime;
-    Animal *ap;
-    double diff;
-
-    std::vector<std::string> v = z->getKeys();
-    for (std::vector<std::string>::iterator it = v.begin() ; it != v.end() ; ++it){
-        ap = z->getAnimal(*it);
-        time(&curTime);
-        diff = difftime(curTime,ap->getLastFedTime());
-        if (ap->getLastFedTime() == 0){
-            std::cout << "'" << ap->getName() << "' has not been fed yet" << std::endl;
-	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
-            feedAnimal(*it);
-        } else if (ap->getType().compare("herbivore") == 0 && diff > HERBIVORE_FEEDING_TIME){
-            std::cout << "'" << ap->getName() << "' was last fed on " << ap->getPrettyTime() << std::endl;
-	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
-            feedAnimal(*it);
-        } else if (ap->getType().compare("carnivore") == 0 && diff > CARNIVORE_FEEDING_TIME){
-            std::cout << "'" << ap->getName() << "' was last fed on " << ap->getPrettyTime() << std::endl;
-	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
-            feedAnimal(*it);
-        }
-    }
 }
 

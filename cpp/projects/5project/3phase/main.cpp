@@ -6,9 +6,11 @@
 #include <string.h>
 
 #include "Menu.h"
+
 #include "Warehouse.h"
 #include "FoodItem.h"
-#include "Zoo.h"
+
+#include "Population.h"
 #include "Animal.h"
 
 void usage(){
@@ -24,6 +26,7 @@ void usage(){
 int main(int argc,char **argv){
 
     Warehouse *wh = new Warehouse();
+    Population *p = new Population();
     Zoo *z = new Zoo();
 
     int readFlag=0;
@@ -75,7 +78,7 @@ int main(int argc,char **argv){
                     exit(1);
                 }
 
-                FoodItem fi = FoodItem(type,units,quantity);
+                FoodItem *fi = new FoodItem(type,units,quantity);
                 wh->addToInv(fi);
 
             }
@@ -85,8 +88,8 @@ int main(int argc,char **argv){
             std::cout << WAREHOUSE_FILE << "could not be opened" << std::endl;
         }
 
-        outfile.open(ZOO_BAK,std::ios::out|std::ios::trunc);
-        infile.open(ZOO_FILE,std::ios::in);
+        outfile.open(POPULATION_BAK,std::ios::out|std::ios::trunc);
+        infile.open(POPULATION_FILE,std::ios::in);
 
         // build up Animal objects from file
         if(infile){
@@ -97,7 +100,6 @@ int main(int argc,char **argv){
             std::string tmp;
             double intake;
             time_t lastFedTime;
-
 
             while(true){
                 std::getline(infile,line);
@@ -124,14 +126,14 @@ int main(int argc,char **argv){
                     exit(1);
                 }
 
-                Animal a = Animal(name,food,type,intake,lastFedTime);
-                z->addToHerd(a);
+                Animal *a = new Animal(name,food,type,intake,lastFedTime);
+                p->addToHerd(a);
 
             }
             infile.close();
             outfile.close();
         } else {
-            std::cout << ZOO_FILE << " could not be opened" << std::endl;
+            std::cout << POPULATION_FILE << " could not be opened" << std::endl;
         }
 
     }
@@ -149,7 +151,7 @@ int main(int argc,char **argv){
 
     std::cout << "Welcome to the Zoo Management Suite\n\n" << std::flush;
 
-    Menu menu = Menu(wh,z);
+    Menu menu = Menu(z);
     menu.mainMenu();
 
     return 0;

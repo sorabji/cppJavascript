@@ -15,23 +15,22 @@ class Warehouse{
     private:
         WarehouseType inv;
         WarehouseType::iterator iter;
-        bool flag;
     public:
-
-        /**
-         * search for FoodItem
-         */
-        void searchInv(std::string term);
 
         /**
          * add food item
          */
-        void addToInv(FoodItem fi);
+        void addToInv(FoodItem *fi);
 
         /**
          * get food item
          */
-        FoodItem* getFoodItem(std::string type);
+        FoodItem* getFoodItem(std::string name);
+
+        /**
+         * get inventory
+         */
+        WarehouseType* getInventory();
 
         void printInv();
 

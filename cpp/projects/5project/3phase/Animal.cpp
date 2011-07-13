@@ -25,11 +25,7 @@ Animal::Animal(std::string name,std::string food,std::string type,double intake,
 }
 
 Animal::~Animal(){
-    name = "";
-    food = "";
-    intake = 0;
-    lastFedTime = 0;
-    prettyTime = "";
+    std::cout << "in Animal's destructor" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream &os,const Animal& a){

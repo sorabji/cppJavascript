@@ -1,19 +1,20 @@
 #include "Warehouse.h"
 
-void Warehouse::searchInv(std::string term){
-    iter = inv.find(term);
+FoodItem* Warehouse::getFoodItem(std::string name){
+    iter = inv.find(name);
     if ( iter == inv.end() ){
-        throw 20;
+        return NULL;
+    } else {
+        return iter->second;
     }
 }
 
-void Warehouse::addToInv(FoodItem fi){
-    try {
-        searchInv(fi.getType());
-        inv[fi.getType()]->setQuantity( (inv[fi.getType()]->getQuantity() ) +fi.getQuantity() );
-    } catch (...){
-        inv.insert(WarehouseType::value_type(fi.getType(),
-                    new FoodItem(fi.getType(),fi.getUnits(),fi.getQuantity()) ) );
+void Warehouse::addToInv(FoodItem *fi){
+    FoodItem *fip = getFoodItem(fi.getType());
+    if (NULL == fip){
+        inv.insert(WarehouseType::value_type(fi->getType(),fi));
+    } else {
+        inv[fi->getType()]->setQuantity( (inv[fi->getType()]->getQuantity() ) +fi->getQuantity() );
     }
 }
 
@@ -24,6 +25,10 @@ FoodItem* Warehouse::getFoodItem(std::string type){
     } else {
         return NULL;
     }
+}
+
+WarehouseType* getInventory(){
+    return &inv;
 }
 
 void Warehouse::printInv(){

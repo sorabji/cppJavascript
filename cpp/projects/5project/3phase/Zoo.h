@@ -1,48 +1,75 @@
 #ifndef ZOO_H
 #define ZOO_H
 
+#include <stdlib.h>
 #include <iostream>
-#include <iomanip>
-#include <map>
 #include <string>
-#include <fstream>
 #include <vector>
 
-#include "Animal.h"
+#include "Helper.h"
 
-typedef std::map<std::string,Animal*> HerdType;
+#include "FoodItem.h"
+#include "Warehouse.h"
+
+#include "Animal.h"
+#include "Population.h"
+
+#define WAREHOUSE_FILE "warehouse.data"
+#define WAREHOUSE_BAK "warehouse.data.bak"
+
+#define POPULATION_FILE "population.data"
+#define POPULATION_BAK "population.data.bak"
+
 
 class Zoo{
     private:
-        HerdType herd;
-        HerdType::iterator iter;
-        bool flag;
+
+        Warehouse *wh;
+        Population *population;
+
         std::string choice;
+        int sel;
+
     public:
 
         /**
-         * search for Animal
+         * Zoo constructor, pointer to warehouse and population
          */
-        void searchHerd(std::string term);
+        Zoo(Warehouse *wh, Population *population);
 
         /**
-         * add Animal
+         * function to feed an animal
          */
-        void addToHerd(Animal a);
+        void feedAnimal(std::string animalName);
 
         /**
-         * get an animal
+         * feed all animals in the zoo
          */
-        Animal* getAnimal(std::string name);
+        void feedAllAnimals();
 
         /**
-         * get all 'keys' in the zoo
+         * get animal name from user
          */
-        std::vector<std::string> getKeys();
+        void getAnimalNameFromUser();
 
-        void printHerd();
+        /**
+         * checks status of all animals feeding...if an animal needs feeding, it tries to feed it
+         */
+        void checkAllAnimalFoodStatus();
 
-        void printHerdToFile(std::string fileName);
+        /**
+         * print population to file
+         */
+        void printPopulationToFile();
 
+        /**
+         * print warehouse to file
+         */
+        void printWarehouseToFile();
+
+        /**
+         * print population and warehouse to file
+         */
+        void printZooToFile();
 };
 #endif
