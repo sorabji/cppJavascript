@@ -7,7 +7,7 @@ Menu::Menu(Zoo* z){
 
 void Menu::mainMenu(){
     while (true){
-        checkAllAnimalFoodStatus();
+        z->checkAllAnimalFoodStatus();
         std::cout 
             << "enter the corresponding number for your selection\n"
             << "\t1: Manage Food Inventory\n"
@@ -20,20 +20,16 @@ void Menu::mainMenu(){
             validateInput<int>(sel);
             switch (sel){
                 case 1:
-                    foodInventoryMenu();
+                    warehouseMenu();
                     break;
                 case 2:
                     populationMenu();
                     break;
                 case 3:
-                    std::cout << EXIT_PHRASE << std::endl;
-                    wh->printInvToFile(WAREHOUSE_FILE);
-                    z->printPopulationToFile(ZOO_FILE);
-                    exit(0);
+                    exitWithSave();
                     break;
                 case 4:
-                    std::cout << EXIT_PHRASE << std::endl;
-                    exit(0);
+                    exitNoSave();
                     break;
                 default:
                     std::cout << "please enter a valid number\n\n" << std::flush;
@@ -45,14 +41,14 @@ void Menu::mainMenu(){
     }
 }
 
-void Menu::foodInventoryMenu(){
+void Menu::warehouseMenu(){
     while (true){
-        checkAllAnimalFoodStatus();
+        z->checkAllAnimalFoodStatus();
         std::cout
-            << "welcome to the food inventory\n"
-            << "what would you like to do in the food inventory section?\n"
-            << "\t1: View Inventory\n"
-            << "\t2: Add to Inventory\n"
+            << "welcome to the food warehouse\n"
+            << "what would you like to do in the food warehouse section?\n"
+            << "\t1: View warehouse\n"
+            << "\t2: Add to warehouse\n"
             << "\t3: Return to main menu\n"
             << "\t4: Save Changes and Exit\n"
             << "\t5: Exit (don't save changes)\n\n"
@@ -62,27 +58,23 @@ void Menu::foodInventoryMenu(){
             validateInput<int>(sel);
             switch (sel){
                 case 1:
-                    wh->printInv();
+                    z->printWarehouse();
                     break;
                 case 2:{
-                    FoodItem fi = FoodItem();
-                    std::cin >> fi;
+                    FoodItem *fi = new FoodItem();
+                    std::cin >> *fi;
+                    z->addFoodItem(fi);
                     std::cout << "food item added!\n\n" << std::flush;
-                    wh->addToInv(fi);
                     break;
                        }
                 case 3:
                     return;
                     break;
                 case 4:
-                    std::cout << EXIT_PHRASE << std::endl;
-                    wh->printInvToFile(WAREHOUSE_FILE);
-                    z->printPopulationToFile(ZOO_FILE);
-                    exit(0);
+                    exitWithSave();
                     break;
                 case 5:
-                    std::cout << EXIT_PHRASE << std::endl;
-                    exit(0);
+                    exitNoSave();
                     break;
                 default:
                     std::cout << "please enter a valid number\n\n" << std::flush;
@@ -96,11 +88,11 @@ void Menu::foodInventoryMenu(){
 
 void Menu::populationMenu(){
     while (true){
-        checkAllAnimalFoodStatus();
+        z->checkAllAnimalFoodStatus();
         std::cout
             << "welcome to the Population\n"
             << "what would you like to do in the Population management section?\n"
-            << "\t1: View population\n"
+            << "\t1: View Population\n"
             << "\t2: Add an animal to the Population\n"
             << "\t3: Feed ALL animals\n"
             << "\t4: Feed an animal\n"
@@ -116,14 +108,14 @@ void Menu::populationMenu(){
                     z->printPopulation();
                     break;
                 case 2:{
-                    Animal a = Animal();
-                    std::cin >> a;
-                    z->addToPopulation(a);
+                    Animal *a = new Animal();
+                    std::cin >> *a;
+                    z->addAnimal(a);
                     std::cout << "animal added!\n\n" << std::flush;
                     break;
                        }
                 case 3:
-                    feedAllAnimals();
+                    z->feedAllAnimals();
                     break;
                 case 4:
                     getAnimalNameFromUser();
@@ -132,14 +124,10 @@ void Menu::populationMenu(){
                     return;
                     break;
                 case 6:
-                    std::cout << EXIT_PHRASE << std::endl;
-                    wh->printInvToFile(WAREHOUSE_FILE);
-                    z->printPopulationToFile(ZOO_FILE);
-                    exit(0);
+                    exitWithSave();
                     break;
                 case 7:
-                    std::cout << EXIT_PHRASE << std::endl;
-                    exit(0);
+                    exitNoSave();
                     break;
                 default:
                     std::cout << "please enter a valid number\n" << std::endl;
@@ -154,15 +142,18 @@ void Menu::populationMenu(){
 void Menu::getAnimalNameFromUser(){
     std::cout << "enter the name of the animal you wish to feed\n\n" << "$  " << std::flush;
     std::getline(std::cin,choice);
-    feedAnimal();
+    z->feedAnimal(choice);
 }
 
-void Menu::feedAnimal(){
+void Menu::exitWithSave(){
+    std::cout << EXIT_PHRASE << std::endl;
+    z->printZooToFile();
+    delete z;
+    exit(0);
 }
 
-void Menu::feedAllAnimals(){
+void Menu::exitNoSave(){
+    std::cout << EXIT_PHRASE << std::endl;
+    delete z;
+    exit(0);
 }
-
-void Menu::checkAllAnimalFoodStatus(){
-}
-

@@ -79,7 +79,7 @@ int main(int argc,char **argv){
                 }
 
                 FoodItem *fi = new FoodItem(type,units,quantity);
-                wh->addToInv(fi);
+                wh->addFoodItem(fi);
 
             }
             infile.close();
@@ -127,7 +127,7 @@ int main(int argc,char **argv){
                 }
 
                 Animal *a = new Animal(name,food,type,intake,lastFedTime);
-                p->addToHerd(a);
+                p->addAnimal(a);
 
             }
             infile.close();
@@ -143,7 +143,7 @@ int main(int argc,char **argv){
         killIt.open(WAREHOUSE_FILE,std::ios::out | std::ios::trunc);
         killIt.close();
 
-        killIt.open(ZOO_FILE,std::ios::out | std::ios::trunc);
+        killIt.open(POPULATION_FILE,std::ios::out | std::ios::trunc);
         killIt.close();
 
 

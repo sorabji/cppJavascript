@@ -19,7 +19,10 @@ class Population{
         std::string choice;
     public:
 
-        
+        Population();
+
+        ~Population();
+
         /**
          * add Animal
          */

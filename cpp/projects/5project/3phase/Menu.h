@@ -41,22 +41,12 @@ class Menu{
         /**
          * specific menu for handling the food items
          */
-        void foodInventoryMenu();
+        void warehouseMenu();
 
         /**
          * specific menu for handling the animals
          */
         void populationMenu();
-
-        /**
-         * function to feed an animal
-         */
-        void feedAnimal();
-
-        /**
-         * feed all animals in the zoo
-         */
-        void feedAllAnimals();
 
         /**
          * get animal name from user
@@ -67,5 +57,15 @@ class Menu{
          * checks status of all animals feeding...if an animal needs feeding, it tries to feed it
          */
         void checkAllAnimalFoodStatus();
+
+        /**
+         * writes population and warehouse to file then exits
+         */
+        void exitWithSave();
+
+        /**
+         * exits without saving
+         */
+        void exitNoSave();
 };
 #endif

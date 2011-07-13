@@ -13,14 +13,18 @@ typedef std::map<std::string,FoodItem*> WarehouseType;
 
 class Warehouse{
     private:
-        WarehouseType inv;
+        WarehouseType warehouse;
         WarehouseType::iterator iter;
     public:
+
+        Warehouse();
+
+        ~Warehouse();
 
         /**
          * add food item
          */
-        void addToInv(FoodItem *fi);
+        void addFoodItem(FoodItem *fi);
 
         /**
          * get food item
@@ -28,13 +32,13 @@ class Warehouse{
         FoodItem* getFoodItem(std::string name);
 
         /**
-         * get inventory
+         * get warehouse
          */
-        WarehouseType* getInventory();
+        WarehouseType* getWarehouse();
 
-        void printInv();
+        void printWarehouse();
 
-        void printInvToFile(std::string fileName);
+        void printWarehouseToFile(std::string fileName);
 
 };
 #endif

@@ -1,8 +1,15 @@
 #include "Population.h"
 
+Population::Population(){};
+
+Population::~Population(){
+    std::cout << "in Populations' destructor" << std::endl;
+    population.clear();
+}
+
 Animal* Population::getAnimal(std::string name){
-    iter = herd.find(term);
-    if ( iter == herd.end() ){
+    iter = population.find(name);
+    if ( iter == population.end() ){
         return NULL;
     } else {
         return iter->second;
@@ -10,12 +17,12 @@ Animal* Population::getAnimal(std::string name){
 }
 
 void Population::addAnimal(Animal *a){
-        Animal *ap = getAnimal(a.getName());
-        if (NULL == ap){
-            herd.insert(PopulationType::value_type(a->getName(),a));
-        } else {
-            std::cout << "\nAn Animal by that name already exists!\n\n" << std::flush;
-        }
+    Animal *ap = getAnimal(a->getName());
+    if (NULL == ap){
+        population.insert(PopulationType::value_type(a->getName(),a));
+    } else {
+        std::cout << "\nAn Animal by that name already exists!\n\n" << std::flush;
+        delete a;
     }
 }
 
@@ -29,7 +36,7 @@ void Population::killAnimal(std::string name){
 }
 
 void Population::printPopulation(){
-    std::cout << "Current Contents of the herd\n\n" << std::flush;
+    std::cout << "Current Contents of the population\n\n" << std::flush;
     std::cout
         << std::setw(20)
         << std::left
@@ -47,7 +54,7 @@ void Population::printPopulation(){
         << std::left
         << "[Last Fed]"
         << "\n\n" << std::flush;
-    for (iter = herd.begin(); iter != herd.end() ; iter++){
+    for (iter = population.begin(); iter != population.end() ; iter++){
         std::cout << *(iter->second) << std::endl;
     }
 }
@@ -60,7 +67,7 @@ void Population::printPopulationToFile(std::string fileName){
 
     if(outfile){
 
-        for (iter = herd.begin(); iter != herd.end() ; iter++){
+        for (iter = population.begin(); iter != population.end() ; iter++){
             outfile 
                 << (iter->second)->getName()
                 << "|"

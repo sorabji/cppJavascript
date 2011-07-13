@@ -24,8 +24,11 @@
 class Zoo{
     private:
 
-        Warehouse *wh;
+        Warehouse *warehouse;
         Population *population;
+
+        Animal *ap;
+        FoodItem *fip;
 
         std::string choice;
         int sel;
@@ -33,9 +36,29 @@ class Zoo{
     public:
 
         /**
+         * default Zoo constructor
+         */
+        Zoo();
+
+        /**
          * Zoo constructor, pointer to warehouse and population
          */
-        Zoo(Warehouse *wh, Population *population);
+        Zoo(Warehouse *warehouse, Population *population);
+
+        /**
+         * Zoo destructor
+         */
+        ~Zoo();
+
+        /**
+         * adds food item to the warehouse
+         */
+        void addFoodItem(FoodItem *fi);
+
+        /**
+         * adds an animal to the population
+         */
+        void addAnimal(Animal *a);
 
         /**
          * function to feed an animal
@@ -56,6 +79,16 @@ class Zoo{
          * checks status of all animals feeding...if an animal needs feeding, it tries to feed it
          */
         void checkAllAnimalFoodStatus();
+
+        /**
+         * prints Warehouse to stdout
+         */
+        void printWarehouse();
+
+        /**
+         * prints population to stdout
+         */
+        void printPopulation();
 
         /**
          * print population to file
