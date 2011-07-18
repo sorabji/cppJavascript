@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang = "en" dir="ltr">
+<head>
+<title>Autumn</title>
+<script type="text/javascript">
+
+var leaf1 = new Image();
+  leaf1.src = "leaf1.gif";
+  leaf1.height = 100;
+  leaf1.width = 84;
+var leaf2 = new Image();
+  leaf2.src = "leaf1.gif";
+  leaf2.height = 51;
+  leaf2.width = 95;
+var leaf3 = new Image();
+  leaf3.src = "leaf1.gif";
+  leaf3.height = 100;
+  leaf3.width = 84;
+var leaf4 = new Image();
+  leaf4.src = "leaf1.gif";
+  leaf4.height = 95;
+  leaf4.width = 51;
+var leaf5 = new Image();
+  leaf5.src = "leaf1.gif";
+  leaf5.height = 63;
+  leaf5.width = 75;
+var leaf6 = new Image();
+  leaf6.src = "leaf1.gif";
+  leaf6.height = 51;
+  leaf6.width = 95;
+
+var leafs = [leaf1,leaf2,leaf3,leaf4,leaf5,leaf6];
+
+var width = window.innerWidth;
+var height = window.innerHeight;
+
+var div = document.getElementById("leafs");
+
+function placeLeaf(){
+  var x = Math.floor(Math.random() * height);
+  var y = Math.floor(Math.random() * width);
+  var leaf = leafs[Math.floor(Math.random() * 6)];
+
+  leaf.style.left=x+"px";
+  leaf.style.top=y+"px";
+  document.getElementById("leafs").appendChild(leaf);
+  var interval = setInterval('fallLeaf()',40);
+}
+
+function fallLeaf(currentLeaf){
+  currentY = currentLeaf.style.top.substring(0,currentLeaf.style.top.length-2);
+  if (currentY < height){
+    currentLeaf.style.top = ""+currentY + 50 + "px";
+  }
+}
+</script>
+</head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<body onload="placeLeaf();">
+<h1>Autumn</h1>
+<div id="leafs">
+</div>
+
+</body>
+</html>
