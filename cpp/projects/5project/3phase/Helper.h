@@ -12,8 +12,4 @@ template<class T> void validateInput(T &t){
     }
     std::cin.ignore();
 }
-
-template<class Z> void cleanUp(Z &z){
-    delete z;
-}
 #endif
