@@ -11,8 +11,6 @@ Warehouse::~Warehouse(){
         iter = warehouse.begin();
         if(iter == warehouse.end()) break;
     }
-    //just to be certain...
-    warehouse.clear();
 }
 
 FoodItem* Warehouse::getFoodItem(std::string name){

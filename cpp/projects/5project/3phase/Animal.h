@@ -9,6 +9,7 @@
 
 #include "Helper.h"
 
+// seconds in a day = 86400
 #define CARNIVORE_FEEDING_TIME 30
 #define HERBIVORE_FEEDING_TIME 30
 

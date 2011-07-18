@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "Menu.h"
+#include "Zoo.h"
 
 #include "Warehouse.h"
 #include "FoodItem.h"

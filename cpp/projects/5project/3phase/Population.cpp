@@ -11,7 +11,6 @@ Population::~Population(){
         iter = population.begin();
         if (iter == population.end()) break;
     }
-    population.clear();
 }
 
 void Population::addAnimal(Animal *a){

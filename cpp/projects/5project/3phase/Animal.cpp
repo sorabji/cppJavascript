@@ -4,8 +4,8 @@ Animal::Animal(){
     name = "";
     food = "";
     intake = 0;
-    lastFedTime = 0;
-    prettyTime = "null";
+    lastFedTime = time(&lastFedTime);
+    prettyTime = ctime(&lastFedTime);
 }
 
 Animal::Animal(std::string name,std::string food,std::string type,double intake, time_t lastFedTime){
@@ -14,13 +14,9 @@ Animal::Animal(std::string name,std::string food,std::string type,double intake,
     this->type = type;
     this->intake = intake;
     this->lastFedTime = lastFedTime;
-    if(0 == lastFedTime){
-        this->prettyTime = "null";
-    } else{
-        this->prettyTime = ctime(&(this->lastFedTime));
-        if (!prettyTime.empty() && prettyTime[prettyTime.length()-1] == '\n') {
-            prettyTime.erase(prettyTime.length()-1);
-        }
+    this->prettyTime = ctime(&(this->lastFedTime));
+    if (!prettyTime.empty() && prettyTime[prettyTime.length()-1] == '\n') {
+        prettyTime.erase(prettyTime.length()-1);
     }
 }
 
