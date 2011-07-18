@@ -4,48 +4,50 @@
 <head>
 <title>Autumn</title>
 <script type="text/javascript">
+function Leaf(src,height,width){
+  this.image = new Image();
+  this.image.src = src;
+  this.image.height = height;
+  this.image.width = width;
+}
 
-var leaf1 = new Image();
-  leaf1.src = "leaf1.gif";
-  leaf1.height = 100;
-  leaf1.width = 84;
-var leaf2 = new Image();
-  leaf2.src = "leaf1.gif";
-  leaf2.height = 51;
-  leaf2.width = 95;
-var leaf3 = new Image();
-  leaf3.src = "leaf1.gif";
-  leaf3.height = 100;
-  leaf3.width = 84;
-var leaf4 = new Image();
-  leaf4.src = "leaf1.gif";
-  leaf4.height = 95;
-  leaf4.width = 51;
-var leaf5 = new Image();
-  leaf5.src = "leaf1.gif";
-  leaf5.height = 63;
-  leaf5.width = 75;
-var leaf6 = new Image();
-  leaf6.src = "leaf1.gif";
-  leaf6.height = 51;
-  leaf6.width = 95;
+leaf1 = new Leaf("leaf1.gif",100,84);
+leaf2 = new Leaf("leaf2.gif",51,95);
+leaf3 = new Leaf("leaf3.gif",100,84);
+leaf4 = new Leaf("leaf4.gif",95,51);
+leaf5 = new Leaf("leaf5.gif",63,75);
+leaf6 = new Leaf("leaf6.gif",51,95);
 
-var leafs = [leaf1,leaf2,leaf3,leaf4,leaf5,leaf6];
+var leafs = [["leaf1.gif",100,84],
+    ["leaf2.gif",51,95],
+    ["leaf3.gif",100,84],
+    ["leaf4.gif",95,51],
+    ["leaf5.gif",63,75],
+    ["leaf6.gif",51,95]];
 
 var width = window.innerWidth;
 var height = window.innerHeight;
 
 var div = document.getElementById("leafs");
 
-function placeLeaf(){
+function BuildLeaf(){
+  var leafStats = leafs[Math.floor(Math.random() * 6)];
+
+  var leaf = new Leaf(leafStats[0],leafStats[1],leafStats[2]);
+  return leaf;
+}
+
+for(var i; i<50;i++){
+  var newLeaf = BuildLeaf();
+  placeLeaf(newLeaf);
+}
+
+function placeLeaf(curLeaf){
   var x = Math.floor(Math.random() * height);
   var y = Math.floor(Math.random() * width);
-  var leaf = leafs[Math.floor(Math.random() * 6)];
-
-  leaf.style.left=x+"px";
-  leaf.style.top=y+"px";
-  document.getElementById("leafs").appendChild(leaf);
-  var interval = setInterval('fallLeaf()',40);
+  curLeaf.image.style.left=x+"px";
+  curLeaf.image.style.top=y+"px";
+  document.getElementById("leafs").appendChild(leaf.image);
 }
 
 function fallLeaf(currentLeaf){
