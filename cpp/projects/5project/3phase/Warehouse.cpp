@@ -3,7 +3,15 @@
 Warehouse::Warehouse(){}
 
 Warehouse::~Warehouse(){
-    std::cout << "in Warehouse's destructor" << std::endl;
+    std::cout << "\tin Warehouse's destructor" << std::endl;
+    iter = warehouse.begin();
+    while (iter != warehouse.end()){
+        std::cout << "\t\tdeleting " << iter->second->getType() << std::endl;
+        warehouse.erase(iter);
+        iter = warehouse.begin();
+        if(iter == warehouse.end()) break;
+    }
+    //just to be certain...
     warehouse.clear();
 }
 

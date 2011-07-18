@@ -3,17 +3,15 @@
 Population::Population(){};
 
 Population::~Population(){
-    std::cout << "in Populations' destructor" << std::endl;
-    population.clear();
-}
-
-Animal* Population::getAnimal(std::string name){
-    iter = population.find(name);
-    if ( iter == population.end() ){
-        return NULL;
-    } else {
-        return iter->second;
+    std::cout << "\tin Populations' destructor" << std::endl;
+    iter = population.begin();
+    while (iter != population.end()){
+        std::cout << "\t\tdeleting " << iter->second->getName() << std::endl;
+        population.erase(iter);
+        iter = population.begin();
+        if (iter == population.end()) break;
     }
+    population.clear();
 }
 
 void Population::addAnimal(Animal *a){
@@ -26,13 +24,22 @@ void Population::addAnimal(Animal *a){
     }
 }
 
-PopulationType* Population::getPopulation(){
-    return &population;
+void Population::killAnimal(std::string name){
+    iter = population.find(name);
+    population.erase(iter);
 }
 
-void Population::killAnimal(std::string name){
-    //figure this one out
-    population.erase(name);
+Animal* Population::getAnimal(std::string name){
+    iter = population.find(name);
+    if ( iter == population.end() ){
+        return NULL;
+    } else {
+        return iter->second;
+    }
+}
+
+PopulationType* Population::getPopulation(){
+    return &population;
 }
 
 void Population::printPopulation(){

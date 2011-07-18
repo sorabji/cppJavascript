@@ -29,6 +29,11 @@ class Population{
         void addAnimal(Animal *a);
 
         /**
+         * kill an animal
+         */
+        void killAnimal(std::string name);
+
+        /**
          * get population
          */
         PopulationType* getPopulation();
@@ -37,11 +42,6 @@ class Population{
          * get for Animal
          */
         Animal* getAnimal(std::string name);
-
-        /**
-         * kill an Animal
-         */
-        void killAnimal(std::string name);
 
         void printPopulation();
 

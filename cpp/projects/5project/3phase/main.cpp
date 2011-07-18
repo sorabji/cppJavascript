@@ -16,8 +16,8 @@
 void usage(){
     std::cout 
         << "usage:\n"
-        << "\t-r to read from the file\n"
-        << "\t-c to clear the file and start from scratch\n";
+        << "\t-r to read from the files\n"
+        << "\t-c to clear the files and start from scratch\n";
 
     exit(1);
 }
@@ -27,7 +27,7 @@ int main(int argc,char **argv){
 
     Warehouse *wh = new Warehouse();
     Population *p = new Population();
-    Zoo *z = new Zoo();
+    Zoo *z = new Zoo(wh,p);
 
     int readFlag=0;
     int createFlag=0;

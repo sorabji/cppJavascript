@@ -24,7 +24,7 @@ void Zoo::addAnimal(Animal *a){
 void Zoo::feedAnimal(std::string animalName){
     ap = population->getAnimal(animalName);
     if (NULL == ap){
-        std::cout << "animal does not exist!\n" << std::endl;
+        std::cout << "animal does not exist or could have escaped...\n" << std::endl;
         return;
     } else {
         fip = warehouse->getFoodItem(ap->getFood() );
@@ -64,10 +64,10 @@ void Zoo::feedAnimal(std::string animalName){
 
 void Zoo::feedAllAnimals(){
     PopulationType *pop = population->getPopulation();
-    for (PopulationType::iterator iter = pop->begin(); iter != pop->end() ; pop++){
+    for (PopulationType::iterator iter = pop->begin(); iter != pop->end() ; iter++){
         feedAnimal(iter->second->getName());
     }
-    std::cout << "\n";
+    //std::cout << "\n";
 }
 
 void Zoo::checkAllAnimalFoodStatus(){
@@ -76,22 +76,29 @@ void Zoo::checkAllAnimalFoodStatus(){
     double diff;
 
     PopulationType * pop = population->getPopulation();
-    for (PopulationType::iterator iter = pop->begin(); iter != pop->end() ; pop++){
+    for (PopulationType::iterator iter = pop->begin(); iter != pop->end() ; iter++){
         ap = iter->second;
         time(&curTime);
         diff = difftime(curTime,ap->getLastFedTime());
         if (ap->getLastFedTime() == 0){
             std::cout << "'" << ap->getName() << "' has not been fed yet" << std::endl;
-	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
-            feedAnimal(ap->getName());
+	        /* so don't feed them, even though they're starving...got it
+             * std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
+            feedAnimal(ap->getName());*/
+        } else if (ap->getType().compare("herbivore") == 0 && diff > (HERBIVORE_FEEDING_TIME * 2)){
+            population->killAnimal(iter->first);
+            std::cout << "'" << ap->getName() << "' has starved to death...hope you're happy" << std::endl;
         } else if (ap->getType().compare("herbivore") == 0 && diff > HERBIVORE_FEEDING_TIME){
             std::cout << "'" << ap->getName() << "' was last fed on " << ap->getPrettyTime() << std::endl;
-	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
-            feedAnimal(ap->getName());
+	        /*std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
+            feedAnimal(ap->getName());*/
+        } else if (ap->getType().compare("carnivore") == 0 && diff > (CARNIVORE_FEEDING_TIME * 2)){
+            population->killAnimal(iter->first);
+            std::cout << "'" << ap->getName() << "' has starved to death...hope you're happy" << std::endl;
         } else if (ap->getType().compare("carnivore") == 0 && diff > CARNIVORE_FEEDING_TIME){
             std::cout << "'" << ap->getName() << "' was last fed on " << ap->getPrettyTime() << std::endl;
-	        std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
-            feedAnimal(ap->getName());
+	        /*std::cout << "feeding '" << ap->getName() << "' at " << ctime(&curTime) << std::endl;
+            feedAnimal(ap->getName());*/
         }
     }
     ap = NULL;
