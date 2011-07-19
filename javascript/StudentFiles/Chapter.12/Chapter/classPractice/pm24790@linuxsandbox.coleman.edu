@@ -1,0 +1,57 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <title>Demo</title>
+  <script type="text/javascript">
+var httpRequest = false;
+function getHttpRequest(){
+  try{
+    httpRequest = new XMLHttpRequestion();
+  } catch (errorObj){
+    try{
+      httpRequest = new ActiveXobject('Msxm12.XMLHTTP");
+    } catch(errorObj) {
+      try{
+        httpRequest = new ActiveXobject("Microsoft.XMLHTTP");
+      } catch(errorObj){
+        alert("your browser does not support Ajax");
+        httpRequest = false;
+      }
+    }
+  }
+}
+
+function getModels(){
+  if(!httpRequest){
+    getHttpRequest();
+  } else {
+    httpRequest.abort();
+    httpRequest.open("GET","demo.php?modelid=3",true);
+    httpRequest.send(null);
+    httpRequest.onreadystatechange=processXML;
+  }
+}
+
+function processXML(){
+  if(httpRequest.readyState==4 && httpRequest.status==200){
+    var modelData = httpRequest.responseXML;
+    var modelTable = document.getElementById("models");
+    var numOfModels = modelData.getElementsByTagName("title").length;
+    for (var i = 0; i < numOfModels;i++){
+      var currentRow = modelTable.insertRow(i);
+      var currentCell = currentRow.insertCell(0);
+      currentCell.innerHTML = modelData.getElementsByTagName("title")[i].childNodes[0].nodeValue;
+    }
+    alert(modelData.getElementsByTagName("title")[0].childNodes[0].nodeValue);
+  }
+}
+  </script>
+  <body onload="getModels()">
+    <table id="models" name="models" border="1">
+      <tr><th>Header</th></tr>
+      <tr><th>Data</th></tr>
+    </table>
+  </body>
+</head>
+</html>

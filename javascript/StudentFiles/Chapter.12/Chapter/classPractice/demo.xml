@@ -1,0 +1,9 @@
+<model id="pr205">
+  <title>printer 2</title>
+  <description>awesome printer</description>
+  <type>laser</type>
+  <ordered>320</ordered>
+  <parts list="this and that"/>
+</model>
+
+
