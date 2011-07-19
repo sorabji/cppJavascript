@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang = "en" dir="ltr">
+<head>
+<title>Warp</title>
+<style type="text/css">
+  body{
+    background-color:black
+  }
+</style>
+<script type="text/javascript">
+var speed=33; // lower number for faster
+var warp=8; // from 1 to 10
+var stars=50; // number of stars
+var colour="#fff"; // colour of stars
+var position=0; // set to '-1' for stars to appear behind text on page
+
+var i;
+var strs=new Array();
+var strx=new Array();
+var stry=new Array();
+var stdx=new Array();
+var stdy=new Array();
+var swide=800;
+var shigh=600;
+warp/=100;
+window.onload=function() { if (document.getElementById) {
+  var b, s, temp;
+  set_width();
+  b=document.createElement("div");
+  s=b.style;
+  s.position="absolute";
+  s.zIndex=position;
+  b.setAttribute("id", "bod");
+  document.body.appendChild(b);
+  set_scroll();
+  for (i=0; i<stars; i++) {
+    strs[i]=document.createElement("div");
+    strs[i].style.backgroundColor=colour;
+    strs[i].style.overflow="hidden";
+    strs[i].style.position="absolute";
+    stdy[i]=Math.random()*4-2;
+    stdx[i]=Math.random()*6-3;
+    temp=Math.random()*100;
+    strx[i]=swide/2+temp*stdx[i];
+    stry[i]=shigh/2+temp*stdy[i];
+    if (Math.abs(stdx[i])+Math.abs(stdy[i])>2.66) {
+      strs[i].style.width="2px";
+      strs[i].style.height="2px";
+    }
+    else {
+      strs[i].style.width="1px";
+      strs[i].style.height="1px";
+    }
+    b.appendChild(strs[i]);
+  }
+  setInterval("warp_drive()", speed);
+}}
+
+function warp_drive() {
+  for (i=0; i<stars; i++) {
+    stry[i]+=stdy[i];
+    strx[i]+=stdx[i];
+    stdx[i]*=1+warp;
+    stdy[i]*=1+warp;
+    if (stry[i]>0 && stry[i]<shigh-3 && strx[i]>0 && strx[i]<swide-3) {
+      strs[i].style.left=Math.floor(strx[i])+"px";
+      strs[i].style.top=Math.floor(stry[i])+"px"
+    }
+    else {
+      strx[i]=swide/2;
+      stry[i]=shigh/2;
+      stry[i]+=stdy[i]=Math.random()*4-2;
+      strx[i]+=stdx[i]=Math.random()*6-3;
+      if (Math.abs(stdx[i])+Math.abs(stdy[i])>2.66) {
+        strs[i].style.width="2px";
+        strs[i].style.height="2px";
+      } 
+      else {
+        strs[i].style.width="1px";
+        strs[i].style.height="1px";
+      }
+    }
+  }
+}
+
+window.onresize=set_width;
+function set_width() {
+  if (typeof(self.innerWidth)=="number") {
+    swide=self.innerWidth-13;
+    shigh=self.innerHeight-13;
+  }
+  else if (document.documentElement && document.documentElement.clientWidth) {
+    swide=document.documentElement.clientWidth;
+    shigh=document.documentElement.clientHeight;
+  }
+  else if (document.body.clientWidth) {
+    swide=document.body.clientWidth;
+    shigh=document.body.clientHeight;
+  }
+  else {
+	swide=800;
+	shigh=600;
+  }
+  swide-=2;
+  shigh-=2;
+}
+
+window.onscroll=set_scroll;
+function set_scroll() {
+  var sleft, sdown;
+  if (typeof(self.pageYOffset)=="number") {
+    sdown=self.pageYOffset;
+    sleft=self.pageXOffset;
+  }
+  else if (document.body.scrollTop || document.body.scrollLeft) {
+    sdown=document.body.scrollTop;
+    sleft=document.body.scrollLeft;
+  }
+  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+    sleft=document.documentElement.scrollLeft;
+	sdown=document.documentElement.scrollTop;
+  }
+  else {
+    sdown=0;
+    sleft=0;
+  }
+  var s=document.getElementById("bod").style;
+  s.top=sdown+"px";
+  s.left=sleft+"px";
+}
+</script>
+</head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<body>
+<div id="leafs">
+</div>
+
+</body>
+</html>

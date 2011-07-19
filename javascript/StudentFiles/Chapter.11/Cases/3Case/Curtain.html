@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang = "en" dir="ltr">
+<head>
+<title>Curtain</title>
+</head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<body onload="startMoving();">
+<div id="box" style="position:absolute; background-color:black;">
+</div>
+<script type="text/javascript">
+function startMoving(){
+  if (navigator.appName == "Microsoft Internet Explorer"){
+    boxSize = document.documentElement.clientWidth / document.documentElement.clientHeight;
+    right = document.documentElement.clientWidth;
+    box.width = right + "px";
+    bottom = document.documentElement.clientHeight;
+    box.height = bottom + "px";
+  } else {
+    boxSize = window.innerWidth/window.innerHeight;
+    right = window.innerWidth;
+    box.width = right + "px";
+    bottom = window.innerHeight;
+    box.height = bottom + "px";
+  }
+  stop = setInterval("moveBox()",1);
+}
+
+function moveBox(){
+  minBoxSize = window.innerWidth;
+  if (right > minBoxSize){
+    clearInterval(stop);
+    box.display = "none";
+  } else {
+    box.clip = "rect(" + top + "px " + right + "px " + bottom + "px " + left + "px)";
+    right -= speed;
+  }
+}
+var speed=5;
+var right = 0;
+var left = 0;
+var top = 0;
+var bottom = 0;
+var boxSize;
+var stop;
+var box = document.getElementById('box').style;
+
+
+</script>
+
+</body>
+</html>

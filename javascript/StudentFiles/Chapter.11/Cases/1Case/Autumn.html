@@ -13,8 +13,13 @@ function Leaf(){
     ["leaf5.gif",63,75],
     ["leaf6.gif",51,95]];
   this.leafStats = this.leafs[Math.floor(Math.random() * 6)];
-  this.windowWidth = window.innerWidth;
-  this.windowHeight = window.innerHeight;
+  if (navigarot.appName == "Microsoft Internet Explorer"){
+    this.windowWidth = document.documentElement.clientWidth;
+    this.windowHeight = document.documentElement.clientHeight;
+  } else {
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
+  }
 
   this.image = new Image();
   this.image.src = this.leafStats[0];
@@ -30,24 +35,26 @@ function Leaf(){
     if (currentY < this.windowHeight){
       var newY = currentY + this.speed;
       this.image.style.top = newY + "px";
+    } else {
+      this.image.style.top = "0px";
     }
   }
 
-  document.getElementById('leafs').appendChild(this.image);
+  //document.getElementById('leafs').appendChild(this.image);
+  document.body.appendChild(this.image);
 }
 
 
-var div = document.getElementById("leafs");
+//var div = document.getElementById("leafs");
 var leafArray = new Array();
 
 function start(){
-  for(var i=0; i<10;i++){
+  for(var i=0; i<200;i++){
     leafArray[i] = new Leaf();
-    //setInterval('newLeaf.fallLeaf()',50);
   }
   setInterval('allLeavesFall()',50);
-  document.getElementById('leafs').style.height=window.innerHeight;
-  document.getElementById('leafs').style.width=window.innerWidth;
+//  document.getElementById('leafs').style.height=window.innerHeight;
+ // document.getElementById('leafs').style.width=window.innerWidth;
 }
 
 function allLeavesFall(){
@@ -60,8 +67,6 @@ function allLeavesFall(){
 </head>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 <body onload="start();">
-<div id="leafs">
-</div>
 
 </body>
 </html>
