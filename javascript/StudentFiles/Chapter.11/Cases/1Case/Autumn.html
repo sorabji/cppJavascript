@@ -4,63 +4,62 @@
 <head>
 <title>Autumn</title>
 <script type="text/javascript">
-function Leaf(src,height,width){
-  this.image = new Image();
-  this.image.src = src;
-  this.image.height = height;
-  this.image.width = width;
-}
 
-leaf1 = new Leaf("leaf1.gif",100,84);
-leaf2 = new Leaf("leaf2.gif",51,95);
-leaf3 = new Leaf("leaf3.gif",100,84);
-leaf4 = new Leaf("leaf4.gif",95,51);
-leaf5 = new Leaf("leaf5.gif",63,75);
-leaf6 = new Leaf("leaf6.gif",51,95);
-
-var leafs = [["leaf1.gif",100,84],
+function Leaf(){
+  this.leafs = [["leaf1.gif",100,84],
     ["leaf2.gif",51,95],
     ["leaf3.gif",100,84],
     ["leaf4.gif",95,51],
     ["leaf5.gif",63,75],
     ["leaf6.gif",51,95]];
+  this.leafStats = this.leafs[Math.floor(Math.random() * 6)];
+  this.windowWidth = window.innerWidth;
+  this.windowHeight = window.innerHeight;
 
-var width = window.innerWidth;
-var height = window.innerHeight;
+  this.image = new Image();
+  this.image.src = this.leafStats[0];
+  this.image.height = this.leafStats[1];
+  this.image.width = this.leafStats[2];
+  this.image.style.left = ""+Math.floor(Math.random() * this.windowWidth)+"px";
+  this.image.style.top = ""+Math.floor(Math.random() * this.windowHeight)+"px";
+
+  this.speed = Math.floor(Math.random() * 100);
+
+  this.fallLeaf = function(){
+    var currentY = parseInt(this.image.style.top.substring(0,this.image.style.top.length-2));
+    if (currentY < this.windowHeight){
+      var newY = currentY + this.speed;
+      this.image.style.top = newY + "px";
+    }
+  }
+
+  document.getElementById('leafs').appendChild(this.image);
+}
+
 
 var div = document.getElementById("leafs");
+var leafArray = new Array();
 
-function BuildLeaf(){
-  var leafStats = leafs[Math.floor(Math.random() * 6)];
-
-  var leaf = new Leaf(leafStats[0],leafStats[1],leafStats[2]);
-  return leaf;
+function start(){
+  for(var i=0; i<10;i++){
+    leafArray[i] = new Leaf();
+    //setInterval('newLeaf.fallLeaf()',50);
+  }
+  setInterval('allLeavesFall()',50);
+  document.getElementById('leafs').style.height=window.innerHeight;
+  document.getElementById('leafs').style.width=window.innerWidth;
 }
 
-for(var i; i<50;i++){
-  var newLeaf = BuildLeaf();
-  placeLeaf(newLeaf);
-}
-
-function placeLeaf(curLeaf){
-  var x = Math.floor(Math.random() * height);
-  var y = Math.floor(Math.random() * width);
-  curLeaf.image.style.left=x+"px";
-  curLeaf.image.style.top=y+"px";
-  document.getElementById("leafs").appendChild(leaf.image);
-}
-
-function fallLeaf(currentLeaf){
-  currentY = currentLeaf.style.top.substring(0,currentLeaf.style.top.length-2);
-  if (currentY < height){
-    currentLeaf.style.top = ""+currentY + 50 + "px";
+function allLeavesFall(){
+  for(var i=0;i<leafArray.length;i++){
+    leafArray[i].fallLeaf();
   }
 }
+
 </script>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-<body onload="placeLeaf();">
-<h1>Autumn</h1>
+<body onload="start();">
 <div id="leafs">
 </div>
 
