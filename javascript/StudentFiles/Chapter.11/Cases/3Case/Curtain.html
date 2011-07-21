@@ -5,6 +5,11 @@
 <title>Curtain</title>
 </head>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+  body {
+    margin:0;
+  }
+</style>
 <body onload="startMoving();">
 <div id="box" style="position:absolute; background-color:black;">
 </div>
@@ -23,7 +28,7 @@ function startMoving(){
     bottom = window.innerHeight;
     box.height = bottom + "px";
   }
-  stop = setInterval("moveBox()",1);
+  stop = setInterval("moveBox()",10);
 }
 
 function moveBox(){

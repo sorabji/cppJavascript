@@ -6,10 +6,18 @@
 <meta http-equiv="content-type" content="text/html;
 charset=iso-8859-1" />
 <style type="text/css">
+body {background-color: #5e2605;}
+a {
+  color:white;
+  text-decoration: none;
+}
 p, td	{
 font-family:arial;
 font-size:11px;
-color:black;
+color:white;
+}
+#movieCell {
+  font-size:1.67em;
 }
 </style>
 <script type="text/javascript">
@@ -29,21 +37,19 @@ function getRequestObject() {
       }
       catch (requestError) {
         window.alert("Your browser does not support AJAX!");
-        httpRequest = false;
+        return false;
       }
     }
   }
+  return httpRequest;
 }
 function updateMovie() {
-  var radios = document.getElementsByTagName("radio");
-  if (!httpRequest){
-    getRequestObject();
-  } else{
-    return;
-  }
+  var radios = document.getElementsByTagName("input");
+  if (!httpRequest)
+    httpRequest = getRequestObject();
   for (var i=0;i<radios.length;i++){
     if(radios[i].checked == true){
-      var feed = radio[i].value;
+      var feed = radios[i].value;
       break;
     }
   }
@@ -51,25 +57,28 @@ function updateMovie() {
   httpRequest.open("GET","MovieNews.php?" + "movies=" + feed, true);
   httpRequest.send(null);
   httpRequest.onreadystatechange=getMovieInfo;
-  var updateQuote = setTimeout('updateMovie()', 10000);
+  var updateQuote = setTimeout('updateMovie()', 100000);
 }
 function getMovieInfo() {
   if(httpRequest.readyState==4 && httpRequest.status == 200) {
     var movieInfo = httpRequest.responseXML;
     document.getElementById("movieCell").innerHTML = "";
+    var items = movieInfo.getElementsByTagName("item");
 
-
-
-
-    document.getElementById("ticker").childNodes[0].nodeValue = stockValues.getElementsByTagName("ticker")[0].childNodes[0].nodeValue;
-    document.getElementById("openingPrice").innerHTML = stockValues.getElementsByTagName("open")[0].childNodes[0].nodeValue;
-    document.getElementById("lastTrade").innerHTML = "<strong>" + stockValues.getElementsByTagName("lastTrade")[0].childNodes[0].nodeValue + "</strong>";
-    document.getElementById("lastTradeDT").innerHTML = stockValues.getElementsByTagName("lastTradeDate")[0].childNodes[0].nodeValue + " " + stockValues.getElementsByTagName("lastTradeTime")[0].childNodes[0].nodeValue;
-    document.getElementById("change").innerHTML = stockValues.getElementsByTagName("change")[0].childNodes[0].nodeValue;
-    document.getElementById("range").innerHTML = stockValues.getElementsByTagName("rangeLow")[0].childNodes[0].nodeValue + " - " + stockValues.getElementsByTagName("rangeHigh")[0].childNodes[0].nodeValue;
-    var volume = parseInt(stockValues.getElementsByTagName("volume")[0].childNodes[0].nodeValue);
-    document.getElementById("volume").innerHTML = volume.toLocaleString();
-    document.getElementById("chart").innerHTML = "<img src=" + stockValues.getElementsByTagName("chart")[0].childNodes[0].nodeValue + " alt='Stock line chart from Yahoo.com.' />";
+    if(items.length > 0){
+      for (var i = 0; i<items.length;i++){
+        var curTitle = items[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+        var curLink = items[i].getElementsByTagName("link")[0].childNodes[0].nodeValue;
+        var curDescription = items[i].getElementsByTagName("description")[0].childNodes[0].nodeValue;
+        var curPubDate = items[i].getElementsByTagName("pubDate")[0].childNodes[0].nodeValue;
+        var curMovie = "<a href='"+curLink+"' target='_blank'>"+curTitle+"</a><br />";
+        curMovie += "<span style='color: gray'>"+curPubDate+"</span><br />";
+        curMovie += "<span style='color: black'>"+curDescription+"</span><hr />";
+        document.getElementById("movieCell").innerHTML += curMovie;
+      }
+    } else {
+      document.getElementById("movieCell").innerHTML = "RSS feed has nothing at this time.";
+    }
   }
 }
 /* ]]> */
@@ -77,29 +86,29 @@ function getMovieInfo() {
 </head>
 <body onload="updateMovie()">
   <form id="movieForm" method="get" action="MovieNews.php">
-    <table border="1">
-      <colgroup span="1" width="125" />
-      <colgroup span="1" width="350" />
+    <table border="1" width="100%">
+      <colgroup span="1" width="10%" />
+      <colgroup span="1" width="70%" />
         <tr><td valign="top">
-            <input type="radio" name="sport"
+            <input type="radio" name="radios"
             value="http://www.movies.com/rss-feeds/movie-news-rss"
             checked="checked" onclick="updateMovie()" />Movie News<br />
 
-            <input type="radio" name="sport"
+            <input type="radio" name="radios"
             value="http://www.movies.com/rss-feeds/top-ten-box-office-rss"
-            checked="checked" onclick="updateMovie()" />Top 10<br />
+            onclick="updateMovie()" />Top 10<br />
 
-            <input type="radio" name="sport"
+            <input type="radio" name="radios"
             value="http://www.movies.com/rss-feeds/dave-white-reviews-rss"
-            checked="checked" onclick="updateMovie()" />Dave White's Reviews<br />
+            onclick="updateMovie()" />Dave White's Reviews<br />
 
-            <input type="radio" name="sport"
+            <input type="radio" name="radios"
             value="http://www.movies.com/rss-feeds/grae-drake-reviews-rss"
-            checked="checked" onclick="updateMovie()" />Grae Drake's Reviews<br />
+            onclick="updateMovie()" />Grae Drake's Reviews<br />
 
-            <input type="radio" name="sport"
+            <input type="radio" name="radios"
             value="http://www.movies.com/rss-feeds/new-on-dvd-rss"
-            checked="checked" onclick="updateMovie()" />New on DVD
+            onclick="updateMovie()" />New on DVD
 
         </td>
         <td id="movieCell" valign="top"></td>
