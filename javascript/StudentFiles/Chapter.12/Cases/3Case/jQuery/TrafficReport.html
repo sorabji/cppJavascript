@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script type="text/javascript"
+   src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<title>Movie News</title>
+<meta http-equiv="content-type" content="text/html;
+charset=iso-8859-1" />
+<style type="text/css">
+body {background-color: #5e2605;}
+a {
+  color:white;
+}
+p, td	{
+font-family:arial;
+font-size:1.4em;
+color:white;
+}
+#movieCell {
+  font-size:1.67em;
+}
+</style>
+<script type="text/javascript">
+/* <![CDATA[ */
+function updateTrafficInfo(){
+  $('#trafficCell').html("Loading...");
+  var city = $('#city').val().toLowerCase();
+  while(city.indexOf(" ") != -1){
+    city = city.replace(" ","");
+  }
+  $.get("TrafficReport.php",
+      {city:city},
+      function(data){
+        if($(data).find('item').text() == ""){
+          $('#trafficCell').html("<p>Invalid City</p>");
+        } else {
+          $('#trafficCell').html("");
+
+          //tricky little title string...hackish
+          var title = $(data).find('description').text();
+          title = title.substring(0,title.indexOf(".")+1);
+          $('#trafficHeader').html("<p>"+title+"</p>");
+
+          $(data).find('item').each(function(){
+
+            var curTraffic = "<span style='font-size:1.5em;color:gray'>";
+            curTraffic += $(this).find('title').text() + "</span><br />";
+            curTraffic += $(this).find('description').text() + "<br />";
+            curTraffic += "<a href='"+$(this).find('link').text()+"' target='_blank'>More Info</a><br />";
+            curTraffic += "<span style='color:gray'>"+$(this).find('pubDate').text()+"</span><br /><br /><hr />";
+
+            $('#trafficCell').append(curTraffic);
+          });
+        }
+      });
+  setInterval('updateTrafficInfo()',60000);
+}
+
+$(document).ready(function(){
+    $('#submit').click(updateTrafficInfo);
+    $('#city').keypress(function(event){
+      if(event.which==13){
+        updateTrafficInfo();
+      }
+    });
+    updateTrafficInfo();
+});
+
+/* ]]> */
+</script>
+</head>
+<body>
+  <p>enter the name of the city you want traffic infoz for</p><br />
+  <input type="text" value="albany" id="city" name="city" /><br />
+  <input type="button" value="submit" id="submit" /><br />
+<table border="1" id="trafficTable" style="display:hidden">
+  <colgroup width="80%" />
+  <tr><th id="trafficHeader"></th></tr>
+  <tr><td id="trafficCell"></td></tr>
+</table>
+
+</body>
+</html>
